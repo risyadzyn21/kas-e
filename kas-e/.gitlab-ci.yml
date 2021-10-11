@@ -17,7 +17,7 @@ deploy_dev:
   image: node:14.17.1
   stage: deploy_dev
   script:
-    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$DEV_APP_NAME.git HEAD:master
+    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$DEV_APP_NAME.git HEAD:main
     - echo "Deployed to dev server"
   environment:
     name: dev
@@ -29,10 +29,10 @@ deploy_production:
   image: node:14.17.1
   stage: deploy_prod
   script:
-    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$APP_NAME.git HEAD:master
+    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$APP_NAME.git HEAD:main
     - echo "Deployed to production server"
   environment:
     name: production
     url: https://$APP_NAME.herokuapp.com/
   only:
-    - master
+    - main
