@@ -1,0 +1,55 @@
+$primary-color: #003f88;
+
+.sidebar-wrap {
+  .sidebar {
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    width: 326px;
+    left: 0;
+    background: $primary-color;
+    &-avatar {
+      height: auto;
+      margin: 16px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    ul {
+      background: $primary-color;
+      color: white;
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        .ant-radio-wrapper {
+          border-bottom: 1px solid $primary-color;
+          padding: 10px 0 10px 50px;
+          margin: 0;
+        }
+      }
+      .sub2 {
+        li {
+          background: white;
+          color: $primary-color;
+          margin: 0;
+          border-bottom: 1px solid $primary-color;
+          &:hover {
+            background: lightblue;
+          }
+        }
+      }
+    }
+  }
+}
+
+i {
+  &.ant-menu-submenu-arrow {
+    &::before {
+      background: white;
+      color: white;
+    }
+    &::after {
+      background: white;
+      color: white;
+    }
+  }
+}
