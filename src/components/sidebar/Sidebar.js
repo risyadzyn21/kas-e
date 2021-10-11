@@ -30,28 +30,30 @@ const Sidebar = () => {
     <div>
       <Layout className='sidebar-wrap'>
         <Sider className='sidebar'>
-          <div className="sidebar-avatar"> <UserAvatar /> </div>
+          <div className="sidebar-user">
+            <UserAvatar />
+          </div>
           <Menu mode="inline">
-            <Menu.Item key="1" icon={<UserOutlined />}>
+            <Menu.Item key="1" >
               Transactions
             </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+            <Menu.Item key="2" >
               Report
             </Menu.Item>
 
-            <SubMenu key="sub1" icon={<UserOutlined />} title="Time Range">
+            <SubMenu key="sub1" title="Time Range">
               <Radio.Group className='radio-group' onChange={onChange} value={value}>
                 <Radio value={1}>Daily</Radio>
                 <Radio value={2}>Monthly</Radio>
               </Radio.Group>
             </SubMenu>
 
-            <SubMenu key="sub2" className='sub2' icon={<UserOutlined />} title="Edit">
+            <SubMenu key="sub2" className='sub2' title="Edit">
               <Menu.Item key="3">Edit Safe</Menu.Item>
               <Menu.Item key="4">Edit Category Limit</Menu.Item>
             </SubMenu>
 
-            <Menu.Item key="5" icon={<VideoCameraOutlined />}>
+            <Menu.Item key="5" >
               My Profile
             </Menu.Item>
           </Menu>

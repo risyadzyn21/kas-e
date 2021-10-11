@@ -8,14 +8,16 @@ $primary-color: #003f88;
     width: 326px;
     left: 0;
     background: $primary-color;
-    &-avatar {
+    &-user {
       height: auto;
       margin: 16px;
-      background: rgba(255, 255, 255, 0.2);
     }
     ul {
       background: $primary-color;
       color: white;
+      li {
+        border-bottom: 1px solid white;
+      }
       .radio-group {
         display: flex;
         flex-direction: column;
