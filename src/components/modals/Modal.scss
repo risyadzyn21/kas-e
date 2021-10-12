@@ -1,0 +1,13 @@
+$secondary-color: #1eae98;
+
+.transaction-modal,
+.income-modal {
+  display: flex;
+  button {
+    margin: 5px auto;
+    width: 200px;
+    border-radius: 15px;
+    background: $secondary-color;
+    border: 1px solid $secondary-color;
+  }
+}

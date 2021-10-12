@@ -1,45 +1,58 @@
 $primary-color: #003f88;
 
-.sidebar-wrap {
-  .sidebar {
-    overflow: auto;
-    height: 100vh;
-    position: fixed;
-    width: 326px;
-    left: 0;
+.ant-layout-sider-children {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  width: 250px;
+  left: 0;
+  background: $primary-color;
+}
+
+.ant-menu-root.ant-menu-inline {
+  margin-top: 30px;
+}
+
+.sidebar {
+  &-user {
+    height: auto;
+    margin: 16px;
+  }
+  ul {
     background: $primary-color;
-    &-user {
-      height: auto;
-      margin: 16px;
+    color: white;
+    li {
+      border-bottom: 1px solid white;
     }
-    ul {
-      background: $primary-color;
-      color: white;
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      .ant-radio-wrapper {
+        border-bottom: 1px solid $primary-color;
+        padding: 10px 0 10px 50px;
+        margin: 0;
+      }
+    }
+    .sub2 {
       li {
-        border-bottom: 1px solid white;
-      }
-      .radio-group {
-        display: flex;
-        flex-direction: column;
         background: white;
-        .ant-radio-wrapper {
-          border-bottom: 1px solid $primary-color;
-          padding: 10px 0 10px 50px;
-          margin: 0;
-        }
-      }
-      .sub2 {
-        li {
-          background: white;
-          color: $primary-color;
-          margin: 0;
-          border-bottom: 1px solid $primary-color;
-          &:hover {
-            background: lightblue;
-          }
+        color: $primary-color;
+        margin: 0;
+        border-bottom: 1px solid $primary-color;
+        &:hover {
+          background: lightblue;
         }
       }
     }
+  }
+}
+
+.logout-btn-side {
+  color: white;
+  display: flex;
+  div {
+    margin: 100px auto;
   }
 }
 

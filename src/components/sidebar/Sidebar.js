@@ -13,6 +13,8 @@ import {
 } from '@ant-design/icons';
 
 import UserAvatar from '../avatar/UserAvatar.js'
+import AddTransactionModal from '../modals/AddTransactionModal';
+import AddIncomeModal from '../modals/AddIncomeModal';
 
 
 
@@ -33,6 +35,8 @@ const Sidebar = () => {
           <div className="sidebar-user">
             <UserAvatar />
           </div>
+          <AddTransactionModal />
+          <AddIncomeModal />
           <Menu mode="inline">
             <Menu.Item key="1" >
               Transactions
@@ -57,6 +61,10 @@ const Sidebar = () => {
               My Profile
             </Menu.Item>
           </Menu>
+
+          <div className='logout-btn-side'>
+            <div>Logout</div>
+          </div>
         </Sider>
       </Layout>
 
