@@ -1,57 +1,37 @@
-$primary-color: #003f88;
+@import "../../assets/abstracts/variables";
 
-.sidebar-wrap {
-  .sidebar {
-    overflow: auto;
-    height: 100vh;
-    position: fixed;
-    width: 326px;
-    left: 0;
+.ant-layout-sider-children {
+  overflow: auto;
+  height: 100vh;
+  width: 326px;
+  position: fixed;
+  left: 0;
+  background: $primary-color;
+
+  ul {
+    margin-top: 30px;
     background: $primary-color;
-    &-user {
-      height: auto;
-      margin: 16px;
-    }
-    ul {
-      background: $primary-color;
-      color: white;
-      li {
-        border-bottom: 1px solid white;
-      }
+    color: $text-white-color;
+
+    li {
+      border-bottom: 1px solid $text-white-color;
+
       .radio-group {
         display: flex;
         flex-direction: column;
-        background: white;
-        .ant-radio-wrapper {
-          border-bottom: 1px solid $primary-color;
-          padding: 10px 0 10px 50px;
-          margin: 0;
-        }
-      }
-      .sub2 {
-        li {
-          background: white;
-          color: $primary-color;
-          margin: 0;
-          border-bottom: 1px solid $primary-color;
-          &:hover {
-            background: lightblue;
-          }
-        }
+        margin: 0;
       }
     }
   }
-}
+  .edit-group {
+    li {
+      color: $primary-color;
+      border-bottom: 1px solid $primary-color;
+      margin: 0;
+    }
+  }
 
-i {
-  &.ant-menu-submenu-arrow {
-    &::before {
-      background: white;
-      color: white;
-    }
-    &::after {
-      background: white;
-      color: white;
-    }
+  .side-modal {
+    margin-top: 30px;
   }
 }
