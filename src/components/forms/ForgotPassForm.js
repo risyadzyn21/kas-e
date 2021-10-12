@@ -14,7 +14,7 @@ function ForgotPassForm(props) {
 
   return (
     <Form
-      name="login"
+      name="forgot"
       wrapperCol={{
         span: 24,
       }}
