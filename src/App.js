@@ -1,12 +1,11 @@
 import './App.css';
-
 import 'antd/dist/antd.css';
-import Sidebar from './components/sidebar/Sidebar';
+import Routes from './routes/Routes';
 
 function App() {
   return (
     <div className="App">
-      <Sidebar />
+      <Routes />
     </div>
   );
 }

@@ -1,16 +1,7 @@
 import { useState } from 'react';
 import './Sidebar.scss'
 import { Layout, Menu, Radio, Space } from 'antd';
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
+
 
 import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
@@ -30,13 +21,18 @@ const Sidebar = () => {
 
   return (
     <div>
-      <Layout className='sidebar-wrap'>
-        <Sider className='sidebar'>
-          <div className="sidebar-user">
+      <Layout>
+        <Sider>
+
+          <div>
             <UserAvatar />
           </div>
-          <AddTransactionModal />
-          <AddIncomeModal />
+
+          <div className='side-modal'>
+            <AddTransactionModal />
+            <AddIncomeModal />
+          </div>
+
           <Menu mode="inline">
             <Menu.Item key="1" >
               Transactions
@@ -52,7 +48,7 @@ const Sidebar = () => {
               </Radio.Group>
             </SubMenu>
 
-            <SubMenu key="sub2" className='sub2' title="Edit">
+            <SubMenu key="sub2" className='edit-group' title="Edit">
               <Menu.Item key="3">Edit Safe</Menu.Item>
               <Menu.Item key="4">Edit Category Limit</Menu.Item>
             </SubMenu>
@@ -72,8 +68,4 @@ const Sidebar = () => {
   )
 }
 
-
-
 export default Sidebar
-
-

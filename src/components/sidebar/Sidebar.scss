@@ -1,70 +1,37 @@
-$primary-color: #003f88;
+@import "../../assets/abstracts/variables";
 
 .ant-layout-sider-children {
   overflow: auto;
   height: 100vh;
+  width: 326px;
   position: fixed;
-  width: 250px;
   left: 0;
   background: $primary-color;
-}
 
-.ant-menu-root.ant-menu-inline {
-  margin-top: 30px;
-}
-
-.sidebar {
-  &-user {
-    height: auto;
-    margin: 16px;
-  }
   ul {
+    margin-top: 30px;
     background: $primary-color;
-    color: white;
+    color: $text-white-color;
+
     li {
-      border-bottom: 1px solid white;
-    }
-    .radio-group {
-      display: flex;
-      flex-direction: column;
-      background: white;
-      .ant-radio-wrapper {
-        border-bottom: 1px solid $primary-color;
-        padding: 10px 0 10px 50px;
+      border-bottom: 1px solid $text-white-color;
+
+      .radio-group {
+        display: flex;
+        flex-direction: column;
         margin: 0;
       }
     }
-    .sub2 {
-      li {
-        background: white;
-        color: $primary-color;
-        margin: 0;
-        border-bottom: 1px solid $primary-color;
-        &:hover {
-          background: lightblue;
-        }
-      }
+  }
+  .edit-group {
+    li {
+      color: $primary-color;
+      border-bottom: 1px solid $primary-color;
+      margin: 0;
     }
   }
-}
 
-.logout-btn-side {
-  color: white;
-  display: flex;
-  div {
-    margin: 100px auto;
-  }
-}
-
-i {
-  &.ant-menu-submenu-arrow {
-    &::before {
-      background: white;
-      color: white;
-    }
-    &::after {
-      background: white;
-      color: white;
-    }
+  .side-modal {
+    margin-top: 30px;
   }
 }
