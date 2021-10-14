@@ -1,0 +1,86 @@
+@import "../../assets/abstracts/variables";
+
+.main-layout {
+  margin-left: 330px;
+  .ant-page-header {
+    background: white;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .ant-layout-content {
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .main-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 700px;
+  }
+
+  #edit-profile {
+    width: 600px;
+  }
+
+  .button-profile {
+    display: flex;
+    flex-direction: column;
+
+    .ant-btn {
+      width: 200px;
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    .ant-btn-primary {
+      margin-bottom: 30px;
+      border-color: $primary-color;
+      background: $primary-color;
+    }
+  }
+}
+
+.ant-row {
+  .ant-col {
+    .ant-form-item-control-input {
+      .input-style {
+        border: 1px solid $primary-color;
+        box-sizing: border-box;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.ant-input-password,
+.ant-select-show-arrow,
+.ant-form-item-control-input-content {
+  border: 1px solid $primary-color;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.ant-input-number {
+  width: 100%;
+}
+
+.ant-form-item-label {
+  label {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

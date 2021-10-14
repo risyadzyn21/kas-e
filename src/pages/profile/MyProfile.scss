@@ -1,0 +1,53 @@
+@import "../../assets/abstracts/variables";
+
+.main-layout {
+  margin-left: 326px;
+
+  .ant-layout-header {
+    background: white;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-title {
+    margin-bottom: 0;
+    font-size: 32px;
+    justify-content: center;
+  }
+
+  .ant-layout-content {
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .button-profile {
+    display: flex;
+    flex-direction: column;
+
+    .ant-btn {
+      width: 200px;
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    .ant-btn-primary {
+      margin-bottom: 30px;
+      border-color: $primary-color;
+      background: $primary-color;
+    }
+    .ant-btn-danger {
+      border: $text-red-color;
+      background: $text-red-color;
+    }
+  }
+}

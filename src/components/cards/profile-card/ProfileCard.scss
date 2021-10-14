@@ -1,0 +1,79 @@
+@import "../../../assets/abstracts/variables";
+
+.main-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 780px;
+
+  .profile {
+    width: 700px;
+  }
+
+  .ant-card-body {
+    border-radius: 10px;
+  }
+
+  .ant-card-bordered {
+    border: none;
+    border-radius: 10px;
+  }
+
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: -1px;
+    padding: 10px 24px;
+
+    h4 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      margin: 0;
+      padding: 5px 0 10px 0;
+    }
+
+    p {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      margin: 0;
+      padding: 10px 0 5px 0;
+    }
+  }
+
+  .all-safe-btn {
+    height: 75px;
+    margin-bottom: 20px;
+    background: #e4f1ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 5px 20px rgba(109, 109, 109, 0.07);
+    border-radius: 7px;
+
+    &:hover {
+      background: #c5e1ff;
+      color: white;
+    }
+
+    h4 {
+      color: $primary-color;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      margin: 0;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.card-container {
+  .ant-card-body {
+    border-radius: 10px;
+    padding: 1px;
+  }
+}
