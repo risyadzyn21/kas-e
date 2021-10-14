@@ -1,0 +1,101 @@
+.background {
+  height: 100vh;
+  width: 100vw;
+  background: url("../../assets/login-register-page.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+
+    .left-container {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+
+      .wrapper {
+        margin: 0 auto;
+        margin-top: 15%;
+        width: 80%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .logo {
+          display: flex;
+          flex-direction: row;
+
+          h1 {
+            color: white;
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+
+        .text {
+          width: 50%;
+
+          p {
+            color: white;
+            text-align: start;
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 39px;
+          }
+        }
+      }
+    }
+
+    .right-container {
+      height: 100vh;
+      background: #003f88ab;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .ant-form {
+        width: 70%;
+        h2,
+        p {
+          color: white;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        p {
+          font-size: 20px;
+          font-weight: 100;
+        }
+        .ant-input-affix-wrapper,
+        .ant-input,
+        .ant-select-selector {
+          border-radius: 7px;
+        }
+
+        .ant-btn {
+          border-radius: 7px;
+        }
+      }
+      a {
+        color: white;
+        font-weight: 400;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .button-text {
+        text-align: center;
+        margin-top: 25px;
+      }
+    }
+  }
+}
+
+.btn-step {
+  margin-bottom: 20px;
+}
