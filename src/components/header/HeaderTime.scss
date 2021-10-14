@@ -1,0 +1,16 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+
+// Colors
+$primaryColor: #005eca;
+$secondaryColor: #1eae98;
+$tertiaryColor: #8e8e8e;
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.ant-tabs-tab {
+    padding-left: 150px;
+    padding-right: 150px;
+}

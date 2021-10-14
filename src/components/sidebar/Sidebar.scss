@@ -1,0 +1,37 @@
+@import "../../assets/abstracts/variables";
+
+.ant-layout-sider-children {
+  overflow: auto;
+  height: 100vh;
+  width: 326px;
+  position: fixed;
+  left: 0;
+  background: $primary-color;
+
+  ul {
+    margin-top: 30px;
+    background: $primary-color;
+    color: $text-white-color;
+
+    li {
+      border-bottom: 1px solid $text-white-color;
+
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+    }
+  }
+  .edit-group {
+    li {
+      color: $primary-color;
+      border-bottom: 1px solid $primary-color;
+      margin: 0;
+    }
+  }
+
+  .side-modal {
+    margin-top: 30px;
+  }
+}
