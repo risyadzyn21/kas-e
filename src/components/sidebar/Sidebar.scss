@@ -1,37 +1,66 @@
 @import "../../assets/abstracts/variables";
 
-.ant-layout-sider-children {
-  overflow: auto;
+.sidebar {
   height: 100vh;
-  width: 326px;
-  position: fixed;
+  position: sticky;
+  top: 0;
   left: 0;
   background: $primary-color;
 
+  .ant-menu {
+    border-right: 0;
+
+    .ant-menu-submenu-arrow {
+      color: $text-white-color;
+      background-color: $text-white-color;
+    }
+  }
+
   ul {
-    margin-top: 30px;
     background: $primary-color;
     color: $text-white-color;
 
     li {
-      border-bottom: 1px solid $text-white-color;
+      border-bottom: 2px solid $text-white-color;
 
       .radio-group {
         display: flex;
         flex-direction: column;
         margin: 0;
+
+        label {
+          padding: 10px 50px;
+          border-bottom: 2px solid $primary-color;
+          margin: 0;
+        }
+      }
+      :hover {
+        color: $chart-color2;
       }
     }
   }
   .edit-group {
     li {
       color: $primary-color;
-      border-bottom: 1px solid $primary-color;
+      border-bottom: 2px solid $primary-color;
       margin: 0;
     }
   }
 
   .side-modal {
-    margin-top: 30px;
+    margin: 30px 0;
   }
 }
+
+// Sidebar
+// .sidebar {
+//   height: 100vh;
+//   position: sticky;
+//   top: 0;
+//   left: 0;
+//   background: $primary-color;
+
+//   .ant-menu {
+//     border-right: 0;
+//   }
+// }
