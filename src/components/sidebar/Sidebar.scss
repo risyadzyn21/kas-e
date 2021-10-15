@@ -7,6 +7,10 @@
   left: 0;
   background: $primary-color;
 
+  a {
+    color: $text-white-color;
+  }
+
   .ant-menu {
     border-right: 0;
 
@@ -44,6 +48,10 @@
       color: $primary-color;
       border-bottom: 2px solid $primary-color;
       margin: 0;
+
+      a {
+        color: $primary-color;
+      }
     }
   }
 

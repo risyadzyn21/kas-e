@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import './Sidebar.scss'
 import { Layout, Menu, Radio } from 'antd';
+import { Link } from 'react-router-dom';
 
 import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
 import AddIncomeModal from '../modals/AddIncomeModal';
+import ReportPage from '../../pages/report-page';
+import EditSafePage from '../../pages/edit-safe';
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);
@@ -28,12 +31,14 @@ const Sidebar = () => {
 
       <Menu mode="inline">
         <Menu.Item key="1" >
-          {/* <Link to="/transactions"> */}
-          Transactions
-          {/* </Link> */}
+          <Link to="/transactions">
+            Transactions
+          </Link>
         </Menu.Item>
         <Menu.Item key="2" >
-          Report
+          <Link to='/report' >
+            Report
+          </Link>
         </Menu.Item>
 
         <SubMenu key="sub1" title="Time Range">
@@ -44,8 +49,16 @@ const Sidebar = () => {
         </SubMenu>
 
         <SubMenu key="sub2" className='edit-group' title="Edit">
-          <Menu.Item key="3">Edit Safe</Menu.Item>
-          <Menu.Item key="4">Edit Category Limit</Menu.Item>
+          <Menu.Item key="3">
+            <Link to='edit-safe' >
+              Edit Safe
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+            <Link to='edit-category-limit'>
+              Edit Category Limit
+            </Link>
+          </Menu.Item>
         </SubMenu>
 
         <Menu.Item key="5" >

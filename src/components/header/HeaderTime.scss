@@ -4,12 +4,23 @@
   z-index: 5;
 }
 
-.ant-tabs-nav-wrap {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-  .ant-tabs-nav-list {
-    font-weight: bold;
-    gap: 180%;
+.site-page-tab {
+  display: flex;
+
+  .ant-tabs-nav-wrap {
     display: flex;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
+    .ant-tabs-nav-list {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .ant-tabs-tab {
+      margin: 0;
+      padding: 20px;
+      font-weight: bold;
+    }
   }
 }

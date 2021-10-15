@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import DailyChart from "../components/charts/DailyChart"
 import HeaderTimeDaily from "../components/header/HeaderTimeDaily"
 import Sidebar from "../components/sidebar/Sidebar"
+import EditSafePage from "../pages/edit-safe"
 import Home from "../pages/home/Home"
 import ReportPage from "../pages/report-page"
 
@@ -10,7 +11,10 @@ import ReportPage from "../pages/report-page"
 const Routes = () => {
   return (
     <Router>
-      <ReportPage />
+      <Switch>
+        <Route path='/report' component={ReportPage} />
+        <Route path='/edit-safe' component={EditSafePage} />
+      </Switch>
     </Router>
   )
 }
