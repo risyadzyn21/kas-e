@@ -1,5 +1,7 @@
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button, Select, InputNumber } from "antd";
 import { useState } from "react";
+import Show from "../../assets/icons/show.png";
+import Hide from "../../assets/icons/hide.png";
 
 function RegisterForm(props) {
   const { setPage } = props;
@@ -11,6 +13,7 @@ function RegisterForm(props) {
     const formData = stepForm.getFieldsValue([
       "email",
       "password",
+      "confirm",
       "fullName",
       "gender",
       "age",
@@ -78,7 +81,16 @@ function RegisterForm(props) {
               },
             ]}
           >
-            <Input.Password placeholder="Please enter your password" />
+            <Input.Password
+              iconRender={(visible) =>
+                visible ? (
+                  <img src={Show} alt="Show" />
+                ) : (
+                  <img src={Hide} alt="Hide" />
+                )
+              }
+              placeholder="Please enter your password"
+            />
           </Form.Item>
 
           <Form.Item
@@ -105,7 +117,16 @@ function RegisterForm(props) {
               }),
             ]}
           >
-            <Input.Password placeholder="Confirm your password" />
+            <Input.Password
+              iconRender={(visible) =>
+                visible ? (
+                  <img src={Show} alt="Show" />
+                ) : (
+                  <img src={Hide} alt="Hide" />
+                )
+              }
+              placeholder="Confirm your password"
+            />
           </Form.Item>
 
           <Form.Item shouldUpdate>
@@ -120,7 +141,7 @@ function RegisterForm(props) {
                     onClick={() => checkNext()}
                     block
                   >
-                    Register
+                    Create New Account
                   </Button>
                   <p className="button-text">
                     Already have an account?{" "}
@@ -181,7 +202,11 @@ function RegisterForm(props) {
               },
             ]}
           >
-            <Input placeholder="Age" />
+            <InputNumber
+              placeholder="Age"
+              className="input-style"
+              controls={false}
+            />
           </Form.Item>
 
           <Form.Item>
@@ -194,7 +219,7 @@ function RegisterForm(props) {
               Back
             </Button>
             <Button type="primary" htmlType="submit" block>
-              Register
+              Create New Account
             </Button>
             <p className="button-text">
               Already have an account?{" "}
