@@ -1,16 +1,18 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import HeaderTime from "../components/header/HeaderTime"
-import Sidebar from "../components/sidebar/Sidebar"
-
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "../pages/home/Home";
+import ReportDetail from "../pages/report-detail/ReportDetail";
 
 const Routes = () => {
   return (
     <Router>
-      {/* <Sidebar /> */}\
-      <HeaderTime />
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/Report/Detail">
+        <ReportDetail />
+      </Route>
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;
