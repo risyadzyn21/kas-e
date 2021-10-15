@@ -28,14 +28,14 @@ const Print = () => {
           </a>
           <span style={{ marginLeft: 15 }}>Report Detail</span>
         </div>
-        <div style={{ paddingRight: 80 }} className="print-btn">
-          <button style={{ width: 150, height: 40 }}>Print</button>
+        <div style={{ paddingRight: 80, marginTop: 10 }} className="print-btn">
+          <button style={{ width: 150, height: 50}}>Print</button>
         </div>
       </Header>
       <Content style={{ margin: "24px 16px 0" }}>
         <div
           className="site-layout-background"
-          style={{ padding: 24, minHeight: 360, backgroundColor: "grey" }}
+          style={{ padding: 24, minHeight: 360 }}
         >
           <div style={{ paddingLeft: 20 }} className="report-detail">
             <div style={{ marginBottom: 20 }} className="report-list">
