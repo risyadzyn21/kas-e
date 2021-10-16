@@ -1,16 +1,31 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+.site-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
 
-// Colors
-$primaryColor: #005eca;
-$secondaryColor: #1eae98;
-$tertiaryColor: #8e8e8e;
+.site-page-tab {
+  display: flex;
 
-body {
-    font-family: "Montserrat", sans-serif;
+  .ant-tabs-nav-wrap {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+
+    .ant-tabs-nav-list {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .ant-tabs-tab {
+      margin: 0;
+      padding: 20px;
+      font-weight: bold;
+    }
+  }
 }
 
 .ant-tabs-tab {
-    padding-left: 150px;
-    padding-right: 150px;
+  padding-left: 150px;
+  padding-right: 150px;
 }

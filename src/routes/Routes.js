@@ -1,20 +1,22 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "../pages/home/Home";
-import ReportDetail from "../pages/report-detail/ReportDetail";
-import Profile from "../pages/profile/Profile";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import DailyChart from "../components/charts/DailyChart"
+import HeaderTimeDaily from "../components/header/HeaderTimeDaily"
+import Sidebar from "../components/sidebar/Sidebar"
+import EditSafePage from "../pages/edit-safe"
+import Home from "../pages/home/Home"
+import LandingPage from "../pages/landing-page/LandingPage"
+import ReportPage from "../pages/report-page"
+
+
 
 const Routes = () => {
   return (
     <Router>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/Report/Detail">
-        <ReportDetail />
-      </Route>
-      <Route path="/Profile">
-        <Profile />
-      </Route>
+      <Switch>
+        <Route exact path='/' component={LandingPage} />
+        <Route path='/report' component={ReportPage} />
+        <Route path='/edit-safe' component={EditSafePage} />
+      </Switch>
     </Router>
   );
 };

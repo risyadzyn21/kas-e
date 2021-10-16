@@ -1,9 +1,9 @@
 import React from "react";
 import "./Footer.scss";
 
-import apple from "../../assets/LandingPageImages/apple.png";
-import google from "../../assets/LandingPageImages/google.png";
-import Vector from "../../assets/LandingPageImages/Vector.png";
+import apple from "../../assets/landing-page-images/apple.png";
+import google from "../../assets/landing-page-images/google.png";
+import Vector from "../../assets/landing-page-images/Vector.png";
 
 const Footer = () => {
   return (
@@ -55,11 +55,11 @@ const Footer = () => {
             <ul>
               <li>Privacy Policy</li>
               <li>Terms & Conditions</li>
-             
+
             </ul>
           </div>
-          <div  style={{ padding: "15px" }} className="cr">
-          © Copyright 2021. All right reserved.
+          <div style={{ padding: "15px" }} className="cr">
+            © Copyright 2021. All right reserved.
           </div>
         </div>
       </div>

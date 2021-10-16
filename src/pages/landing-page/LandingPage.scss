@@ -1,15 +1,9 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
-
-// Colors
-$primaryColor: #005eca;
-$secondaryColor: #1eae98;
-$tertiaryColor: #8e8e8e;
+@import "../../assets/abstracts/variables";
 
 //styles
 body {
-  font-family: "Montserrat", sans-serif;
-  background: url(../../assets/LandingPageImages/background.png) top center no-repeat;
+  background: url(../../assets//landing-page-images/background.png) top center
+    no-repeat;
 }
 
 .header-container {
@@ -30,13 +24,12 @@ body {
 }
 
 .header-container button {
-  background: $primaryColor;
+  background: $primary-color;
   color: white;
   width: 150px;
   height: 35px;
   border: none;
   border-radius: 10px;
-  font-family: "Montserrat", sans-serif;
 }
 
 .login-btn {
@@ -59,7 +52,7 @@ body {
 }
 
 .hero-text h1 span {
-  color: $primaryColor;
+  color: $primary-color;
 }
 
 .hero-text p {
@@ -75,7 +68,6 @@ body {
 
 .text-first {
   padding-top: 180px;
-  
 }
 
 .img-first {
@@ -83,25 +75,25 @@ body {
 }
 
 .content-second {
-    display: flex;
+  display: flex;
 }
 
 .text-second {
-    padding-top: 200px;
-    padding-left: 100px;
-    width: 40%;
+  padding-top: 200px;
+  padding-left: 100px;
+  width: 40%;
 }
 
 .img-second {
-    padding-left: 50px;
+  padding-left: 50px;
 }
 
 .content-third {
-    display: flex;
+  display: flex;
 }
 
 .text-third {
-    padding-top: 200px;
-    padding-left: 100px;
-    width: 80%;
+  padding-top: 200px;
+  padding-left: 100px;
+  width: 80%;
 }
