@@ -1,0 +1,57 @@
+// Colors
+$primaryColor: #005eca;
+$secondaryColor: #1eae98;
+$tertiaryColor: #8e8e8e;
+
+
+.info ul {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  list-style: none;
+  gap: 100px;
+  border-bottom: 1px solid white;
+  width: 75%;
+  margin-left: 50px;
+}
+
+
+.info-detail ul {
+  list-style: none;
+  margin-left: 40px;
+}
+
+.row-detail {
+  display: flex;
+}
+
+.download {
+  color: white;
+  padding-left: 20%;
+  padding-top: 15px;
+}
+.download-img {
+  list-style: none;
+
+ 
+}
+
+.footer-container {
+  display: flex;
+  
+}
+
+.copyright ul{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.bottom {
+  display: flex;
+
+}
+
+.cr {
+  margin-left: 70vh;
+}

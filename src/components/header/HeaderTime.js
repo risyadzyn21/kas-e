@@ -1,9 +1,11 @@
-import { PageHeader, Tabs } from 'antd';
-import './HeaderTime.scss'
-import KasESmall from '../../assets/logo/Rectangle-9-1.png'
-import KasELetterSmall from '../../assets/logo/Kas-E-1.png'
+import { PageHeader, Tabs, Layout } from "antd";
+import "./HeaderTime.scss";
+import KasESmall from "../../assets/logo/Rectangle-9-1.png";
+import KasELetterSmall from "../../assets/logo/Kas-E-1.png";
+import Sidebar from "../sidebar/Sidebar";
 
 function HeaderTime() {
+  const { Header, Footer, Sider, Content } = Layout;
   const { TabPane } = Tabs;
 
   function callback(key) {
@@ -11,25 +13,28 @@ function HeaderTime() {
   }
   return (
     <>
-      <PageHeader
-        className="site-page-header"
-        title={<img src={KasESmall} />}
-        subTitle={<img src={KasELetterSmall} />}>
-        <Tabs defaultActiveKey="1" onChange={callback}>
-          <TabPane tab="Tab 1" key="1">
-            Content of Tab Pane 1
-          </TabPane>
-          <TabPane tab="Tab 2" key="2">
-            Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="Tab 3" key="3">
-            Content of Tab Pane 3
-          </TabPane>
-        </Tabs>
-      </PageHeader>
+      <Layout>
+        <PageHeader
+          className="site-page-header"
+          title={<img src={KasESmall} />}
+          subTitle={<img src={KasELetterSmall} />}
+        >
+          <Tabs defaultActiveKey="1" onChange={callback}>
+            <TabPane tab="Yesterday" key="1"></TabPane>
+            <TabPane tab="Today" key="2"></TabPane>
+            <TabPane tab="Tomorrow" key="3"></TabPane>
+          </Tabs>
+        </PageHeader>
 
+        <Content>
+          <div style={{ fontWeight: "bold", fontSize: 20 }}>Transaction</div>
+          <div style={{ marginTop: 100 }} className="logo-center">
+            <img src={KasESmall} />
+          </div>
+        </Content>
+      </Layout>
     </>
-  )
+  );
 }
 
-export default HeaderTime
+export default HeaderTime;
