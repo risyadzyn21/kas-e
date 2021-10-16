@@ -31,7 +31,7 @@ function HeaderTimeDaily() {
       </Tabs>
 
     </>
-  )
+  );
 }
 
 export default HeaderTimeDaily

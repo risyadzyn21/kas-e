@@ -16,7 +16,7 @@ const Routes = () => {
         <Route path='/edit-safe' component={EditSafePage} />
       </Switch>
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;
