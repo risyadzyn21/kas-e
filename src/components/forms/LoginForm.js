@@ -1,4 +1,6 @@
 import { Form, Input, Button } from "antd";
+import Show from "../../assets/icons/show.png";
+import Hide from "../../assets/icons/hide.png";
 
 const LoginForm = (props) => {
   const { setPage } = props;
@@ -50,7 +52,16 @@ const LoginForm = (props) => {
           },
         ]}
       >
-        <Input.Password placeholder="Please enter your password" />
+        <Input.Password
+          iconRender={(visible) =>
+            visible ? (
+              <img src={Show} alt="Show" />
+            ) : (
+              <img src={Hide} alt="Hide" />
+            )
+          }
+          placeholder="Please enter your password"
+        />
       </Form.Item>
 
       <Form.Item>
