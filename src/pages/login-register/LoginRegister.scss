@@ -1,12 +1,12 @@
 @import "../../assets/abstracts/variables";
 
 .background {
-  height: 100vh;
+  height: 0vh;
   width: 100vw;
   background: url("../../assets/login-register-page.png");
   background-repeat: no-repeat;
   background-size: cover;
-  object-fit: cover;
+  // object-fit: cover;
 
   .container {
     display: flex;

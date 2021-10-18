@@ -9,7 +9,6 @@ import Footer from '../../components/footer/Footer.js'
 import "./LandingPage.scss";
 
 const LandingPage = () => {
-  const handleClick = () => { };
 
   return (
     <div>
@@ -19,9 +18,13 @@ const LandingPage = () => {
             <img src={logo} alt="" />
             <h1 className="logo-text">KAS-E</h1>
           </Link>
-          <button type="button" className="login-btn" onClick={handleClick}>
-            Log In
+
+          <button type="button" className="login-btn" >
+            <Link to='/auth'>
+              Log In
+            </Link>
           </button>
+
         </div>
         <div className="hero">
           <div className="hero-text">
