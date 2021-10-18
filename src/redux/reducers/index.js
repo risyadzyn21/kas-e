@@ -1,9 +1,8 @@
-const index = () => {
-  return (
-    <div>
+import userReducer from "./UserReducer";
+import { combineReducers } from "redux";
 
-    </div>
-  )
-}
+const rootReducer = combineReducers({
+  userReducer,
+});
 
-export default index
+export default rootReducer;

@@ -1,7 +1,7 @@
 .site-page-header {
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 10;
 }
 
 .site-page-tab {
@@ -9,8 +9,8 @@
 
   .ant-tabs-nav-wrap {
     display: flex;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
     .ant-tabs-nav-list {
       width: 100%;
@@ -18,9 +18,9 @@
     }
 
     .ant-tabs-tab {
-      margin: 0;
-      padding: 20px;
-      font-weight: bold;
+      margin: 0 60px;
+      padding: 10px 40px;
+      font-size: 20px;
     }
   }
 }
