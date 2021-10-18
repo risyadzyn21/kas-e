@@ -108,9 +108,7 @@ const LoginForm = (props) => {
 
       <Form.Item>
         <Button type="primary" htmlType="submit" block>
-          {/* <Link to='/transactions'> */}
           Login
-          {/* </Link> */}
         </Button>
         <p className="button-text">
           Don't have an account yet?{" "}
