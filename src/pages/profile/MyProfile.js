@@ -1,6 +1,6 @@
 import "./MyProfile.scss";
 import React from "react";
-import { Button, Layout } from "antd";
+import { Button, Layout, PageHeader } from "antd";
 import Sidebar from "../../components/sidebar/Sidebar";
 import ProfileCard from "../../components/cards/profile-card/ProfileCard";
 
@@ -10,9 +10,7 @@ function MyProfile() {
     <Layout>
       <Sidebar />
       <Layout className="main-layout">
-        <Header>
-          <h1 className="header-title">My Profile</h1>
-        </Header>
+        <PageHeader title="My Profile" />
         <Content>
           <div className="container">
             <ProfileCard />
