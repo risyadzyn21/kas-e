@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Select } from 'antd'
+import { Form, Select, Input, Button } from 'antd'
 import FunAndRelax from '../../assets/icons/FunAndRelax.png'
 import './AddTransactionForm.scss'
 
@@ -8,8 +8,8 @@ import './AddTransactionForm.scss'
 function AddTransactionForm() {
   return (
     <>
-      <Form>
-        <Form.Item label="Select">
+      <Form layout='vertical'>
+        <Form.Item label="Category" >
           <Select className='select-container'>
             <Select.Option value="demo1">Demo1</Select.Option>
             <Select.Option value="funnrelax" ><img src={FunAndRelax} /> Fun and Relax
@@ -29,6 +29,22 @@ function AddTransactionForm() {
               <p>Limit : Rp. 500.000</p>
             </Select.Option>
           </Select>
+        </Form.Item>
+        <Form.Item label="Detail Expense">
+          <p className='desc-label' >Explain to us in more detail, what are your expenses for?</p>
+          <Input placeholder='Explain' />
+        </Form.Item>
+        <Form.Item label="Your Expense">
+          <Input placeholder='IDR' />
+        </Form.Item>
+        <Form.Item label="Taken From">
+          <Input placeholder='Your Safe' />
+        </Form.Item>
+
+        <Form.Item >
+          <Button className='button-submit' htmlType="submit" block>
+            Create
+          </Button>
         </Form.Item>
       </Form>
 

@@ -7,7 +7,7 @@ export const Login = (email, password) => {
   }
   return axios({
     method: 'POST',
-    url: 'https://movieapp-glints.herokuapp.com/api/v1/users/signin',
+    url: 'http://kas-e.herokuapp.com/api/v1/user/login',
     headers: {
       'Content-Type': 'application/json'
     },
