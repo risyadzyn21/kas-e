@@ -1,3 +1,14 @@
+@import "../../assets/abstracts/variables";
+
 .rc-virtual-list-holder {
   max-height: 500px;
+}
+
+p.desc-label {
+  color: $text-grey-color;
+}
+
+.button-submit {
+  background: $primary-color;
+  color: $text-white-color;
 }

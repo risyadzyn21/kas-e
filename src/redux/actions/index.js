@@ -1,14 +1,15 @@
 import { Login } from "../../services";
 
-export const getLoginAsync = (email, password) => {
+export const getLoginAsync = (email, password, cb) => {
   return async (dispatch) => {
     dispatch({ type: "login/get-start" });
     try {
-      const response = await Login(email, password)
+      const response = await Login(email, password, cb)
       console.log(response, "start")
       if (response.data) {
         dispatch(getLoginSuccess(response.data));
-        localStorage.setItem('token', response.data.data)
+        localStorage.setItem('token', response.data.token)
+        cb(response.data.token)
       }
       return response
     } catch (error) {

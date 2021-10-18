@@ -5,25 +5,30 @@ import { getLoginAsync } from "../../redux/actions";
 import { Form, Input, Button } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const response = await dispatch(getLoginAsync(email, password))
-    console.log(response, "signIn")
-  }
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   const response = await dispatch(getLoginAsync(email, password))
+  //   console.log(response, "signIn")
+  // }
 
 
   const { setPage } = props;
 
-  // const onFinish = (values) => {
-  //   console.log(JSON.stringify(values, null, 2));
-  // };
+  const onFinish = (values) => {
+    console.log(JSON.stringify(values, null, 2));
+    const cb = (token) => {
+      history.push('/transactions')
+    }
+    dispatch(getLoginAsync(values.email, values.password, cb))
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -36,7 +41,7 @@ const LoginForm = (props) => {
       wrapperCol={{
         span: 24,
       }}
-      // onFinish={onFinish}
+      onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
@@ -45,8 +50,8 @@ const LoginForm = (props) => {
         <p>Let’s enter your E-mail and your Password to Sign In</p>
       </Form.Item>
       <Form.Item
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        // value={email}
+        // onChange={(e) => setEmail(e.target.value)}
         name="email"
         rules={[
           {
@@ -65,8 +70,8 @@ const LoginForm = (props) => {
       </Form.Item>
 
       <Form.Item
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        // value={password}
+        // onChange={(e) => setPassword(e.target.value)}
         name="password"
         rules={[
           {
@@ -103,9 +108,7 @@ const LoginForm = (props) => {
 
       <Form.Item>
         <Button type="primary" htmlType="submit" block>
-          <Link to='/transactions'>
-            Login
-          </Link>
+          Login
         </Button>
         <p className="button-text">
           Don't have an account yet?{" "}

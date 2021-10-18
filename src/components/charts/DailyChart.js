@@ -35,7 +35,9 @@ const DailyChart = () => {
       <div className='header'>
         <h1 className='title'>Pie Chart</h1>
       </div>
-      <Pie data={data} className='pie-chart' />
+      <div className='pie-chart'>
+        <Pie data={data} />
+      </div>
     </div>
   )
 }

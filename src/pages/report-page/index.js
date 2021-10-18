@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
 import EmptyPage from '../../components/empty-page/EmptyPage';
+import DailyChart from '../../components/charts/DailyChart'
 
 function ReportPage() {
   const { Header, Sider, Content } = Layout;
@@ -17,7 +18,7 @@ function ReportPage() {
           <HeaderTimeDaily />
           <Content style={{ padding: 40 }} >
             <div className='page-title'>Report</div>
-            <EmptyPage />
+            <DailyChart />
           </Content>
         </Layout>
       </Layout>
