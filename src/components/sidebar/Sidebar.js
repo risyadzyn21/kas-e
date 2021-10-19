@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import './Sidebar.scss'
-import { Layout, Menu, Radio } from 'antd';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import "./Sidebar.scss";
+import { Layout, Menu, Radio } from "antd";
+import { Link } from "react-router-dom";
 
 import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
@@ -13,8 +13,8 @@ const Sidebar = () => {
   const [value, setValue] = useState(1);
   const { SubMenu } = Menu;
 
-  const onChange = e => {
-    console.log('radio checked', e.target.value);
+  const onChange = (e) => {
+    console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
 
@@ -24,35 +24,33 @@ const Sidebar = () => {
         <UserAvatar />
       </div>
 
-      <div className='side-modal'>
+      <div className="side-modal">
         <AddTransactionModal />
         <AddIncomeModal />
       </div>
 
       <Menu mode="inline">
-        <Menu.Item key="1" >
-          <Link to="/transactions">
-            Transactions
-          </Link>
+        <Menu.Item key="1">
+          <Link to="/transactions">Transactions</Link>
         </Menu.Item>
-        <Menu.Item key="2" >
-          <Link to='/report' >
-            Report
-          </Link>
+        <Menu.Item key="2">
+          <Link to="/report">Report</Link>
         </Menu.Item>
 
         <SubMenu key="sub1" title="Time Range">
-          <Radio.Group className='radio-group' onChange={onChange} value={value}>
+          <Radio.Group
+            className="radio-group"
+            onChange={onChange}
+            value={value}
+          >
             <Radio value={1}>Daily</Radio>
             <Radio value={2}>Monthly</Radio>
           </Radio.Group>
         </SubMenu>
 
-        <SubMenu key="sub2" className='edit-group' title="Edit">
+        <SubMenu key="sub2" className="edit-group" title="Edit">
           <Menu.Item key="3">
-            <Link to='edit-safe' >
-              Edit Safe
-            </Link>
+            <Link to="/edit-safe">Edit Safe</Link>
           </Menu.Item>
           <Menu.Item key="4">
             <Link to='/edit-category-limit'>
@@ -62,7 +60,7 @@ const Sidebar = () => {
         </SubMenu>
 
         <Menu.Item key="5" >
-          <Link to='/profile'>
+          <Link to='/my-profile'>
             My Profile
           </Link>
         </Menu.Item>
@@ -74,7 +72,7 @@ const Sidebar = () => {
         Logout
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
