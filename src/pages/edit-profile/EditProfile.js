@@ -8,6 +8,8 @@ import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
 
 function EditProfile() {
+  const { Sider, Content } = Layout;
+
   const [form] = Form.useForm();
 
   const onFinish = () => {
@@ -27,7 +29,9 @@ function EditProfile() {
 
   return (
     <Layout>
-      <Sidebar />
+      <Sider theme="light" width={326} className="sidebar">
+        <Sidebar />
+      </Sider>
       <Layout className="main-layout">
         <PageHeader
           className="site-page-header"

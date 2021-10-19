@@ -5,10 +5,12 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import ProfileCard from "../../components/cards/profile-card/ProfileCard";
 
 function MyProfile() {
-  const { Header, Content } = Layout;
+  const { Sider, Content } = Layout;
   return (
     <Layout>
-      <Sidebar />
+      <Sider theme="light" width={326} className="sidebar">
+        <Sidebar />
+      </Sider>
       <Layout className="main-layout">
         <PageHeader title="My Profile" />
         <Content>
