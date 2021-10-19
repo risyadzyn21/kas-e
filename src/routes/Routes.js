@@ -7,6 +7,7 @@ import Home from "../pages/home/Home"
 import LandingPage from "../pages/landing-page/LandingPage"
 import LoginRegister from "../pages/login-register/LoginRegister"
 import ReportPage from "../pages/report-page"
+import Profile from '../pages/profile/Profile'
 
 
 
@@ -19,6 +20,7 @@ const Routes = () => {
         <Route path='/transactions' component={Home} />
         <Route path='/report' component={ReportPage} />
         <Route path='/edit-safe' component={EditSafePage} />
+        <Route path='/profile' component={Profile} />
       </Switch>
     </Router>
   );

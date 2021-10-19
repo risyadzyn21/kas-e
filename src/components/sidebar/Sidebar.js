@@ -7,6 +7,7 @@ import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
 import AddIncomeModal from '../modals/AddIncomeModal';
 import LogoutBtn from '../../assets/icons/logout-btn.png'
+import * as BiIcon from 'react-icons/bi'
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);
@@ -54,22 +55,24 @@ const Sidebar = () => {
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to='edit-category-limit'>
+            <Link to='/edit-category-limit'>
               Edit Category Limit
             </Link>
           </Menu.Item>
         </SubMenu>
 
         <Menu.Item key="5" >
-          My Profile
+          <Link to='/profile'>
+            My Profile
+          </Link>
         </Menu.Item>
       </Menu>
 
       <div className='logout-btn-side'>
-        <img src={LogoutBtn} className='icon-logout' />
+        {/* <img src={LogoutBtn} className='icon-logout' /> */}
+        <BiIcon.BiLogOut className='icon-logout' />
         Logout
       </div>
-
     </div>
   )
 }
