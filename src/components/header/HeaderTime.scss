@@ -1,2 +1,31 @@
-.ant-tabs-nav-list {
+.site-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.site-page-tab {
+  display: flex;
+
+  .ant-tabs-nav-wrap {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 30px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    .ant-tabs-nav-list {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .ant-tabs-tab {
+      margin: 0 60px;
+      padding: 10px 40px;
+      font-size: 20px;
+    }
+  }
+}
+
+.ant-tabs-tab {
+  padding-left: 150px;
+  padding-right: 150px;
 }

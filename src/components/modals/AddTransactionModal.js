@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button } from 'antd';
 import './Modal.scss'
+import AddTransactionForm from '../forms/AddTransactionForm';
 
 
 const AddTransactionModal = () => {
@@ -24,10 +25,8 @@ const AddTransactionModal = () => {
           Add Transactions
         </Button>
       </div>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Modal title="Add Transactions" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
+        <AddTransactionForm />
       </Modal>
     </div>
   )

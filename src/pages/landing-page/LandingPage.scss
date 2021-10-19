@@ -1,0 +1,99 @@
+@import "../../assets/abstracts/variables";
+
+//styles
+body {
+  background: url(../../assets//landing-page-images/background.png) top center
+    no-repeat;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  margin-top: 50px;
+  text-decoration: none;
+  margin-left: 50px;
+}
+
+.logo-text {
+  text-decoration: none;
+  color: white;
+}
+
+.header-container button {
+  background: $primary-color;
+  color: white;
+  width: 150px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+}
+
+.login-btn {
+  margin-top: 50px;
+  margin-right: 50px;
+}
+
+.hero {
+  height: 100vh;
+}
+
+.hero-text {
+  padding-top: 220px;
+  padding-left: 800px;
+  font-size: 13px;
+}
+
+.hero-text h1 {
+  width: 70%;
+}
+
+.hero-text h1 span {
+  color: $primary-color;
+}
+
+.hero-text p {
+  width: 55%;
+}
+
+.content-first {
+  padding-top: 200px;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.text-first {
+  padding-top: 180px;
+}
+
+.img-first {
+  padding-right: 50px;
+}
+
+.content-second {
+  display: flex;
+}
+
+.text-second {
+  padding-top: 200px;
+  padding-left: 100px;
+  width: 40%;
+}
+
+.img-second {
+  padding-left: 50px;
+}
+
+.content-third {
+  display: flex;
+}
+
+.text-third {
+  padding-top: 200px;
+  padding-left: 100px;
+  width: 80%;
+}

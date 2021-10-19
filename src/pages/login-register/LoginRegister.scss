@@ -1,10 +1,12 @@
+@import "../../assets/abstracts/variables";
+
 .background {
-  height: 100vh;
+  height: 0vh;
   width: 100vw;
   background: url("../../assets/login-register-page.png");
   background-repeat: no-repeat;
   background-size: cover;
-  object-fit: cover;
+  // object-fit: cover;
 
   .container {
     display: flex;
@@ -72,12 +74,22 @@
         }
         .ant-input-affix-wrapper,
         .ant-input,
+        .ant-input-number,
         .ant-select-selector {
           border-radius: 7px;
+          width: 100%;
         }
 
         .ant-btn {
           border-radius: 7px;
+        }
+        .ant-btn-primary {
+          background: $primary-color;
+          border-color: $primary-color;
+
+          &:hover {
+            background: $dark-color;
+          }
         }
       }
       a {
@@ -98,4 +110,11 @@
 
 .btn-step {
   margin-bottom: 20px;
+}
+
+.ant-btn-primary[disabled],
+.ant-btn-primary[disabled]:hover,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary[disabled]:active {
+  color: rgba(255, 255, 255, 0.308);
 }

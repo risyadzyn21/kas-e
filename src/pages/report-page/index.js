@@ -1,13 +1,14 @@
 import { Layout } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
+import EmptyPage from '../../components/empty-page/EmptyPage';
+import DailyChart from '../../components/charts/DailyChart'
 
-
-const EditSafePage = () => {
+function ReportPage() {
   const { Header, Sider, Content } = Layout;
 
   return (
-    <div>
+    <>
       <Layout>
         <Sider theme="light" width={326} className="sidebar">
           <Sidebar />
@@ -16,13 +17,15 @@ const EditSafePage = () => {
         <Layout>
           <HeaderTimeDaily />
           <Content style={{ padding: 40 }} >
-            Ini edit safe page
+            <div className='page-title'>Report</div>
+            <DailyChart />
           </Content>
         </Layout>
       </Layout>
-
-    </div>
+    </>
   )
 }
 
-export default EditSafePage
+export default ReportPage
+
+// style={{ background: 'none' }}
