@@ -6,9 +6,27 @@
 
 p.desc-label {
   color: $text-grey-color;
+  margin-top: -10px;
 }
 
 .button-submit {
   background: $primary-color;
   color: $text-white-color;
+}
+
+.ant-select {
+  border: 1.5px solid $primary-color;
+}
+
+.input-wrapper {
+  img {
+    position: absolute;
+    z-index: 9;
+    margin: 10px;
+  }
+
+  input {
+    padding-left: 40px;
+    border: 1.5px solid $primary-color;
+  }
 }

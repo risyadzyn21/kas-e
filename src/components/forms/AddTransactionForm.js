@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Form, Select, Input, Button } from 'antd'
 import FunAndRelax from '../../assets/icons/FunAndRelax.png'
+import DetailExpense from '../../assets/icons/detail-expense.png'
+import YourExpense from '../../assets/icons/your-expense.png'
+import TakenFrom from '../../assets/icons/brangkas.png'
 import './AddTransactionForm.scss'
 
 
@@ -9,9 +12,9 @@ function AddTransactionForm() {
   return (
     <>
       <Form layout='vertical'>
-        <Form.Item label="Category" >
-          <Select className='select-container'>
-            <Select.Option value="demo1">Demo1</Select.Option>
+        <Form.Item label="Category" className='category-wrapper'>
+          {/* <img src={DetailExpense} /> */}
+          <Select className='select-container' size='large' placeholder="Select">
             <Select.Option value="funnrelax" ><img src={FunAndRelax} /> Fun and Relax
               <p>This category is for your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
               <p>Limit : Rp. 200.000</p>
@@ -30,19 +33,28 @@ function AddTransactionForm() {
             </Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item label="Detail Expense">
+        <Form.Item label="Detail Expense" className='detail-expense-label'>
           <p className='desc-label' >Explain to us in more detail, what are your expenses for?</p>
-          <Input placeholder='Explain' />
+          <div className='input-wrapper' >
+            <img src={DetailExpense} />
+            <Input placeholder='Detail Expense' size='large' />
+          </div>
         </Form.Item>
         <Form.Item label="Your Expense">
-          <Input placeholder='IDR' />
+          <div className='input-wrapper' >
+            <img src={YourExpense} />
+            <Input placeholder='IDR' size='large' />
+          </div>
         </Form.Item>
         <Form.Item label="Taken From">
-          <Input placeholder='Your Safe' />
+          <div className='input-wrapper' >
+            <img src={TakenFrom} />
+            <Input placeholder='Your Safe' size='large' />
+          </div>
         </Form.Item>
 
         <Form.Item >
-          <Button className='button-submit' htmlType="submit" block>
+          <Button className='button-submit' htmlType="submit" block size='large'>
             Create
           </Button>
         </Form.Item>

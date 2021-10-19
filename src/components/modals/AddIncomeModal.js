@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button } from 'antd';
 import './Modal.scss'
+import AddIncomeForm from '../forms/AddIncomeForm';
 
 
 const AddIncomeModal = () => {
@@ -24,10 +25,8 @@ const AddIncomeModal = () => {
           Add Income
         </Button>
       </div>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Modal title="Add Income" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
+        <AddIncomeForm />
       </Modal>
     </div>
   )

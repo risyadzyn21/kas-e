@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import UserAvatar from "../avatar/UserAvatar.js";
 import AddTransactionModal from "../modals/AddTransactionModal";
 import AddIncomeModal from "../modals/AddIncomeModal";
-import ReportPage from "../../pages/report-page";
-import EditSafePage from "../../pages/edit-safe";
+import LogoutBtn from "../../assets/icons/logout-btn.png";
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);
@@ -63,7 +62,8 @@ const Sidebar = () => {
       </Menu>
 
       <div className="logout-btn-side">
-        <div>Logout</div>
+        <img src={LogoutBtn} className="icon-logout" />
+        Logout
       </div>
     </div>
   );
