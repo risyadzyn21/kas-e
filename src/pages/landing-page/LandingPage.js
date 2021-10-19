@@ -4,12 +4,11 @@ import logo from "../../assets/landing-page-images/logo-kas-e.png";
 import illustration1 from "../../assets/landing-page-images/illustration1.png";
 import illustration2 from "../../assets/landing-page-images/illustration2.png";
 import illustration3 from "../../assets/landing-page-images/illustration3.png";
-import Footer from '../../components/footer/Footer.js'
+import Footer from "../../components/footer/Footer.js";
 
 import "./LandingPage.scss";
 
 const LandingPage = () => {
-
   return (
     <div>
       <div className="header">
@@ -19,12 +18,9 @@ const LandingPage = () => {
             <h1 className="logo-text">KAS-E</h1>
           </Link>
 
-          <button type="button" className="login-btn" >
-            <Link to='/auth'>
-              Log In
-            </Link>
+          <button type="button" className="login-btn">
+            <Link to="/auth">Log In</Link>
           </button>
-
         </div>
         <div className="hero">
           <div className="hero-text">
@@ -61,15 +57,19 @@ const LandingPage = () => {
             <div className="text-second">
               <h1>No More Unnecessary Expenses</h1>
               <p>
-                Kas-E help you to Prevent yourself from spending more by setting a
-                limit in each of your spending categories
+                Kas-E help you to Prevent yourself from spending more by setting
+                a limit in each of your spending categories
               </p>
             </div>
           </div>
           <div className="content-third">
             <div className="text-third">
               <h1>See Your Financial Report Monthly or Daily</h1>
-              <p> Clarify the details of your expenses and income by viewing it through the Report menu, you can also print your financial report so that you have printed evidence.
+              <p>
+                {" "}
+                Clarify the details of your expenses and income by viewing it
+                through the Report menu, you can also print your financial
+                report so that you have printed evidence.
               </p>
             </div>
             <div className="img-third">
