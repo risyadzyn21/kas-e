@@ -2,8 +2,11 @@
 
 //styles
 body {
-  background: url(../../assets//landing-page-images/background.png) top center
-    no-repeat;
+  background: url(../../assets//landing-page-images/background.png);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header-container {
@@ -48,7 +51,7 @@ body {
 }
 
 .hero-text h1 {
-  width: 70%;
+  width: 400px;
 }
 
 .hero-text h1 span {
@@ -56,12 +59,12 @@ body {
 }
 
 .hero-text p {
-  width: 55%;
+  width: 400px;
 }
 
 .content-first {
-  padding-top: 200px;
-  padding-left: 100px;
+  margin-right: 100px;
+  margin-left: 100px;
   display: flex;
   flex-direction: row;
 }
@@ -70,30 +73,23 @@ body {
   padding-top: 180px;
 }
 
-.img-first {
-  padding-right: 50px;
-}
-
 .content-second {
   display: flex;
+  margin-right: 100px;
+  margin-left: 100px;
 }
 
 .text-second {
   padding-top: 200px;
   padding-left: 100px;
-  width: 40%;
-}
-
-.img-second {
-  padding-left: 50px;
 }
 
 .content-third {
   display: flex;
+  margin-right: 100px;
+  margin-left: 100px;
 }
 
 .text-third {
   padding-top: 200px;
-  padding-left: 100px;
-  width: 80%;
 }
