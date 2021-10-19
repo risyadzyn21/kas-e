@@ -3,10 +3,11 @@ import "./Sidebar.scss";
 import { Layout, Menu, Radio } from "antd";
 import { Link } from "react-router-dom";
 
-import UserAvatar from "../avatar/UserAvatar.js";
-import AddTransactionModal from "../modals/AddTransactionModal";
-import AddIncomeModal from "../modals/AddIncomeModal";
-import LogoutBtn from "../../assets/icons/logout-btn.png";
+import UserAvatar from '../avatar/UserAvatar.js'
+import AddTransactionModal from '../modals/AddTransactionModal';
+import AddIncomeModal from '../modals/AddIncomeModal';
+import LogoutBtn from '../../assets/icons/logout-btn.png'
+import * as BiIcon from 'react-icons/bi'
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);
@@ -49,20 +50,25 @@ const Sidebar = () => {
 
         <SubMenu key="sub2" className="edit-group" title="Edit">
           <Menu.Item key="3">
-            <Link to="edit-safe">Edit Safe</Link>
+            <Link to="/edit-safe">Edit Safe</Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to="edit-category-limit">Edit Category Limit</Link>
+            <Link to='/edit-category-limit'>
+              Edit Category Limit
+            </Link>
           </Menu.Item>
         </SubMenu>
 
-        <Menu.Item key="5">
-          <Link to="my-profile">My Profile</Link>
+        <Menu.Item key="5" >
+          <Link to='/my-profile'>
+            My Profile
+          </Link>
         </Menu.Item>
       </Menu>
 
-      <div className="logout-btn-side">
-        <img src={LogoutBtn} className="icon-logout" />
+      <div className='logout-btn-side'>
+        {/* <img src={LogoutBtn} className='icon-logout' /> */}
+        <BiIcon.BiLogOut className='icon-logout' />
         Logout
       </div>
     </div>
