@@ -1,8 +1,9 @@
 import "./EditProfile.scss";
 import React from "react";
 import { Button, Card, Layout, PageHeader, Form } from "antd";
+import { Link } from "react-router-dom";
+
 import Sidebar from "../../components/sidebar/Sidebar";
-import { Content } from "antd/lib/layout/layout";
 import arrowLeft from "../../assets/icons/arrow-left.png";
 import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
@@ -37,7 +38,11 @@ function EditProfile() {
           className="site-page-header"
           onBack={() => null}
           title="Edit Profile"
-          backIcon={<img src={arrowLeft} alt="Back" />}
+          backIcon={
+            <Link to="my-profile">
+              <img src={arrowLeft} alt="Back" />
+            </Link>
+          }
         />
         <Content>
           <div className="container">

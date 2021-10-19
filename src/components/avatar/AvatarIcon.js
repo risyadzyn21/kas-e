@@ -1,7 +1,7 @@
 import Avatar from "react-avatar";
 
 function AvatarIcon() {
-  return <Avatar name="Nico Nico nii" round={true} size="140px" />;
+  return <Avatar name="Nico Nico nii" round={true} />;
 }
 
 export default AvatarIcon;

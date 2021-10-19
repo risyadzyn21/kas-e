@@ -10,7 +10,7 @@
   }
 
   .ant-layout-content {
-    height: 900px;
+    // height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,13 +26,13 @@
   .main-edit {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    height: 700px;
+    height: 80vh;
   }
 
-  #edit-profile {
-    width: 600px;
+  .ant-form {
+    width: 35vw;
   }
 
   .button-profile {
@@ -53,25 +53,21 @@
   }
 }
 
-.ant-row {
-  .ant-col {
-    .ant-form-item-control-input {
-      .input-style {
-        border: 1px solid $primary-color;
-        box-sizing: border-box;
-        border-radius: 10px;
-      }
-    }
-  }
-}
+// .ant-row {
+//   .ant-col {
+//     .ant-form-item-control-input {
+//       .ant-form-item-control-input-content {
+// border: none;
 
-.ant-input-password,
-.ant-select-show-arrow,
-.ant-form-item-control-input-content {
-  border: 1px solid $primary-color;
-  box-sizing: border-box;
-  border-radius: 10px;
-}
+// .input-style {
+//   border: 1px solid $primary-color;
+//   box-sizing: border-box;
+//   border-radius: 10px;
+// }
+//       }
+//     }
+//   }
+// }
 
 .ant-input-number {
   width: 100%;
@@ -84,3 +80,17 @@
     line-height: 24px;
   }
 }
+
+// .ant-input-affix-wrapper,
+// .ant-input,
+// .ant-input-number,
+// .ant-select-selector {
+//   border: 1px solid $primary-color;
+//   border-radius: 7px;
+//   width: 100%;
+// }
+
+// .ant-select {
+//   border-radius: 7px;
+//   width: 100%;
+// }

@@ -3,13 +3,9 @@
 .main-profile {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  height: 780px;
-
-  .profile {
-    width: 700px;
-  }
+  height: 50vh;
 
   .ant-card-body {
     border-radius: 10px;
@@ -26,14 +22,14 @@
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
     margin-bottom: -1px;
-    padding: 10px 24px;
+    padding: 8px 20px;
 
     h4 {
       font-weight: 500;
       font-size: 20px;
       line-height: 24px;
       margin: 0;
-      padding: 5px 0 10px 0;
+      padding: 5px 0 8px 0;
     }
 
     p {
@@ -41,7 +37,7 @@
       font-size: 16px;
       line-height: 20px;
       margin: 0;
-      padding: 10px 0 5px 0;
+      padding: 8px 0 5px 0;
     }
   }
 
