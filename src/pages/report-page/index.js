@@ -17,7 +17,7 @@ function ReportPage() {
         <Layout>
           <HeaderTimeDaily />
           <Content style={{ padding: 40 }} >
-            <div className='page-title'>Report</div>
+            <h2 className='page-title'>Report</h2>
             <DailyChart />
           </Content>
         </Layout>
