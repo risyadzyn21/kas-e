@@ -38,7 +38,7 @@ const CreateAcc = ({ navigation }) => {
             under control
           </p>
           <img
-            style={{ height: 200, marginLeft: 150, marginRight: 150 }}
+            style={{ background:"#003F88", marginLeft: 200, marginRight: 200 }}
             src={Card}
             alt="illus"
           />
@@ -72,6 +72,7 @@ const CreateAcc = ({ navigation }) => {
                   width: 300,
                   marginLeft: 50,
                   marginRight: 50,
+                  cursor: 'pointer',
                 }}
                 type="submit"
                 className="submit-btn"

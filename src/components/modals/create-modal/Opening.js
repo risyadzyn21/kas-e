@@ -44,6 +44,7 @@ const Opening = ({ navigation }) => {
             width: 400,
             marginLeft: 50,
             marginRight: 50,
+            cursor: 'pointer',
           }}  onClick={() => navigation.next()}>
           Create New Safe
         </button>
