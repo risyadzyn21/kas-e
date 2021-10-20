@@ -7,32 +7,8 @@ const Print = () => {
   const { Header, Content, Footer, Sider } = Layout;
 
   return (
-    <Layout>
-      <Header
-        className="site-layout-sub-header-background"
-        style={{
-          padding: 0,
-          marginTop: 30,
-          background: "white",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <div className="sub-header">
-          <a
-            style={{ color: "black", marginLeft: 100, marginTop: 30 }}
-            href="#"
-            class="previous"
-          >
-            <AiOutlineLeft />
-          </a>
-          <span style={{ marginLeft: 15 }}>Report Detail</span>
-        </div>
-        <div style={{ paddingRight: 80, marginTop: 10 }} className="print-btn">
-          <button style={{ width: 150, height: 50}}>Print</button>
-        </div>
-      </Header>
-      <Content style={{ margin: "24px 16px 0" }}>
+    <>
+      <div style={{ margin: "24px 16px 0" }}>
         <div
           className="site-layout-background"
           style={{ padding: 24, minHeight: 360 }}
@@ -71,7 +47,7 @@ const Print = () => {
             </div>
             <div style={{ marginTop: 40 }} className="report-list">
               Net Income
-              <hr style={{ color: "red" }}></hr>
+              <hr></hr>
               <p>
                 Income <span style={{ marginLeft: 365 }}>Rp. 500.000</span>
               </p>
@@ -87,29 +63,29 @@ const Print = () => {
               <hr></hr>
               <p>
                 Opening Balance{" "}
-                <span style={{ marginLeft: 300 }}>Rp. 500.000</span>
+                <span style={{ marginLeft: 310 }}>Rp. 500.000</span>
               </p>
               <p>
-                Income <span style={{ marginLeft: 370 }}>Rp. 500.000</span>
+                Income <span style={{ marginLeft: 373 }}>Rp. 500.000</span>
               </p>
               <p>
                 Total Income{" "}
-                <span style={{ marginLeft: 330 }}>Rp. 500.000</span>
+                <span style={{ marginLeft: 340 }}>Rp. 500.000</span>
               </p>
               <p>
-                Expense <span style={{ marginLeft: 360 }}>Rp. 500.000</span>
+                Expense <span style={{ marginLeft: 370 }}>Rp. 500.000</span>
               </p>
               <p>
                 Ending Balance{" "}
-                <span style={{ marginLeft: 310, paddingBottom: 200 }}>
+                <span style={{ marginLeft: 322, paddingBottom: 200 }}>
                   Rp. 500.000
                 </span>
               </p>
             </div>
           </div>
         </div>
-      </Content>
-    </Layout>
+      </div>
+    </>
   );
 };
 
