@@ -9,6 +9,7 @@ import LoginRegister from "../pages/login-register/LoginRegister";
 import ReportPage from "../pages/report-page";
 import MyProfile from "../pages/profile/MyProfile";
 import EditProfile from "../pages/edit-profile/EditProfile";
+import SeeAllSafe from "../pages/see all safe/SeeAllSafe";
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route path="/report" component={ReportPage} />
         <Route path="/edit-safe" component={EditSafePage} />
         <Route path="/my-profile" component={MyProfile} />
+        <Route path="/see-all-safe" component={SeeAllSafe} />
         <Route path="/edit-profile" component={EditProfile} />
       </Switch>
     </Router>
