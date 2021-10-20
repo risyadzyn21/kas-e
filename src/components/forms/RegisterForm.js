@@ -1,24 +1,43 @@
 import { Form, Input, Button, Select, InputNumber } from "antd";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getRegisterAsync } from "../../redux/actions";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
+import VerificationModal from "../modals/VerificationModal";
 
 function RegisterForm(props) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const { setPage } = props;
   const { Option } = Select;
   const [stepForm] = Form.useForm();
   const [step, setStep] = useState(1);
+  const dispatch = useDispatch()
 
-  const onFinish = () => {
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const onFinish = (value) => {
     const formData = stepForm.getFieldsValue([
       "email",
       "password",
-      "confirm",
+      "confirmPassword",
       "fullName",
       "gender",
       "age",
     ]);
-    alert(JSON.stringify(formData, null, 2));
+    console.log(JSON.stringify(formData, null, 2));
+    const showModalVerif = () => {
+      console.log('summon');
+      <VerificationModal visible={isModalVisible} onOk={handleOk} />
+    }
+    dispatch(getRegisterAsync(formData.email, formData.password, formData.confirmPassword, formData.fullName, formData.gender, formData.age, showModalVerif))
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -27,7 +46,7 @@ function RegisterForm(props) {
 
   const checkNext = () => {
     if (
-      stepForm.getFieldValue("password") !== stepForm.getFieldValue("confirm")
+      stepForm.getFieldValue("password") !== stepForm.getFieldValue("confirmPassword")
     ) {
       return;
     } else {
@@ -94,7 +113,7 @@ function RegisterForm(props) {
           </Form.Item>
 
           <Form.Item
-            name="confirm"
+            name="confirmPassword"
             dependencies={["password"]}
             hasFeedback
             rules={[
@@ -131,8 +150,8 @@ function RegisterForm(props) {
 
           <Form.Item shouldUpdate>
             {({ getFieldsValue }) => {
-              const { email, password, confirm } = getFieldsValue();
-              const formIsComplete = !!email && !!password && !!confirm;
+              const { email, password, confirmPassword } = getFieldsValue();
+              const formIsComplete = !!email && !!password && !!confirmPassword;
               return (
                 <>
                   <Button

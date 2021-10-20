@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import DailyChart from "../components/charts/DailyChart";
-import HeaderTimeDaily from "../components/header/HeaderTimeDaily";
-import Sidebar from "../components/sidebar/Sidebar";
 import EditSafePage from "../pages/edit-safe";
 import Home from "../pages/home/Home";
 import LandingPage from "../pages/landing-page/LandingPage";
@@ -9,6 +6,7 @@ import LoginRegister from "../pages/login-register/LoginRegister";
 import ReportPage from "../pages/report-page";
 import MyProfile from "../pages/profile/MyProfile";
 import EditProfile from "../pages/edit-profile/EditProfile";
+import EditCategoryLimit from "../pages/edit-category-limit";
 
 const Routes = () => {
   return (
@@ -19,6 +17,7 @@ const Routes = () => {
         <Route path="/transactions" component={Home} />
         <Route path="/report" component={ReportPage} />
         <Route path="/edit-safe" component={EditSafePage} />
+        <Route path="/edit-category-limit" component={EditCategoryLimit} />
         <Route path="/my-profile" component={MyProfile} />
         <Route path="/edit-profile" component={EditProfile} />
       </Switch>
