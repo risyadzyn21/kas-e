@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
+import { getSafe } from "../../../services/index";
 import "./Category.scss";
 import 'antd/dist/antd.css'
 import Fun from "../../../assets/icons/FunAndRelax.png";
 
 const Category = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [safe, setSafe] = useState([]);
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -17,10 +19,13 @@ const Category = () => {
   const showModal = () => {
     setIsModalVisible(true);
   };
-
   useEffect(() => {
-    setIsModalVisible(true);
-  })
+    getSafe()
+    .then((res) => {
+      setSafe(res.data);
+      setIsModalVisible(true);
+    })
+  }, []);
 
   return (
     <div>
@@ -98,6 +103,7 @@ const Category = () => {
                 width: 400,
                 marginLeft: 50,
                 marginRight: 50,
+                cursor: 'pointer',
               }}
             >
               Create
