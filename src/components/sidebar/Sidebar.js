@@ -66,11 +66,11 @@ const Sidebar = () => {
         </Menu.Item>
       </Menu>
 
-      <div className='logout-btn-side'>
+      <Link to='/' onClick={() => localStorage.clear()} className='logout-btn-side'>
         {/* <img src={LogoutBtn} className='icon-logout' /> */}
         <BiIcon.BiLogOut className='icon-logout' />
         Logout
-      </div>
+      </Link>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from "react-redux";
 import { getLoginAsync } from "../../redux/actions";
 
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
 import { Link, useHistory } from 'react-router-dom';
@@ -13,12 +13,9 @@ const LoginForm = (props) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   const response = await dispatch(getLoginAsync(email, password))
-  //   console.log(response, "signIn")
-  // }
-
+  const success = () => {
+    message.success('Login Success');
+  };
 
   const { setPage } = props;
 

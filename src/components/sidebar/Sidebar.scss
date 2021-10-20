@@ -67,7 +67,8 @@
   padding: 10px;
   top: 0;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 
   &:hover {
     transform: scale(1.05);

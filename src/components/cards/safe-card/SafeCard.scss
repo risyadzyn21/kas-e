@@ -1,0 +1,31 @@
+.safe-card {
+  display: flex;
+  position: sticky;
+  border-radius: 30px;
+  right: 0;
+  width: fit-content;
+  border: 1px solid none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  .safe-icon {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .safe-info {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .safe-button {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,10 +1,24 @@
-import { Layout } from 'antd';
+import { Button, Card, Layout, PageHeader, Form } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
-import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
+import HeaderSafePage from '../../components/header/HeaderSafePage';
 
 
 const EditSafePage = () => {
-  const { Header, Sider, Content } = Layout;
+  const { Sider, Content } = Layout;
+
+  const [form] = Form.useForm();
+
+  const onFinish = () => {
+    const formData = form.getFieldsValue([
+      "safeName",
+      "income",
+    ]);
+    alert(JSON.stringify(formData, null, 2));
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <div>
@@ -14,7 +28,7 @@ const EditSafePage = () => {
         </Sider>
 
         <Layout>
-          <HeaderTimeDaily />
+          <HeaderSafePage />
           <Content style={{ padding: 40 }} >
             Ini edit safe page
           </Content>

@@ -3,6 +3,8 @@ import './Home.scss'
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
 import EmptyPage from '../../components/empty-page/EmptyPage';
+import Card from '../../components/cards/Card'
+import SafeCard from '../../components/cards/safe-card/SafeCard';
 import Main from '../../components/modals/create-modal/Main';
 
 const Home = () => {
@@ -17,7 +19,11 @@ const Home = () => {
         <Layout>
           <HeaderTimeDaily />
           <Content style={{ padding: 40 }} >
-            <div className='page-title'>Transactions</div>
+            <div className='page-title-wrapper'>
+              <div className='page-title'>Transactions</div>
+              <SafeCard />
+            </div>
+            {/* <Card /> */}
             <EmptyPage />
             <Main />
           </Content>
