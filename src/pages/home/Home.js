@@ -5,6 +5,7 @@ import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
 import EmptyPage from '../../components/empty-page/EmptyPage';
 import Card from '../../components/cards/Card'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
+import Main from '../../components/modals/create-modal/Main';
 
 const Home = () => {
   const { Header, Sider, Content } = Layout;
@@ -24,6 +25,7 @@ const Home = () => {
             </div>
             {/* <Card /> */}
             <EmptyPage />
+            <Main />
           </Content>
         </Layout>
       </Layout>

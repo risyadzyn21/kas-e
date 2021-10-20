@@ -7,6 +7,8 @@ import ReportPage from "../pages/report-page";
 import MyProfile from "../pages/profile/MyProfile";
 import EditProfile from "../pages/edit-profile/EditProfile";
 import EditCategoryLimit from "../pages/edit-category-limit";
+import SeeAllSafe from "../pages/see all safe/SeeAllSafe";
+import ReportDetail from "../pages/report-detail/ReportDetail";
 
 const Routes = () => {
   return (
@@ -16,9 +18,11 @@ const Routes = () => {
         <Route path="/auth" component={LoginRegister} />
         <Route path="/transactions" component={Home} />
         <Route path="/report" component={ReportPage} />
+        <Route path="/report-detail" component={ReportDetail} />
         <Route path="/edit-safe" component={EditSafePage} />
         <Route path="/edit-category-limit" component={EditCategoryLimit} />
         <Route path="/my-profile" component={MyProfile} />
+        <Route path="/see-all-safe" component={SeeAllSafe} />
         <Route path="/edit-profile" component={EditProfile} />
       </Switch>
     </Router>

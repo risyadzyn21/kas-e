@@ -1,5 +1,6 @@
 import "./ProfileCard.scss";
 import { Button, Card } from "antd";
+import { Link } from "react-router-dom";
 import React from "react";
 import AvatarIcon from "../../avatar/AvatarIcon";
 import Right from "../../../assets/icons/arrow-right.png";
@@ -9,12 +10,14 @@ function ProfileCard() {
     <div className="main-profile">
       <AvatarIcon />
       <div className="profile">
+        <Link to= "/see-all-safe">
         <Button className="all-safe-btn" block>
           <h4>See all safe</h4>
           <span>
             <img src={Right} alt="Pointer" />
           </span>
         </Button>
+        </Link>
         <Card className="card-container">
           <Card className="profile-content">
             <h4>Name</h4>

@@ -41,3 +41,17 @@ export const profile = () => {
     url: 'http://kas-e.herokuapp.com/api/v1/'
   })
 }
+
+export const getSafe = async () => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
