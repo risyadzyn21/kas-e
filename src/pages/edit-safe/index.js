@@ -1,7 +1,9 @@
 import { Button, Card, Layout, PageHeader, Form } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderSafePage from '../../components/header/HeaderSafePage';
-
+import EditSafeForm from '../../components/forms/EditSafeForm'
+import SafeLogo from '../../assets/icons/brangkas.png'
+import './EditSafe.scss'
 
 const EditSafePage = () => {
   const { Sider, Content } = Layout;
@@ -27,10 +29,28 @@ const EditSafePage = () => {
           <Sidebar />
         </Sider>
 
-        <Layout>
+        <Layout className="main-layout">
           <HeaderSafePage />
-          <Content style={{ padding: 40 }} >
-            Ini edit safe page
+          <Content className="container">
+            <div>
+              <div className='safe-edit'>
+                <Card>
+                  <img src={SafeLogo} className='safe-logo-edit' />
+                  <EditSafeForm />
+                </Card>
+              </div>
+
+              <div className="button-safe">
+                <Button type="primary" onClick={() => form.submit()}>
+                  Save
+                </Button>
+                <Button type="danger" onClick={() => form.submit()}>
+                  Delete
+                </Button>
+              </div>
+
+            </div>
+
           </Content>
         </Layout>
       </Layout>
