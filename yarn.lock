@@ -10286,6 +10286,11 @@ react-helper-hooks@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-helper-hooks/-/react-helper-hooks-1.3.0.tgz#32f14b738ca80e3b2b3a3666a6bca48ed3bb842a"
   integrity sha512-LTJd5eX/PUzuwRFvTGRRhrOAyCuG183no6Pvtj2YacD1qtWX5es+MKsU+Sy81GdnlCUN2gyaracRa6JcfQ+QPA==
 
+react-hooks-helper@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-hooks-helper/-/react-hooks-helper-1.6.0.tgz#d4105f8745471600b38dc450260d513553c883b1"
+  integrity sha512-DlyWQ99tgwyDdJfTihCXT6AftYymxhA2LS60vBCTOpclmjPxqDwDTLjVK0kbIc3XsgJvxkanW8TwHE0jrIB8hA==
+
 react-icons@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"

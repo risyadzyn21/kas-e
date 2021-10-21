@@ -38,6 +38,10 @@ body {
 .login-btn {
   margin-top: 50px;
   margin-right: 50px;
+
+  a {
+    color: $text-white-color;
+  }
 }
 
 .hero {
