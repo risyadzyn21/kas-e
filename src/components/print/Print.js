@@ -1,10 +1,13 @@
 import React from "react";
-import { Layout } from "antd";
 import "./Print.scss";
 import { AiOutlineLeft } from "react-icons/ai";
+import SafeIcon from "../../assets/icons/brangkas.png";
+import Fun from "../../assets/icons/FunAndRelax.png";
+import BillPay from "../../assets/icons/bill-payment.png";
+import DailyNeed from "../../assets/icons/daily-need.png";
+import UrgentNeed from "../../assets/icons/urgent-need.png";
 
 const Print = () => {
-  const { Header, Content, Footer, Sider } = Layout;
 
   return (
     <>
@@ -14,7 +17,7 @@ const Print = () => {
           style={{ padding: 24, minHeight: 360 }}
         >
           <div style={{ paddingLeft: 20 }} className="report-detail">
-            <div style={{ marginBottom: 20 }} className="report-list">
+            <div style={{ marginBottom: 20, fontWeight: 'bold' }} className="report-list">
               Time Range
             </div>
             <div className="report-list">
@@ -22,31 +25,52 @@ const Print = () => {
               <hr></hr>
             </div>
             <div className="report-list">
-              Income <span style={{ marginLeft: 350 }}>Rp. 1.000.000</span>
+              <h4>Income<span style={{ marginLeft: 350}}>Rp. 1.000.000</span></h4> 
               <hr></hr>
-              <p>
+              <div className='report-content'>
+              <img style={{ height: 25}} src={SafeIcon} alt="safe" />
+              <p style={{marginLeft: 12}}>
                 To Jalan-jalan{" "}
-                <span style={{ marginLeft: 320 }}>Rp. 500.000</span>
+                <span style={{ marginLeft: 290 }}>Rp. 500.000</span>
               </p>
             </div>
+            </div>
             <div style={{ marginTop: 40 }} className="report-list">
-              Expense
+              <h4>Expense</h4>
               <hr></hr>
-              <p>
+              <div className="report-content">
+              <img style={{ height: 13}} src={BillPay} alt="bill" />
+              <p style={{ marginLeft: 11}}> 
                 Bill and Payments{" "}
-                <span style={{ marginLeft: 290 }}>Rp. 500.000</span>
+                <span style={{ marginLeft: 250 }}>Rp. 500.000</span>
               </p>
-              <p>
-                Bill and Payments{" "}
-                <span style={{ marginLeft: 290 }}>Rp. 500.000</span>
+              </div>
+              <div className="report-text">
+              <p>Electricity Tokers</p>
+              </div>
+              <div className="report-content">
+              <img style={{ height: 25}} src={Fun} alt="fun" />
+              <p style={{ marginLeft: 15}}>
+                Fun and Relax{" "}
+                <span style={{ marginLeft: 280 }}>Rp. 500.000</span>
               </p>
-              <p>
-                Bill and Payments{" "}
-                <span style={{ marginLeft: 290 }}>Rp. 500.000</span>
+              </div>
+              <div className="report-text">
+              <p>For Snacks</p>
+              </div>
+              <div className="report-content">
+              <img style={{ height: 25}} src={DailyNeed} alt="fun" />
+              <p style={{ marginLeft: 15}}>
+               Daily Needs{" "}
+                <span style={{ marginLeft: 297 }}>Rp. 500.000</span>
               </p>
             </div>
+            <div className="report-text">
+              <p>For Gas</p>
+              </div>
+            </div>
             <div style={{ marginTop: 40 }} className="report-list">
-              Net Income
+              <h4>Net Income</h4>
               <hr></hr>
               <p>
                 Income <span style={{ marginLeft: 365 }}>Rp. 500.000</span>
@@ -54,19 +78,21 @@ const Print = () => {
               <p>
                 Expense <span style={{ marginLeft: 360 }}>Rp. 500.000</span>
               </p>
+              <hr style={{ width: 10, marginRight: 10}}></hr>
+              <hr style={{ width: 90, marginRight: 20}}></hr>
               <p>
                 Net Income <span style={{ marginLeft: 340 }}>Rp. 500.000</span>
               </p>
             </div>
             <div style={{ marginTop: 40 }} className="report-list">
-              Ending Balance
+             <h4> Ending Balance </h4>
               <hr></hr>
               <p>
                 Opening Balance{" "}
                 <span style={{ marginLeft: 310 }}>Rp. 500.000</span>
               </p>
               <p>
-                Income <span style={{ marginLeft: 373 }}>Rp. 500.000</span>
+                Income <span style={{ marginLeft: 365 }}>Rp. 500.000</span>
               </p>
               <p>
                 Total Income{" "}
@@ -77,7 +103,7 @@ const Print = () => {
               </p>
               <p>
                 Ending Balance{" "}
-                <span style={{ marginLeft: 322, paddingBottom: 200 }}>
+                <span style={{ marginLeft: 320, paddingBottom: 200 }}>
                   Rp. 500.000
                 </span>
               </p>
