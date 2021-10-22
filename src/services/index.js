@@ -43,7 +43,7 @@ export const profile = () => {
 }
 
 export const getSafe = async () => {
-  const url = `https://kas-e.herokuapp.com/api/v1/safe`
+  const url = `http://kas-e.herokuapp.com/api/v1/safe`
 
   try {
     const response = await fetch(url, {
