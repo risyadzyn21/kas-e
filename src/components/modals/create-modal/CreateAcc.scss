@@ -1,7 +1,38 @@
-.create-form input {
-    width: 300px;
-    border: 1px solid rgb(65, 65, 146);
-    border-radius: 5px;
-    margin: 10px;
+@import "../../../assets/abstracts/variables";
 
+
+.create-form {
+    margin-left: 60px;
+    margin-right: 60px;
+    display: grid;
+}
+.create-form input {
+    width: 350px;
+    height: 35px;
+    border: 1px solid #00509D;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 13px;
+    padding-left: 10px;
+}
+.create-form p {
+    width: 350px;
+}
+
+.create-form img {
+    border-radius: 10px;
+    background:"#003F88";
+    margin-Left: 180px; 
+    margin-Right: 180px; 
+}
+
+.create-second button {
+    background: grey;
+    border: none;
+    color: white;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 360px;
+    cursor: 'pointer';
 }

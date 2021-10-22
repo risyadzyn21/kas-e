@@ -22,11 +22,10 @@ const Opening = ({ navigation }) => {
   return (
     <div>
       <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={null}>
-      <div style={{ display: 'grid', textAlign: 'center'}} className="create-first">
+      <div className="create-first">
         <h2>Create Your First Safe</h2>
         <p>
-          Enter the amount of income into your safe so that your expenses are
-          under control
+        KAS-E help you to keep in track the money you are spending from safe
         </p>
         <img
           style={{ height: 200, marginLeft: 150, marginRight: 150 }}
@@ -34,18 +33,7 @@ const Opening = ({ navigation }) => {
           alt="illus"
         />
         <button
-          style={{
-            background: "#003F88",
-            border: "none",
-            color: "white",
-            borderRadius: 5,
-            marginTop: 20,
-            marginBottom: 20,
-            width: 400,
-            marginLeft: 50,
-            marginRight: 50,
-            cursor: 'pointer',
-          }}  onClick={() => navigation.next()}>
+          onClick={() => navigation.next()}>
           Create New Safe
         </button>
       </div>
