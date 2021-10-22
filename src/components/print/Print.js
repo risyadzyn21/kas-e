@@ -89,17 +89,17 @@ const Print = () => {
               <hr></hr>
               <p>
                 Opening Balance{" "}
-                <span style={{ marginLeft: 300 }}>Rp. 500.000</span>
+                <span style={{ marginLeft: 310 }}>Rp. 500.000</span>
               </p>
               <p>
                 Income <span style={{ marginLeft: 365 }}>Rp. 500.000</span>
               </p>
               <p>
                 Total Income{" "}
-                <span style={{ marginLeft: 330 }}>Rp. 500.000</span>
+                <span style={{ marginLeft: 340 }}>Rp. 500.000</span>
               </p>
               <p>
-                Expense <span style={{ marginLeft: 360 }}>Rp. 500.000</span>
+                Expense <span style={{ marginLeft: 370 }}>Rp. 500.000</span>
               </p>
               <p>
                 Ending Balance{" "}
