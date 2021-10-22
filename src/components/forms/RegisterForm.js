@@ -70,7 +70,7 @@ function RegisterForm(props) {
           <img src={EmailVerif} />
           <h2>Verify Your Email</h2>
           <p>We have sent you an verification email. Please check your email and verify your email.</p>
-          <Button href='https://gmail.com/' >
+          <Button href='https://gmail.com/' target='_blank' >
             Check My Email
           </Button>
         </div>
