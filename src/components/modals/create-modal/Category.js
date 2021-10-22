@@ -107,7 +107,7 @@ const Category = () => {
                 }}
                 className="fun"
               >
-                <img src={BillPay} alt="daily" />
+                <img src={DailyNeed} alt="daily" />
                 <h4 style={{ fontWeight: "bold" }}>Daily Needs</h4>
               </div>
               <div
