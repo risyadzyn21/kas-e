@@ -27,6 +27,11 @@
     li {
       border-bottom: 2px solid $text-white-color;
 
+      :hover {
+        color: $text-white-color;
+        font-weight: bold;
+      }
+
       .radio-group {
         display: flex;
         flex-direction: column;
@@ -37,9 +42,6 @@
           border-bottom: 2px solid $primary-color;
           margin: 0;
         }
-      }
-      :hover {
-        color: $chart-color2;
       }
     }
   }
@@ -61,11 +63,17 @@
   }
 }
 
-.logout-btn-side {
-  color: $text-white-color;
+.corner-dropdown {
   position: absolute;
+
   padding: 10px;
   top: 0;
+  font-size: 20px;
+}
+
+.logout-btn-side,
+.myprofile-side {
+  color: $text-white-color;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -75,12 +83,17 @@
     transition: all 0.5s ease;
   }
 
-  .icon-logout {
+  .icon-logout,
+  .icon-profile-side {
     margin-right: 5px;
     font-size: 30px;
   }
 }
 
+.ant-dropdown-menu {
+  margin-left: 20px;
+  opacity: 0.9;
+}
 // Sidebar
 // .sidebar {
 //   height: 100vh;

@@ -1,6 +1,7 @@
 import { Button, Card, Layout, PageHeader, Form } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderCategoryLimit from '../../components/header/HeaderCategoryLimit';
+import EditCategoryLimitForm from '../../components/forms/EditCategoryLimitForm';
 
 
 function EditCategoryLimit() {
@@ -19,7 +20,12 @@ function EditCategoryLimit() {
         <Layout>
           <HeaderCategoryLimit />
           <Content style={{ padding: 40 }} >
-            Ini Category Limit
+            <EditCategoryLimitForm />
+            <div className="button-safe">
+              <Button type="primary" onClick={() => form.submit()}>
+                Save
+              </Button>
+            </div>
           </Content>
         </Layout>
       </Layout>

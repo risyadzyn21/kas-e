@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./Sidebar.scss";
-import { Layout, Menu, Radio } from "antd";
+import { Dropdown, Menu, Radio } from "antd";
 import { Link } from "react-router-dom";
 
 import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
 import AddIncomeModal from '../modals/AddIncomeModal';
 import LogoutBtn from '../../assets/icons/logout-btn.png'
-import * as BiIcon from 'react-icons/bi'
+import * as BiIcons from 'react-icons/bi'
+import * as FiIcons from 'react-icons/fi'
+import * as CgIcons from 'react-icons/cg'
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);
@@ -17,6 +19,25 @@ const Sidebar = () => {
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <Link to='/my-profile' className='myprofile-side'>
+          <CgIcons.CgProfile className='icon-profile-side' />
+          My Profile
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="1">
+        <Link to='/' onClick={() => localStorage.clear()} className='logout-btn-side'>
+          {/* <img src={LogoutBtn} className='icon-logout' /> */}
+          <BiIcons.BiLogOut className='icon-logout' />
+          Logout
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+    </Menu>
+  );
 
   return (
     <div>
@@ -59,18 +80,15 @@ const Sidebar = () => {
           </Menu.Item>
         </SubMenu>
 
-        <Menu.Item key="5" >
-          <Link to='/my-profile'>
-            My Profile
-          </Link>
-        </Menu.Item>
       </Menu>
 
-      <Link to='/' onClick={() => localStorage.clear()} className='logout-btn-side'>
-        {/* <img src={LogoutBtn} className='icon-logout' /> */}
-        <BiIcon.BiLogOut className='icon-logout' />
-        Logout
-      </Link>
+      <Dropdown overlay={menu} trigger={['click']} className='corner-dropdown' >
+        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          <FiIcons.FiMoreHorizontal />
+        </a>
+      </Dropdown>,
+
+
     </div>
   );
 };

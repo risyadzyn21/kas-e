@@ -1,10 +1,9 @@
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 
-function VerificationModal({ isModalVisible, handleOk }) {
-  console.log('halo aku modal')
+function VerificationModal({ isModalVisible, handleOk, handleCancel }) {
   return (
     <>
-      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk}>
+      <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
