@@ -25,7 +25,7 @@ const Home = () => {
             </div>
             {/* <Card /> */}
             <EmptyPage />
-            {/* <Main /> */}
+            <Main />
           </Content>
         </Layout>
       </Layout>
