@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col } from 'antd';
 import { Modal, Button } from "antd";
-import "./Card.scss";
+import "./SeeCard.scss";
 import { BsSafeFill, BsTrash } from "react-icons/bs";
+import { Card } from 'antd';
+import SafeIcon from "../../../assets/icons/brangkas.png";
+import Trash from '../../../assets/icons/trash.png';
 
-const Card = () => {
+const SeeCard = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOk = () => {
@@ -41,21 +44,13 @@ const Card = () => {
         onCancel={handleCancel}
         footer={null}
       >
-        <div
-          style={{ display: "grid", textAlign: "center" }}
-          className="create-form"
-        >
+        <div className="create-form">
           <h2>Create Other Safe</h2>
           <p>
             Enter the amount of income into your safe so that your expenses are
             under control
           </p>
-          <div
-            style={{ color: "#003F88", marginLeft: 100, marginRight: 100 }}
-            className="card-logo"
-          >
-            <BsSafeFill />
-          </div>
+           <img src={SafeIcon} alt="safe" />
           <form>
             <div className="form">
               <input
@@ -74,19 +69,8 @@ const Card = () => {
             <div className="form">
               <input type="text" className="text-input" placeholder="Income" />
             </div>
-            <div className="create-second">
+            <div className="create-see">
               <button
-                style={{
-                  background: "#003F88",
-                  border: "none",
-                  color: "white",
-                  borderRadius: 5,
-                  marginTop: 20,
-                  marginBottom: 20,
-                  width: 300,
-                  marginLeft: 50,
-                  marginRight: 50,
-                }}
                 type="submit"
                 className="submit-btn"
               >
@@ -97,38 +81,40 @@ const Card = () => {
         </div>
       </Modal>
       <div className="cards">
+        <Card>
         <div className="card-list">
           <div
             style={{ display: "flex", justifyContent: "space-between" }}
             className="card-icons"
           >
-            <div style={{ color: "#003F88", marginLeft: 120 }} className="card">
-              <BsSafeFill />
+            <div style={{ color: "#003F88", marginLeft: 110 }} className="card">
+            <img src={SafeIcon} alt="safe" />
             </div>
-            <div style={{ color: "#003F88", marginRight: 50 }} className="card">
-              <BsTrash />
+            <div style={{ color: "#003F88"}} className="card">
+            <img src={Trash} alt="sampah" />
             </div>
           </div>
-          <div style={{ marginLeft: 50, marginTop: 20 }} className="card-text">
+          <div style={{ marginTop: 20 }} className="card-text">
             <Row className="card-content1">
               <Col xs="auto">
-                <h5>Safe Name</h5>
+                <h4>Safe Name</h4>
                 <p>Jalan-jalan</p>
               </Col>
-              <Col xs="auto">
-                <h5>Income</h5>
+              <Col style={{ marginLeft: 70}} xs="auto">
+                <h4>Income</h4>
                 <p>Rp 3.000.000</p>
               </Col>
             </Row>
             <div className="card-content3">
-              <h5>Currency</h5>
+              <h4>Currency</h4>
               <p>Rupiah</p>
             </div>
           </div>
         </div>
+        </Card>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default SeeCard;

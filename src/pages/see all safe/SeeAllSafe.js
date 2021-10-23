@@ -3,7 +3,7 @@ import { Layout, PageHeader } from "antd";
 import { Link } from "react-router-dom";
 
 import Sidebar from "../../components/sidebar/Sidebar";
-import Card from "../../components/cards/Card"
+import SeeCard from "../../components/cards/card-see-all/SeeCard";
 import './SeeAllSafe.scss'
 
 import ArrowLeft from "../../assets/icons/arrow-left.png";
@@ -26,7 +26,7 @@ const SeeAllSafe = () => {
               </div>
             </PageHeader>
           <Content>
-            <Card />
+            <SeeCard />
           </Content>
         </Layout>
       </Layout>
