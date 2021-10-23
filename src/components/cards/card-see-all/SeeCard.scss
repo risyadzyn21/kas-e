@@ -1,0 +1,37 @@
+@import "../../../assets/abstracts/variables";
+
+.ant-card-bordered {
+  margin-left: 375px;
+  margin-right: 375px;
+  border-radius: 10px;
+}
+
+.card-text p {
+  font-size: 13px;
+}
+
+.card-text h4 {
+  font-weight: bold;
+}
+
+.create-form h2 {
+ font-weight: bold;
+}
+.create-form form {
+ margin-right: 300px;
+}
+.create-form img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.create-see button {
+    background: $primary-color;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-Bottom: 20px;
+    width: 360px;
+    height: 30px;
+}
