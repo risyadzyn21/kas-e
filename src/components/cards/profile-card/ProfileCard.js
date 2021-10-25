@@ -10,22 +10,22 @@ function ProfileCard() {
     <div className="main-profile">
       <AvatarIcon />
       <div className="profile">
-        <Link to= "/see-all-safe">
-        <Button className="all-safe-btn" block>
-          <h4>See all safe</h4>
-          <span>
-            <img src={Right} alt="Pointer" />
-          </span>
-        </Button>
+        <Link to="/see-all-safe">
+          <Button className="all-safe-btn" block>
+            <h4>See all safe</h4>
+            <span>
+              <img src={Right} alt="Pointer" />
+            </span>
+          </Button>
         </Link>
         <Card className="card-container">
           <Card className="profile-content">
             <h4>Name</h4>
-            <p>Budi Budi</p>
+            <p>Nico Nico-nii</p>
           </Card>
           <Card className="profile-content">
             <h4>Email</h4>
-            <p>budi.budi@gmail.com</p>
+            <p>nico.nico@gmail.com</p>
           </Card>
           <Card className="profile-content">
             <h4>Gender</h4>
@@ -33,7 +33,7 @@ function ProfileCard() {
           </Card>
           <Card className="profile-content">
             <h4>Age</h4>
-            <p>32 Years</p>
+            <p>17 Years</p>
           </Card>
           <Card className="profile-content">
             <h4>Password</h4>

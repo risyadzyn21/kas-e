@@ -1,6 +1,9 @@
 import axios from 'axios'
 
+const token = localStorage.getItem('token')
+
 export const login = (email, password) => {
+
   const data = {
     email,
     password
@@ -9,6 +12,7 @@ export const login = (email, password) => {
     method: 'POST',
     url: 'https://kas-e.herokuapp.com/api/v1/user/login',
     headers: {
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
     data: JSON.stringify(data)
@@ -29,6 +33,7 @@ export const register = (email, password, confirmPassword, fullName, gender, age
     method: 'POST',
     url: 'https://kas-e.herokuapp.com/api/v1/user/register',
     headers: {
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
     data: JSON.stringify(data)
@@ -38,12 +43,16 @@ export const register = (email, password, confirmPassword, fullName, gender, age
 export const profile = () => {
   return axios({
     method: 'GET',
-    url: 'http://kas-e.herokuapp.com/api/v1/'
+    url: 'https://kas-e.herokuapp.com/api/v1/',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
   })
 }
 
 export const getSafe = async () => {
-  const url = `http://kas-e.herokuapp.com/api/v1/safe`
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`
 
   try {
     const response = await fetch(url, {
@@ -55,3 +64,15 @@ export const getSafe = async () => {
     throw error;
   }
 };
+
+export const getTransaction = async () => {
+
+  return axios({
+    method: 'GET',
+    url: 'https://kas-e.herokuapp.com/api/v1/transaction',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
