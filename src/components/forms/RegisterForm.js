@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { getRegisterAsync } from "../../redux/actions";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
-import VerificationModal from "../modals/VerificationModal";
-import EmailVerif from '../../assets/ilustrastion/email-ver.png'
+import EmailVerif from '../../assets/ilustrastion/email-ver.png';
 import '../modals/Modal.scss'
 
 function RegisterForm(props) {

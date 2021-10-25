@@ -3,7 +3,7 @@ import './Home.scss'
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
 import EmptyPage from '../../components/empty-page/EmptyPage';
-import Card from '../../components/cards/Card'
+import SeeCard from '../../components/cards/card-see-all/SeeCard'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 import Main from '../../components/modals/create-modal/Main';
 
@@ -25,7 +25,7 @@ const Home = () => {
             </div>
             {/* <Card /> */}
             <EmptyPage />
-            {/* <Main /> */}
+            <Main />
           </Content>
         </Layout>
       </Layout>

@@ -1,9 +1,12 @@
 import React from "react";
 import { Layout, PageHeader } from "antd";
+import { Link } from "react-router-dom";
 
 import Sidebar from "../../components/sidebar/Sidebar";
-import Card from "../../components/cards/Card"
+import SeeCard from "../../components/cards/card-see-all/SeeCard";
 import './SeeAllSafe.scss'
+
+import ArrowLeft from "../../assets/icons/arrow-left.png";
 
 const SeeAllSafe = () => {
   const { Header, Sider, Content } = Layout;
@@ -14,9 +17,16 @@ const SeeAllSafe = () => {
           <Sidebar />
         </Sider>
         <Layout>
-          <PageHeader title="See All Safe" />
+          <PageHeader>
+            <div className="header-detail">
+                <Link to="/my-profile">
+              <img src={ArrowLeft} alt="back" />
+              </Link>
+              <h2 style={{ fontWeight: "bold" }}>See All Safe</h2>
+              </div>
+            </PageHeader>
           <Content>
-            <Card />
+            <SeeCard />
           </Content>
         </Layout>
       </Layout>
