@@ -19,10 +19,10 @@ const CreateAcc = ({ navigation }) => {
 
   useEffect(() => {
     getSafe()
-    .then((res) => {
-      setSafe(res.data);
-      setIsModalVisible(true);
-    })
+      .then((res) => {
+        setSafe(res.data);
+        setIsModalVisible(true);
+      })
   }, []);
 
   return (
@@ -40,7 +40,7 @@ const CreateAcc = ({ navigation }) => {
             src={SafeIcon}
             alt="illus"
           />
-          <form style={{ marginTop: 20}}>
+          <form style={{ marginTop: 20 }}>
             <div className="form">
               <input
                 type="text"

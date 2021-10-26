@@ -12,24 +12,25 @@ function HeaderTimeDaily() {
   }
   return (
     <>
-      <PageHeader
-        className="site-page-header"
-        title={<img src={KasESmall} />}
-        subTitle={<img src={KasELetterSmall} />}>
-      </PageHeader>
+      <div className='header-wrapper'>
+        <PageHeader
+          className="site-page-header"
+          title={<img src={KasESmall} />}
+          subTitle={<img src={KasELetterSmall} />}>
+        </PageHeader>
 
-      <Tabs defaultActiveKey="2" onChange={callback} className="site-page-tab">
-        <TabPane tab="Yesterday" key="1">
+        <Tabs defaultActiveKey="2" onChange={callback} className="site-page-tab">
+          <TabPane tab="Yesterday" key="1">
 
-        </TabPane>
-        <TabPane tab="Today" key="2">
+          </TabPane>
+          <TabPane tab="Today" key="2">
 
-        </TabPane>
-        <TabPane tab="Tomorrow" key="3">
+          </TabPane>
+          <TabPane tab="Tomorrow" key="3">
 
-        </TabPane>
-      </Tabs>
-
+          </TabPane>
+        </Tabs>
+      </div>
     </>
   );
 }
