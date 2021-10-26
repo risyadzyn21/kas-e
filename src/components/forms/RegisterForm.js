@@ -68,9 +68,12 @@ function RegisterForm(props) {
         <div className='modal-verif'>
           <img src={EmailVerif} />
           <h2>Verify Your Email</h2>
-          <p>We have sent you an verification email. Please check your email and verify your email.</p>
-          <Button href='https://gmail.com/' target='_blank' >
-            Check My Email
+          <p>We have sent you an verification email. Please <a href='https://gmail.com' target='_blank'>check your email</a> and verify your email.</p>
+          <Button onClick={(e) => {
+            e.preventDefault();
+            setPage("login");
+          }} >
+            Login
           </Button>
         </div>
       </Modal>

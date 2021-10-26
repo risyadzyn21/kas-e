@@ -14,9 +14,9 @@ p.desc-label {
   color: $text-white-color;
 }
 
-.ant-select {
-  border: 1.5px solid $primary-color;
-}
+// .ant-select {
+//   border: 1.5px solid $primary-color;
+// }
 
 .input-wrapper {
   img {
@@ -28,5 +28,18 @@ p.desc-label {
   input {
     padding-left: 40px;
     border: 1.5px solid $primary-color;
+  }
+}
+
+.category-wrapper {
+  .select-container {
+    .transaction-modal-select {
+      display: flex;
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
   }
 }

@@ -5,12 +5,13 @@ import DetailExpense from '../../assets/icons/detail-expense.png'
 import YourExpense from '../../assets/icons/your-expense.png'
 import TakenFrom from '../../assets/icons/brangkas.png'
 import './AddTransactionForm.scss'
-import { getCategory } from '../../services';
+import { getCategory, getSafe } from '../../services';
 
 
 
 function AddTransactionForm() {
   const [categories, setCategories] = useState([])
+  const [safes, setSafes] = useState([])
 
   useEffect(() => {
     getCategory()
@@ -23,17 +24,35 @@ function AddTransactionForm() {
       })
   }, [])
 
+  useEffect(() => {
+    getSafe()
+      .then((res) => {
+        setSafes(res?.data)
+
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
   return (
     <>
       <Form layout='vertical'>
         <Form.Item label="Category" className='category-wrapper'>
           {/* <img src={DetailExpense} /> */}
-          <Select className='select-container' size='large' placeholder="Select">
+          <Select className='select-container' size='large' placeholder="Select" >
             {categories?.map((category) => {
               return (
-                <Select.Option key={category.id} value="funnrelax" ><img src={FunAndRelax} />
-                  {/* <h3>{category.Category.categoryName}</h3> */}
-                  <p>{category.limit}</p>
+                <Select.Option key={category.id} value={category.Limit.categoryName}  >
+                  <div className='transaction-modal-select'>
+                    <img src={category.Limit.image_url} />
+                    <div>
+                      <div>{category.Limit.categoryName}</div>
+                      <div>{category.Limit.caption}</div>
+                      <div>Limit: {category.limit}</div>
+                    </div>
+                  </div>
+
                 </Select.Option>
               )
             })}
@@ -70,10 +89,18 @@ function AddTransactionForm() {
           </div>
         </Form.Item>
         <Form.Item label="Taken From">
-          <div className='input-wrapper' >
-            <img src={TakenFrom} />
-            <Input placeholder='Your Safe' size='large' />
-          </div>
+          <Select className='select-container' size='large' placeholder="Select" >
+            {safes?.map((safe) => {
+              return (
+                <Select.Option key={safe.id} value={safe.safeName}  >
+                  <div className='transaction-modal-select'>
+                    <div>{safe.safeName}</div>
+                  </div>
+
+                </Select.Option>
+              )
+            })}
+          </Select>
         </Form.Item>
 
         <Form.Item >

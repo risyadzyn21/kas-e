@@ -8,8 +8,8 @@
   width: 100%;
   justify-content: space-between;
   padding: 40px;
-  position: fixed;
-  top: 150px;
+  position: sticky;
+  top: 180px;
 
   .page-title {
     font-size: 20px;
@@ -17,5 +17,5 @@
 }
 
 .ant-layout-content {
-  padding: 40px;
+  padding: 0 40px;
 }
