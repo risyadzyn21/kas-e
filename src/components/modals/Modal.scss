@@ -44,10 +44,21 @@
   }
 
   a {
+    color: $text-grey-color;
+    font-weight: bold;
+    text-decoration: underline;
+
+    &:hover {
+      color: blue;
+    }
+  }
+
+  button {
     display: block;
     width: 100%;
     background: $primary-color;
     color: $text-white-color;
+    border-radius: 10px;
 
     &:hover {
       background: $primary-color;
