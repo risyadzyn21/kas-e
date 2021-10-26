@@ -7,8 +7,15 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  padding: 40px;
+  position: fixed;
+  top: 150px;
 
   .page-title {
     font-size: 20px;
   }
+}
+
+.ant-layout-content {
+  padding: 40px;
 }

@@ -1,40 +1,40 @@
 @import "../../../assets/abstracts/variables";
 
 .ant-modal-body {
-    box-shadow: 0px 2px 10px rgba(54, 79, 145, 0.3);
-    display: grid;
-    flex-direction: column;
-    border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(54, 79, 145, 0.3);
+  // display: grid;
+  flex-direction: column;
+  border-radius: 10px;
 }
 
 .create-first {
-    display: grid;
-    text-Align: center; 
-    color: black;
+  display: grid;
+  text-align: center;
+  color: black;
 }
 
 .create-first h2 {
-    font-Weight: 'bold'; 
-    font-Size: 18px;
+  font-weight: "bold";
+  font-size: 18px;
 }
 
 .create-first p {
-    margin-Left: 100px; 
-    margin-Right: 100px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .create-first button {
-    background: $primary-color;
-    color: white;
-    border: none;
-    color: "white";
-    border-Radius: 5px;
-    margin-Top: 20px;
-    margin-Bottom: 20px;
-    width: 400px;
-    margin-Left: 40px;
-    margin-Right: 40px;
-    cursor: 'pointer';
-    padding-top: 10px;
-    padding-bottom: 10px;
+  background: $primary-color;
+  color: white;
+  border: none;
+  color: "white";
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 400px;
+  margin-left: 40px;
+  margin-right: 40px;
+  cursor: "pointer";
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
