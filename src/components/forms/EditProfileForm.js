@@ -1,8 +1,10 @@
 import { Form, Input, InputNumber, Select } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
+import { useEffect, useState } from "react";
+import { profile } from "../../services";
 
-function EditProfile({ form, onFinish, onFinishFailed }) {
+function EditProfile({ form, onFinish, onFinishFailed, userData }) {
   const { Option } = Select;
 
   return (
@@ -17,6 +19,24 @@ function EditProfile({ form, onFinish, onFinishFailed }) {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       requiredMark={false}
+      fields={[
+        {
+          name: ["fullName"],
+          value: userData.fullName,
+        },
+        {
+          name: ["email"],
+          value: userData ? userData.User.email : null,
+        },
+        {
+          name: ["gender"],
+          value: userData.gender,
+        },
+        {
+          name: ["age"],
+          value: userData.age,
+        },
+      ]}
     >
       <Form.Item
         name="fullName"

@@ -1,58 +1,64 @@
-import axios from 'axios'
+import axios from "axios";
 
-const token = localStorage.getItem('token')
+const token = localStorage.getItem("token");
 
 export const login = (email, password) => {
-
   const data = {
     email,
-    password
-  }
+    password,
+  };
   return axios({
-    method: 'POST',
-    url: 'https://kas-e.herokuapp.com/api/v1/user/login',
+    method: "POST",
+    url: "https://kas-e.herokuapp.com/api/v1/user/login",
     headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
-    data: JSON.stringify(data)
+    data: JSON.stringify(data),
   });
-}
+};
 
-export const register = (email, password, confirmPassword, fullName, gender, age) => {
+export const register = (
+  email,
+  password,
+  confirmPassword,
+  fullName,
+  gender,
+  age
+) => {
   const data = {
     email,
     password,
     confirmPassword,
     fullName,
     gender,
-    age
-  }
+    age,
+  };
 
   return axios({
-    method: 'POST',
-    url: 'https://kas-e.herokuapp.com/api/v1/user/register',
+    method: "POST",
+    url: "https://kas-e.herokuapp.com/api/v1/user/register",
     headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
-    data: JSON.stringify(data)
+    data: JSON.stringify(data),
   });
-}
+};
 
 export const profile = () => {
   return axios({
-    method: 'GET',
-    url: 'https://kas-e.herokuapp.com/api/v1/',
+    method: "GET",
+    url: "https://kas-e.herokuapp.com/api/v1/profile",
     headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  })
-}
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
 
 export const getSafe = async () => {
-  const url = `https://kas-e.herokuapp.com/api/v1/safe`
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`;
 
   try {
     const response = await fetch(url, {
@@ -66,13 +72,12 @@ export const getSafe = async () => {
 };
 
 export const getTransaction = async () => {
-
   return axios({
-    method: 'GET',
-    url: 'https://kas-e.herokuapp.com/api/v1/transaction',
+    method: "GET",
+    url: "https://kas-e.herokuapp.com/api/v1/transaction",
     headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  })
-}
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};

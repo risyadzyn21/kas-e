@@ -1,5 +1,5 @@
 import "./EditProfile.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Layout, PageHeader, Form } from "antd";
 import { Link } from "react-router-dom";
 
@@ -7,9 +7,17 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import arrowLeft from "../../assets/icons/arrow-left.png";
 import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
+import { profile } from "../../services";
 
 function EditProfile() {
   const { Sider, Content } = Layout;
+  const [userData, setUserData] = useState("");
+
+  useEffect(() => {
+    profile().then((result) => {
+      setUserData(result.data.data);
+    });
+  }, []);
 
   const [form] = Form.useForm();
 
@@ -47,12 +55,13 @@ function EditProfile() {
         <Content>
           <div className="container">
             <div className="main-edit">
-              <AvatarIcon />
+              <AvatarIcon name={userData.fullName} />
               <Card>
                 <EditProfileForm
                   form={form}
                   onFinish={onFinish}
                   onFinishFailed={onFinishFailed}
+                  userData={userData}
                 />
               </Card>
             </div>
