@@ -1,23 +1,24 @@
-.ant-page-header, .ant-page-header-ghost {
-    background: white;
+.ant-page-header,
+.ant-page-header-ghost {
+  // background: white;
 }
 
 .header-report img {
-    height: 30px;
+  height: 30px;
 }
 
 .header-report button {
-    width: 150px;
-    background: transparent;
-    border: 1px solid rgb(65, 65, 146);
+  width: 150px;
+  background: transparent;
+  border: 1px solid rgb(65, 65, 146);
 }
 
 .header-detail {
-    display: flex;
-   gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .print-btn button {
-    cursor: pointer;
-    height: 40px;
+  cursor: pointer;
+  height: 40px;
 }
