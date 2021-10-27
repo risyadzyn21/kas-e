@@ -38,10 +38,11 @@ function TransactionCard() {
                 <img src={transaction?.Categories?.image_url} alt={transaction?.Categories?.categoryName} />
                 <div className='card-content'>
                   <div className='card-left'>
-                    <div key={transaction?.id} className='detail-transaction-container'>
-                      <img src={Limit} alt='limit' />
+
+                    <div className='detail-transaction-container'>
+                      <img src={YourExpense} alt='limit' />
                       <div className='detail-content-container'>
-                        <div className='detail-transaction-title'>Limit</div>
+                        <div className='detail-transaction-title'>Your Expense</div>
                         <NumberFormat
                           value={transaction?.expense}
                           displayType="text"
@@ -55,9 +56,9 @@ function TransactionCard() {
                     {transaction?.Categories?.Limit?.map((category) => {
                       return (
                         <div key={category?.id} className='detail-transaction-container'>
-                          <img src={YourExpense} alt='Your Expense' />
+                          <img src={Limit} alt='Your Expense' />
                           <div className='detail-content-container'>
-                            <div className='detail-transaction-title'>Your Expense</div>
+                            <div className='detail-transaction-title'>Limit</div>
                             <NumberFormat
                               value={category?.limit}
                               displayType="text"
@@ -70,6 +71,10 @@ function TransactionCard() {
 
                       )
                     })}
+
+
+
+
                   </div>
                   <div className='card-right'>
                     <div className='detail-transaction-container'>

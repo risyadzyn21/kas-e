@@ -2,8 +2,9 @@ import { Button, Card, Layout, PageHeader, Form } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderSafePage from '../../components/header/HeaderSafePage';
 import EditSafeForm from '../../components/forms/EditSafeForm'
-import SafeLogo from '../../assets/icons/brangkas.png'
+import SafeLogo from '../../assets/icons/brangkas.svg'
 import './EditSafe.scss'
+import SafeCard from '../../components/cards/safe-card/SafeCard';
 
 const EditSafePage = () => {
   const { Sider, Content } = Layout;
@@ -29,24 +30,30 @@ const EditSafePage = () => {
           <Sidebar />
         </Sider>
 
-        <Layout className="main-layout">
+        <Layout>
           <HeaderSafePage />
+          <div className='safe-title-wrapper'>
+            <div className='safe-title'>
+            </div>
+            <SafeCard />
+          </div>
+
           <Content className="container">
-            <div>
-              <div className='safe-edit'>
-                <Card>
-                  <img src={SafeLogo} className='safe-logo-edit' />
-                  <EditSafeForm />
-                </Card>
-              </div>
+            <div className='safe-edit-container'>
+
+              <Card className='safe-edit-card'>
+                <img src={SafeLogo} className='safe-logo-edit' />
+                <EditSafeForm className='edit-safe-form' />
+              </Card>
 
               <div className="button-safe">
-                <Button type="primary" onClick={() => form.submit()}>
+                <Button className='btn-save-safe' onClick={() => form.submit()}>
                   Save
                 </Button>
-                <Button type="danger" onClick={() => form.submit()}>
+                <Button className='btn-delete-safe' onClick={() => form.submit()}>
                   Delete
                 </Button>
+
               </div>
 
             </div>

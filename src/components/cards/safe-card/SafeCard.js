@@ -1,6 +1,6 @@
 import './SafeCard.scss'
 import { useState, useEffect } from 'react'
-import SafeIcon from '../../../assets/icons/brangkas.png'
+import SafeIcon from '../../../assets/icons/brangkas.svg'
 import ArrowRight from '../../../assets/icons/arrow-right.png'
 
 function SafeCard() {
