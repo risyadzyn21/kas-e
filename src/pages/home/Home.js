@@ -9,6 +9,7 @@ import Main from '../../components/modals/create-modal/Main';
 
 const Home = () => {
   const { Header, Sider, Content } = Layout;
+  
   return (
     <>
       <Layout>

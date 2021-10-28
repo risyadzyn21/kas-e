@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import SafeIlustration from "../../../assets/ilustrastion/safe-ilustration.png"
+import { getSafe } from "../../../services";
 import { Modal, Button } from 'antd';
 import "./Opening.scss";
+import { setSafeCard } from "../../../redux/actions/CreateSafeAction"
+import { useDispatch } from "react-redux"
 
 const Opening = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const token = localStorage.getItem('token')
+  const [ status, setStatus] = useState('')
+  const dispatch = useDispatch()
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -16,8 +21,27 @@ const Opening = ({ navigation }) => {
   };
 
   useEffect(() => {
-      setIsModalVisible(true);
+    getSafe(token)
+    .then((res) => {
+      setStatus(res.success.message)
+      console.log(res.success)
+      dispatch(setSafeCard(res.data))
+      if(res.data && res.data.length) {
+        setIsModalVisible(false)
+
+      } else {
+        setIsModalVisible(true)
+      }
     })
+    // if(status === "This is the list of safes") {
+    //   return setIsModalVisible(false)
+    // setIsModalVisible(true)
+    // } else {
+    //   return setIsModalVisible(true)
+    // }
+    }, [])
+
+   
 
   return (
     <div>
