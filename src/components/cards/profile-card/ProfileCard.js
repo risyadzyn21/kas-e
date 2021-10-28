@@ -7,17 +7,36 @@ import Right from "../../../assets/icons/arrow-right.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { profile } from "../../../services";
+import { useDispatch } from "react-redux";
+import { getProfileAsync } from "../../../redux/actions/profileAction";
 
 function ProfileCard() {
   const [userData, setUserData] = useState("");
+  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   profile().then((result) => {
+  //     console.log(result);
+  //     setUserData(result.data.data);
+  //   });
+  // }, []);
 
   useEffect(() => {
-    profile().then((result) => {
+    const fetchData = async () => {
+      const result = await axios({
+        method: "GET",
+        url: "http://kas-e.herokuapp.com/api/v1/profile",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(result);
       setUserData(result.data.data);
-    });
+    };
+    fetchData();
   }, []);
-
-  console.log(userData);
 
   return (
     <div className="main-profile">

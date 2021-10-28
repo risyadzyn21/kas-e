@@ -8,15 +8,27 @@ import arrowLeft from "../../assets/icons/arrow-left.png";
 import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
 import { profile } from "../../services";
+import axios from "axios";
 
 function EditProfile() {
   const { Sider, Content } = Layout;
   const [userData, setUserData] = useState("");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    profile().then((result) => {
+    const fetchData = async () => {
+      const result = await axios({
+        method: "GET",
+        url: "http://kas-e.herokuapp.com/api/v1/profile",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(result);
       setUserData(result.data.data);
-    });
+    };
+    fetchData();
   }, []);
 
   const [form] = Form.useForm();
