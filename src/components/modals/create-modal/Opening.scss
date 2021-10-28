@@ -1,10 +1,9 @@
 @import "../../../assets/abstracts/variables";
 
 .ant-modal-body {
-  box-shadow: 0px 2px 10px rgba(54, 79, 145, 0.3);
-  // display: grid;
-  flex-direction: column;
-  border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(54, 79, 145, 0.3);
+    flex-direction: column;
+    border-radius: 10px;
 }
 
 .create-first {
