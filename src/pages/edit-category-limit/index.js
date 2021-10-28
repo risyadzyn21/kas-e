@@ -21,11 +21,6 @@ function EditCategoryLimit() {
           <HeaderCategoryLimit />
           <Content style={{ padding: 40 }} >
             <EditCategoryLimitForm />
-            <div className="button-safe">
-              <Button type="primary" onClick={() => form.submit()}>
-                Save
-              </Button>
-            </div>
           </Content>
         </Layout>
       </Layout>

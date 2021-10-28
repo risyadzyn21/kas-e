@@ -1,6 +1,6 @@
 import './EditCategoryLimitForm.scss'
 import { Form, Input, Button } from 'antd'
-import FunnRelax from '../../assets/icons/FunAndRelax.png'
+import FunnRelax from '../../assets/icons/FunAndRelax.svg'
 
 function EditCategoryLimitForm() {
   const onFinish = (values: any) => {
@@ -14,106 +14,114 @@ function EditCategoryLimitForm() {
     <>
       <div className='edit-category-container'>
         <div className='edit-category-card'>
-          <div className='edit-title-category'>
-            <img src={FunnRelax} />
-            <h2>Fun and Relax</h2>
-          </div>
-          <div>
-            <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
-          </div>
-          <Form
-            className='edit-category-input'
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off">
+          <div className='edit-category-content'>
+            <div className='edit-title-category'>
+              <img src={FunnRelax} />
+              <h2>Fun and Relax</h2>
+            </div>
+            <div>
+              <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
+            </div>
+            <Form
+              className='edit-category-limit'
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off">
 
-            <Form.Item
-              name="nominal">
-              <Input placeholder='Rp 200.000' />
-            </Form.Item>
+              <Form.Item
+                name="nominal">
+                <Input placeholder='Rp 200.000' className='edit-category-form' />
+              </Form.Item>
 
-          </Form>
+            </Form>
+          </div>
         </div>
 
         <div className='edit-category-card'>
-          <div className='edit-title-category'>
-            <img src={FunnRelax} />
-            <h2>Bill and Payment</h2>
-          </div>
-          <div>
-            <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
-          </div>
-          <Form
-            className='edit-category-input'
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off">
+          <div className='edit-category-content'>
+            <div className='edit-title-category'>
+              <img src={FunnRelax} />
+              <h2>Bill and Payment</h2>
+            </div>
+            <div>
+              <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
+            </div>
+            <Form
+              className='edit-category-limit'
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off">
 
-            <Form.Item
-              name="nominal">
-              <Input placeholder='Rp 200.000' />
-            </Form.Item>
+              <Form.Item
+                name="nominal">
+                <Input placeholder='Rp 200.000' />
+              </Form.Item>
 
-          </Form>
+            </Form>
+          </div>
         </div>
         <div className='edit-category-card'>
-          <div className='edit-title-category'>
-            <img src={FunnRelax} />
-            <h2>Daily Needs</h2>
-          </div>
-          <div>
-            <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
-          </div>
-          <Form
-            className='edit-category-input'
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off">
+          <div className='edit-category-content'>
+            <div className='edit-title-category'>
+              <img src={FunnRelax} />
+              <h2>Daily Needs</h2>
+            </div>
+            <div>
+              <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
+            </div>
+            <Form
+              className='edit-category-limit'
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off">
 
-            <Form.Item
-              name="nominal">
-              <Input placeholder='Rp 200.000' />
-            </Form.Item>
+              <Form.Item
+                name="nominal">
+                <Input placeholder='Rp 200.000' />
+              </Form.Item>
 
-          </Form>
+            </Form>
+          </div>
         </div>
 
         <div className='edit-category-card'>
-          <div className='edit-title-category'>
-            <img src={FunnRelax} />
-            <h2>Urgent Needs</h2>
-          </div>
-          <div>
-            <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
-          </div>
-          <Form
-            className='edit-category-input'
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off">
+          <div className='edit-category-content'>
+            <div className='edit-title-category'>
+              <img src={FunnRelax} />
+              <h2>Urgent Needs</h2>
+            </div>
+            <div>
+              <p>Your expenses related to entertainment, vacation, leisure, snack or hangout with friends and shop</p>
+            </div>
+            <Form
+              className='edit-category-limit'
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off">
 
-            <Form.Item
-              name="nominal">
-              <Input placeholder='Rp 200.000' />
-            </Form.Item>
+              <Form.Item
+                name="nominal">
+                <Input placeholder='Rp 200.000' />
+              </Form.Item>
 
-          </Form>
+            </Form>
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,6 @@
-import { login, register } from "../../services";
+import { login, register, addTransaction } from "../../services";
+
+// Login
 
 export const getLoginAsync = (email, password, cb) => {
   return async (dispatch) => {
@@ -34,6 +36,8 @@ export const getLoginFailed = (error) => ({
   }
 })
 
+// Register
+
 export const getRegisterAsync = (email, password, confirmPassword, fullName, gender, age, cb) => {
   return async (dispatch) => {
     dispatch({ type: "register/get-start" });
@@ -62,6 +66,40 @@ export const getRegisterSuccess = (register) => ({
 
 export const getRegisterFailed = (error) => ({
   type: "register/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// Transaction
+
+export const addTransactionAsync = (category_id, detailExpense, expense, safe_id) => {
+  return async (dispatch) => {
+    dispatch({ type: "addtransaction/get-start" });
+    try {
+      const response = await addTransaction(category_id, detailExpense, expense, safe_id)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(addTransactionSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(addTransactionFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const addTransactionSuccess = (addTransaction) => ({
+  type: "addtransaction/get-success",
+  payload: {
+    addTransaction,
+  },
+});
+
+export const addTransactionFailed = (error) => ({
+  type: "addtransaction/get-failed",
   payload: {
     error,
   },
