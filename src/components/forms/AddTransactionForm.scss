@@ -12,6 +12,18 @@ p.desc-label {
 .button-submit {
   background: $primary-color;
   color: $text-white-color;
+
+  &:hover {
+    background: $dark-color;
+    color: $text-white-color;
+  }
+
+  &:active {
+    color: $text-white-color;
+    background: $dark-color;
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+  }
 }
 
 // .ant-select {
@@ -19,6 +31,10 @@ p.desc-label {
 // }
 
 .input-wrapper {
+  .ant-input-prefix {
+    padding-left: 30px;
+  }
+
   img {
     position: absolute;
     z-index: 9;
@@ -27,19 +43,70 @@ p.desc-label {
 
   input {
     padding-left: 40px;
-    border: 1.5px solid $primary-color;
+    // border: 1.5px solid $primary-color;
   }
 }
 
-.category-wrapper {
-  .select-container {
-    .transaction-modal-select {
-      display: flex;
+.transaction-modal-select {
+  display: flex;
 
-      img {
-        width: 25px;
-        height: 25px;
-      }
-    }
+  img {
+    flex: 0 1 25px;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+.transaction-category-caption {
+  word-wrap: break-word;
+  white-space: normal;
+  font-size: 12px;
+  color: $text-grey-color;
+}
+
+.transaction-category-title {
+  font-weight: bold;
+}
+
+.transaction-category-limit {
+  font-size: 12px;
+}
+
+.transaction-modal-safe {
+  display: flex;
+
+  img {
+    flex: 0 1 25px;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+.transaction-safe-title {
+  display: flex;
+  align-items: center;
+}
+
+.ant-select-selection-item {
+  img {
+    flex: 0 1 25px;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+}
+
+.transaction-modal-default {
+  display: flex;
+
+  img {
+    flex: 0 1 25px;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
   }
 }

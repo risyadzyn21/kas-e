@@ -1,9 +1,21 @@
+.ant-layout-header {
+  width: fit-content;
+  padding: 0;
+}
+
 .page-title-wrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  padding: 40px;
+  position: sticky;
+  top: 180px;
 
   .page-title {
     font-size: 20px;
   }
+}
+
+.ant-layout-content {
+  padding: 0 40px;
 }

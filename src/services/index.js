@@ -104,3 +104,15 @@ export const getProfile = () => {
     }
   })
 }
+
+export const addIncome = () => {
+
+  return axios({
+    method: 'POST',
+    url: 'https://kas-e.herokuapp.com/api/v1/safe/income',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}

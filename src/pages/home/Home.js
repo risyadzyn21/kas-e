@@ -9,7 +9,7 @@ import Main from '../../components/modals/create-modal/Main';
 import TransactionCard from '../../components/cards/transaction-card/TransactionCard';
 
 const Home = () => {
-  const { Header, Sider, Content } = Layout;
+  const { Sider, Content } = Layout;
   return (
     <>
       <Layout>
@@ -27,7 +27,6 @@ const Home = () => {
           </div>
           <Content>
             <TransactionCard />
-            {/* <Card /> */}
             {/* <EmptyPage /> */}
             <Main />
           </Content>

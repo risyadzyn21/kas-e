@@ -7,7 +7,7 @@ import DailyChart from '../../components/charts/DailyChart'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 
 function ReportPage() {
-  const { Header, Sider, Content } = Layout;
+  const { Sider, Content } = Layout;
 
   return (
     <>
@@ -18,11 +18,13 @@ function ReportPage() {
 
         <Layout>
           <HeaderTimeDaily />
-          <Content style={{ padding: 40 }} >
-            <div className='page-title-wrapper'>
-              <h2 className='page-title'>Report</h2>
-              <SafeCard />
+          <div className='page-title-wrapper'>
+            <div className='page-title'>
+              Report
             </div>
+            <SafeCard />
+          </div>
+          <Content >
             <DailyChart />
           </Content>
         </Layout>
