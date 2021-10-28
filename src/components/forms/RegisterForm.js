@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { getRegisterAsync } from "../../redux/actions";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
-import VerificationModal from "../modals/VerificationModal";
-import EmailVerif from '../../assets/ilustrastion/email-ver.png'
+import EmailVerif from '../../assets/ilustrastion/email-ver.png';
 import '../modals/Modal.scss'
 
 function RegisterForm(props) {
@@ -69,9 +68,12 @@ function RegisterForm(props) {
         <div className='modal-verif'>
           <img src={EmailVerif} />
           <h2>Verify Your Email</h2>
-          <p>We have sent you an verification email. Please check your email and verify your email.</p>
-          <Button href='https://gmail.com/' >
-            Check My Email
+          <p>We have sent you an verification email. Please <a href='https://gmail.com' target='_blank'>check your email</a> and verify your email.</p>
+          <Button onClick={(e) => {
+            e.preventDefault();
+            setPage("login");
+          }} >
+            Login
           </Button>
         </div>
       </Modal>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import './SafeCard.scss'
-import SafeIcon from '../../../assets/icons/brangkas.png'
+import { useState, useEffect } from 'react'
+import SafeIcon from '../../../assets/icons/brangkas.svg'
 import ArrowRight from '../../../assets/icons/arrow-right.png'
 import { getSafe } from "../../../services"
 

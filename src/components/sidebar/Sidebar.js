@@ -84,7 +84,7 @@ const Sidebar = () => {
 
       <Dropdown overlay={menu} trigger={['click']} className='corner-dropdown' >
         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-          <FiIcons.FiMoreHorizontal />
+          <FiIcons.FiMoreVertical />
         </a>
       </Dropdown>,
 

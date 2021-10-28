@@ -3,6 +3,7 @@
 .transaction-modal,
 .income-modal {
   display: flex;
+
   button {
     margin: 5px auto;
     width: 200px;
@@ -31,6 +32,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 60px;
 
   img {
     width: 180px;
@@ -42,10 +44,21 @@
   }
 
   a {
+    color: $text-grey-color;
+    font-weight: bold;
+    text-decoration: underline;
+
+    &:hover {
+      color: blue;
+    }
+  }
+
+  button {
     display: block;
     width: 100%;
     background: $primary-color;
     color: $text-white-color;
+    border-radius: 10px;
 
     &:hover {
       background: $primary-color;

@@ -1,21 +1,24 @@
 import { useState } from 'react'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getLoginAsync } from "../../redux/actions";
 
 import { Form, Input, Button, message } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
 import { Link, useHistory } from 'react-router-dom';
+import Loading from '../loading/Loading';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const history = useHistory()
+  const user = useSelector(state => state.userReducer)
 
   const success = () => {
     message.success('Login Success');
   };
+  console.log(user)
 
   const { setPage } = props;
 
@@ -32,96 +35,99 @@ const LoginForm = (props) => {
   };
 
   return (
-    <Form
-      // onSubmit={handleSubmit}
-      name="login"
-      wrapperCol={{
-        span: 24,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item>
-        <h2>Welcome Back!</h2>
-        <p>Let’s enter your E-mail and your Password to Sign In</p>
-      </Form.Item>
-      <Form.Item
-        // value={email}
-        // onChange={(e) => setEmail(e.target.value)}
-        name="email"
-        rules={[
-          {
-            type: "email",
-            message: "The input is not a valid E-mail!",
-          },
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
+    <>
+      {user.loading ? <Loading /> : ''}
+      <Form
+        // onSubmit={handleSubmit}
+        name="login"
+        wrapperCol={{
+          span: 24,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
       >
-        <Input placeholder="Please enter your email"
-
-        />
-      </Form.Item>
-
-      <Form.Item
-        // value={password}
-        // onChange={(e) => setPassword(e.target.value)}
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password
-          iconRender={(visible) =>
-            visible ? (
-              <img src={Show} alt="Show" />
-            ) : (
-              <img src={Hide} alt="Hide" />
-            )
-          }
-          placeholder="Please enter your password"
-
-        />
-      </Form.Item>
-
-      <Form.Item>
-        <a
-          className="login-form-forgot"
-          href="/"
-          onClick={(e) => {
-            e.preventDefault();
-            setPage("forgot");
-          }}
+        <Form.Item>
+          <h2>Welcome Back!</h2>
+          <p>Let’s enter your E-mail and your Password to Sign In</p>
+        </Form.Item>
+        <Form.Item
+          // value={email}
+          // onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not a valid E-mail!",
+            },
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
         >
-          Forgot password?
-        </a>
-      </Form.Item>
+          <Input placeholder="Please enter your email"
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" block>
-          Login
-        </Button>
-        <p className="button-text">
-          Don't have an account yet?{" "}
+          />
+        </Form.Item>
+
+        <Form.Item
+          // value={password}
+          // onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password
+            iconRender={(visible) =>
+              visible ? (
+                <img src={Show} alt="Show" />
+              ) : (
+                <img src={Hide} alt="Hide" />
+              )
+            }
+            placeholder="Please enter your password"
+
+          />
+        </Form.Item>
+
+        <Form.Item>
           <a
-            className="login-form-register"
+            className="login-form-forgot"
             href="/"
             onClick={(e) => {
               e.preventDefault();
-              setPage("register");
+              setPage("forgot");
             }}
           >
-            Register here
+            Forgot password?
           </a>
-        </p>
-      </Form.Item>
-    </Form>
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit" block>
+            Login
+          </Button>
+          <p className="button-text">
+            Don't have an account yet?{" "}
+            <a
+              className="login-form-register"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("register");
+              }}
+            >
+              Register here
+            </a>
+          </p>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 

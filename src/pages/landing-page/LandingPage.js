@@ -4,13 +4,14 @@ import logo from "../../assets/landing-page-images/logo-kas-e.png";
 import illustration1 from "../../assets/landing-page-images/illustration1.png";
 import illustration2 from "../../assets/landing-page-images/illustration2.png";
 import illustration3 from "../../assets/landing-page-images/illustration3.png";
+import Loading from '../../components/loading/Loading'
 import Footer from "../../components/footer/Footer.js";
-
 import "./LandingPage.scss";
 
 const LandingPage = () => {
   return (
     <div>
+      {/* <Loading /> */}
       <div className="header">
         <div className="header-container">
           <Link to="/" className="logo">
@@ -18,9 +19,9 @@ const LandingPage = () => {
             <h1 className="logo-text">KAS-E</h1>
           </Link>
 
-          <button type="button" className="login-btn">
-            <Link to="/auth">Log In</Link>
-          </button>
+          <Link to="/auth" className="login-btn">
+            Log in
+          </Link>
         </div>
         <div className="hero">
           <div className="hero-text">

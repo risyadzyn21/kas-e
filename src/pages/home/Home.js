@@ -6,10 +6,10 @@ import EmptyPage from '../../components/empty-page/EmptyPage';
 import SeeCard from '../../components/cards/card-see-all/SeeCard'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 import Main from '../../components/modals/create-modal/Main';
+import TransactionCard from '../../components/cards/transaction-card/TransactionCard';
 
 const Home = () => {
-  const { Header, Sider, Content } = Layout;
-  
+  const { Sider, Content } = Layout;
   return (
     <>
       <Layout>
@@ -19,13 +19,15 @@ const Home = () => {
 
         <Layout>
           <HeaderTimeDaily />
-          <Content style={{ padding: 40 }} >
-            <div className='page-title-wrapper'>
-              <div className='page-title'>Transactions</div>
-              <SafeCard />
+          <div className='page-title-wrapper'>
+            <div className='page-title'>
+              Transactions
             </div>
-            {/* <Card /> */}
-            <EmptyPage />
+            <SafeCard />
+          </div>
+          <Content>
+            <TransactionCard />
+            {/* <EmptyPage /> */}
             <Main />
           </Content>
         </Layout>
