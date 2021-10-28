@@ -81,6 +81,25 @@ export const getTransaction = () => {
   })
 }
 
+export const addTransaction = (category_id, detailExpense, expense, safe_id) => {
+  const data = {
+    category_id,
+    detailExpense,
+    expense,
+    safe_id
+  }
+
+  return axios({
+    method: 'POST',
+    url: 'https://kas-e.herokuapp.com/api/v1/transaction',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+
 export const getCategory = () => {
 
   return axios({
