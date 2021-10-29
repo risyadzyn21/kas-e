@@ -72,12 +72,12 @@ export const getSafe = async (token) => {
 };
 
 
-export const getCreateAcc = async ( safeName, amount, token) => {
+export const getCreateAcc = async (safeName, amount, token) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
-    const data = {
-      safeName: safeName,
-      amount: amount
-    }
+  const data = {
+    safeName: safeName,
+    amount: amount
+  }
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -94,13 +94,13 @@ export const getCreateAcc = async ( safeName, amount, token) => {
 };
 
 
-export const getUpdateSafe = async ( id, safeName, amount ) => {
+export const getUpdateSafe = async (id, safeName, amount) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
-    const data = {
-      id,
-      safeName,
-      amount,
-    }
+  const data = {
+    id,
+    safeName,
+    amount,
+  }
   try {
     const response = await fetch(url, {
       method: "PUT",
@@ -118,10 +118,10 @@ export const getUpdateSafe = async ( id, safeName, amount ) => {
 
 export const getLimitFirst = async (id, limit) => {
   const url = `https://kas-e.herokuapp.com/api/v1/limit`
-    const data = {
-     id,
-     limit
-    }
+  const data = {
+    id,
+    limit
+  }
   try {
     const response = await fetch(url, {
       method: "POST",
