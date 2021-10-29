@@ -1,18 +1,18 @@
-import { profile } from "../../services";
+import { getProfile } from "../../services";
 
 export const getProfileAsync = () => {
   return async (dispatch) => {
     dispatch({ type: "profile/get-start" });
     try {
-      const response = await profile();
+      const response = await getProfile();
       console.log(response, "start");
       if (response.data) {
-        dispatch(getProfileSuccess(response.data));
+        dispatch(getProfileSuccess(response.data.data));
       }
       return response;
     } catch (error) {
-      console.log(error);
-      dispatch(getProfileFailed(error));
+      console.log(error.message);
+      dispatch(getProfileFailed(error.message));
       return error;
     }
   };

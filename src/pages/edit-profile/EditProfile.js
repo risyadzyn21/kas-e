@@ -1,5 +1,5 @@
 import "./EditProfile.scss";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Layout, PageHeader, Form } from "antd";
 import { Link } from "react-router-dom";
 
@@ -7,31 +7,45 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import arrowLeft from "../../assets/icons/arrow-left.png";
 import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
-import { profile } from "../../services";
+// import { profile } from "../../services";
+// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getProfileAsync,
+  getProfileFailed,
+  getProfileSuccess,
+} from "../../redux/actions/profileAction";
 import axios from "axios";
 
 function EditProfile() {
   const { Sider, Content } = Layout;
-  const [userData, setUserData] = useState("");
-  const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios({
-        method: "GET",
-        url: "http://kas-e.herokuapp.com/api/v1/profile",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(result);
-      setUserData(result.data.data);
-    };
-    fetchData();
-  }, []);
-
   const [form] = Form.useForm();
+  // const dispatch = useDispatch();
+  // const token = localStorage.getItem("token");
+  // const [userData, setUserData] = useState("");
+
+  // const fetchData = () => {
+  //   axios({
+  //     method: "GET",
+  //     url: "http://kas-e.herokuapp.com/api/v1/profile",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       dispatch(getProfileSuccess(response.data));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       dispatch(getProfileFailed(error));
+  //     });
+  // };
+
+  const userData = useSelector(
+    (state) => state.profileReducer.profileData.data
+  );
 
   const onFinish = () => {
     const formData = form.getFieldsValue([
