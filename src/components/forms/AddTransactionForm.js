@@ -121,7 +121,7 @@ function AddTransactionForm() {
           ]}>
           <div className='input-wrapper' >
             <img src={YourExpense} alt='Your Expense' />
-            <Input size='large' prefix='Rp' />
+            <Input size='large' prefix='Rp' type='number' min='0' />
           </div>
         </Form.Item>
 
