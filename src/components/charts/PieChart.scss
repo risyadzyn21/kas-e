@@ -1,13 +1,64 @@
-.title {
-  font-size: 20px;
-  text-align: center;
+@import "../../assets/abstracts/variables";
+
+.chart-container {
+  position: relative;
+
+  .title-balance {
+    font-size: 20px;
+  }
+
+  .title-value-wrapper {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title-netincome {
+    font-size: 20px;
+  }
+
+  .report-btn {
+    font-size: 15px;
+    margin-top: 20px;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color;
+    color: $text-white-color;
+    border-radius: 15px;
+    transition: 0.5s;
+    z-index: 50;
+
+    &:hover {
+      background-color: ($dark-color);
+    }
+
+    &:active {
+      background-color: ($dark-color);
+      transform: scale(0.95);
+      transition: all 0.1s ease;
+    }
+  }
+
+  .chart-content-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    .title {
+      font-size: 20px;
+      text-align: center;
+    }
+    .pie-chart {
+      max-width: 350px;
+      margin: auto;
+    }
+  }
 }
 
-.pie-chart {
-  margin: auto;
-  max-width: 300px;
-}
-
-.title-balance {
-  margin: 0;
+.chart-report-value {
+  font-size: 15px;
 }

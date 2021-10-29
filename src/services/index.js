@@ -202,3 +202,27 @@ export const addIncome = () => {
     }
   })
 }
+
+export const getReportDaily = () => {
+
+  return axios({
+    method: 'GET',
+    url: 'https://kas-e.herokuapp.com/api/v1/report/daily',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export const getReportMonthly = () => {
+
+  return axios({
+    method: 'GET',
+    url: 'https://kas-e.herokuapp.com/api/v1/report/monthly',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
