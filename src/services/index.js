@@ -191,15 +191,20 @@ export const getProfile = () => {
   })
 }
 
-export const addIncome = () => {
+export const addIncome = (safe_id, expense) => {
+  const data = {
+    safe_id,
+    expense
+  }
 
   return axios({
     method: 'POST',
-    url: 'https://kas-e.herokuapp.com/api/v1/safe/income',
+    url: 'https://kas-e.herokuapp.com/api/v1/transaction/addincome',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
-    }
+    },
+    data: JSON.stringify(data)
   })
 }
 

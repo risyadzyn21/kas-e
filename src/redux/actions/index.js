@@ -1,4 +1,4 @@
-import { login, register, addTransaction } from "../../services";
+import { login, register, addTransaction, addIncome } from "../../services";
 
 // Login
 
@@ -100,6 +100,39 @@ export const addTransactionSuccess = (addTransaction) => ({
 
 export const addTransactionFailed = (error) => ({
   type: "addtransaction/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// Income
+export const addIncomeAsync = (safe_id, expense) => {
+  return async (dispatch) => {
+    dispatch({ type: "addincome/get-start" });
+    try {
+      const response = await addIncome(safe_id, expense)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(addIncomeSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(addIncomeFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const addIncomeSuccess = (addIncome) => ({
+  type: "addincome/get-success",
+  payload: {
+    addIncome,
+  },
+});
+
+export const addIncomeFailed = (error) => ({
+  type: "addincome/get-failed",
   payload: {
     error,
   },

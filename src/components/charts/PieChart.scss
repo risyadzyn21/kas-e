@@ -10,6 +10,7 @@
   .title-value-wrapper {
     font-size: 20px;
     display: flex;
+    margin-top: 10px;
     justify-content: space-between;
   }
 
@@ -20,7 +21,7 @@
   .report-btn {
     font-size: 15px;
     margin-top: 20px;
-    width: 150px;
+    width: 157px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -60,5 +61,30 @@
 }
 
 .chart-report-value {
+  font-size: 15px;
+}
+
+.right-report {
+  margin-top: 10px;
+
+  .income-indicator-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .income-indicator {
+    background-color: $primary-color;
+    width: 70px;
+    height: 15px;
+  }
+
+  .expense-indicator {
+    background-color: $chart-color2;
+    width: 70px;
+    height: 15px;
+  }
+}
+
+.chart-indicator-value {
+  margin-bottom: 10px;
   font-size: 15px;
 }
