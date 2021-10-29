@@ -21,9 +21,12 @@
 }
 
 .download {
-  color: white;
-  padding-left: 20%;
+  padding-left: 500px;
   padding-top: 15px;
+}
+
+.download h3 {
+  color: white;
 }
 .download-img {
   list-style: none;
@@ -38,15 +41,32 @@
   list-style: none;
   display: flex;
   gap: 20px;
-  margin: 0;
-  justify-content: center;
+  margin-top: 17px;
 }
 
 .bottom {
   display: flex;
-  width: 100%;
 }
 
 .cr {
-  margin-left: 70vh;
+  margin-left: 500px;
+}
+
+.bahasa img {
+  height: 25px;
+}
+
+.bahasa {
+  display: flex;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: transparent;
+  border: none;
+  // color: white;
+  // font-size: 12px;
+}
+
+.ant-select-arrow {
+  color: white;
 }

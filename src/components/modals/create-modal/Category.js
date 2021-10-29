@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
-import { getSafe } from "../../../services/index";
+import { getLimitFirst, getSafe } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
 import Fun from "../../../assets/icons/FunAndRelax.png";
@@ -10,7 +10,10 @@ import UrgentNeed from "../../../assets/icons/urgent-need.png";
 
 const Category = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [safe, setSafe] = useState([]);
+  const [spendingLimit, setspendingLimit] = useState('')
+  const token = localStorage.getItem('token')
+  // const { id, limit } = spendingLimit;
+  const [ status, setStatus] = useState('')
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -22,12 +25,40 @@ const Category = () => {
   const showModal = () => {
     setIsModalVisible(true);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getLimitFirst()
+    .then((res) =>{
+      setspendingLimit(res.data)
+      console.log(res.data)
+    })
+   
+  }
+
   useEffect(() => {
-    getSafe().then((res) => {
-      setSafe(res.data);
-      setIsModalVisible(true);
-    });
-  }, []);
+    getSafe(token)
+    .then((res) => {
+      setStatus(res.success)
+      console.log(res.success)
+    })
+
+    })
+
+    useEffect(() => {
+      if(status === "This is the list of safes") {
+        return setIsModalVisible(false)
+
+      } else {
+        return setIsModalVisible(true)
+      }
+    })
+ 
+
+  const handleChange = (e) => {
+   setspendingLimit(e.target.value)
+  }
+
 
   return (
     <div>
@@ -44,7 +75,7 @@ const Category = () => {
               Make your spending more controlled, by setting your spending limit
             </p>
           </div>
-          <div className="category-form">
+          <div onSubmit={handleSubmit} className="category-form">
             <div className="fun-relax">
               <div
                 style={{
@@ -67,7 +98,7 @@ const Category = () => {
                   Your expenses related to entertainment, vacation, leisure,
                   snack or hangout with friends and shop
                 </p>
-                <input type="text" placeholder="RP" />
+                <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
 
@@ -93,7 +124,7 @@ const Category = () => {
                   Your rent bills, insurance, payments for electricity, water,
                   gas and other arrears
                 </p>
-                <input type="text" placeholder="RP" />
+                <input type="text" placeholder="RP" value={spendingLimit}  onChange={handleChange} />
               </div>
             </div>
             <div className="daily-needs">
@@ -118,7 +149,7 @@ const Category = () => {
                   This category is for your daily needs, such as toiletries,
                   household and others
                 </p>
-                <input type="text" placeholder="RP" />
+                <input type="text" placeholder="RP" value={spendingLimit}  onChange={handleChange}/>
               </div>
             </div>
             <div className="urgent-needs">
@@ -142,7 +173,7 @@ const Category = () => {
                 <p style={{ fontSize: 12 }}>
                   This category is intended for funds in case of an emergency
                 </p>
-                <input type="text" placeholder="RP" />
+                <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
             </div>

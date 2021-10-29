@@ -1,11 +1,13 @@
 import React from "react";
 import "./Footer.scss";
+import {  Select } from 'antd';
 
 import apple from "../../assets/landing-page-images/apple.png";
 import google from "../../assets/landing-page-images/google.png";
 import Vector from "../../assets/landing-page-images/Vector.png";
 
 const Footer = () => {
+  const { Option } = Select;
   return (
     <div>
       <div style={{ background: "#003F88" }} className="footer">
@@ -49,13 +51,16 @@ const Footer = () => {
         <hr style={{ color: "white" }}></hr>
         <div style={{ color: "white" }} className="bottom">
           <div style={{ padding: "15px" }} className="bahasa">
-            <img src={Vector} alt="" /> <span>English</span>
+            <img src={Vector} alt="" /> 
+            <Select>
+            <Select.Option value="eng">English</Select.Option>
+            <Select.Option value="ind">Bahasa Indonesia</Select.Option>
+          </Select>
           </div>
           <div className="copyright">
             <ul>
               <li>Privacy Policy</li>
               <li>Terms & Conditions</li>
-
             </ul>
           </div>
           <div style={{ padding: "15px" }} className="cr">
