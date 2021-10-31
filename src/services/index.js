@@ -231,3 +231,20 @@ export const getReportMonthly = () => {
     }
   })
 }
+
+export const editCategoryLimit = (category_id, limit) => {
+  const data = {
+    category_id,
+    limit
+  }
+
+  return axios({
+    method: 'PUT',
+    url: 'https://kas-e.herokuapp.com/api/v1/limit',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}

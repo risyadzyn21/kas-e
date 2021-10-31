@@ -9,20 +9,6 @@ import SafeCard from '../../components/cards/safe-card/SafeCard';
 const EditSafePage = () => {
   const { Sider, Content } = Layout;
 
-  const [form] = Form.useForm();
-
-  const onFinish = () => {
-    const formData = form.getFieldsValue([
-      "safeName",
-      "income",
-    ]);
-    alert(JSON.stringify(formData, null, 2));
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <div>
       <Layout>
@@ -38,26 +24,8 @@ const EditSafePage = () => {
             <SafeCard />
           </div>
 
-          <Content className="container">
-            <div className='safe-edit-container'>
-
-              <Card className='safe-edit-card'>
-                <img src={SafeLogo} className='safe-logo-edit' />
-                <EditSafeForm className='edit-safe-form' />
-              </Card>
-
-              <div className="button-safe">
-                <Button className='btn-save-safe' onClick={() => form.submit()}>
-                  Save
-                </Button>
-                <Button className='btn-delete-safe' onClick={() => form.submit()}>
-                  Delete
-                </Button>
-
-              </div>
-
-            </div>
-
+          <Content className="container-edit-safe-page">
+            <EditSafeForm className='content-edit-safe-page' />
           </Content>
         </Layout>
       </Layout>

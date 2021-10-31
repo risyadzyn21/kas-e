@@ -67,7 +67,7 @@ const LoginForm = (props) => {
           ]}
         >
           <Input placeholder="Please enter your email"
-
+            size='large'
           />
         </Form.Item>
 
@@ -91,7 +91,7 @@ const LoginForm = (props) => {
               )
             }
             placeholder="Please enter your password"
-
+            size='large'
           />
         </Form.Item>
 

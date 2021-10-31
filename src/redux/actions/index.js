@@ -1,4 +1,4 @@
-import { login, register, addTransaction, addIncome } from "../../services";
+import { login, register, addTransaction, addIncome, editCategoryLimit } from "../../services";
 
 // Login
 
@@ -133,6 +133,39 @@ export const addIncomeSuccess = (addIncome) => ({
 
 export const addIncomeFailed = (error) => ({
   type: "addincome/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// Edit Category Limit
+export const editCategoryLimitAsync = (category_id, limit) => {
+  return async (dispatch) => {
+    dispatch({ type: "editcategory/get-start" });
+    try {
+      const response = await editCategoryLimit(category_id, limit)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(editCategoryLimitSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(editCategoryLimitFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const editCategoryLimitSuccess = (editCategoryLimit) => ({
+  type: "editcategory/get-success",
+  payload: {
+    editCategoryLimit,
+  },
+});
+
+export const editCategoryLimitFailed = (error) => ({
+  type: "editcategory/get-failed",
   payload: {
     error,
   },
