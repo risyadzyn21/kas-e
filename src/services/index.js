@@ -74,10 +74,10 @@ export const getSafe = async (token) => {
 
 export const createAcc = async ( safeName, amount, token) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
-    const data = {
-      safeName: safeName,
-      amount: amount
-    }
+  const data = {
+    safeName: safeName,
+    amount: amount
+  }
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -132,10 +132,10 @@ export const deleteSafe = async () => {
 
 export const getLimitFirst = async (id, limit) => {
   const url = `https://kas-e.herokuapp.com/api/v1/limit`
-    const data = {
-     id,
-     limit
-    }
+  const data = {
+    id,
+    limit
+  }
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -207,14 +207,60 @@ export const getProfile = () => {
   })
 }
 
-export const addIncome = () => {
+export const addIncome = (safe_id, expense) => {
+  const data = {
+    safe_id,
+    expense
+  }
 
   return axios({
     method: 'POST',
-    url: 'https://kas-e.herokuapp.com/api/v1/safe/income',
+    url: 'https://kas-e.herokuapp.com/api/v1/transaction/addincome',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+
+export const getReportDaily = () => {
+
+  return axios({
+    method: 'GET',
+    url: 'https://kas-e.herokuapp.com/api/v1/report/daily',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
+  })
+}
+
+export const getReportMonthly = () => {
+
+  return axios({
+    method: 'GET',
+    url: 'https://kas-e.herokuapp.com/api/v1/report/monthly',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export const editCategoryLimit = (category_id, limit) => {
+  const data = {
+    category_id,
+    limit
+  }
+
+  return axios({
+    method: 'PUT',
+    url: 'https://kas-e.herokuapp.com/api/v1/limit',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
   })
 }

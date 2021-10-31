@@ -106,7 +106,9 @@ function RegisterForm(props) {
                 },
               ]}
             >
-              <Input placeholder="Please enter your email" />
+              <Input placeholder="Please enter your email"
+                size='large'
+              />
             </Form.Item>
 
             <Form.Item
@@ -131,6 +133,7 @@ function RegisterForm(props) {
                   )
                 }
                 placeholder="Please enter your password"
+                size='large'
               />
             </Form.Item>
 
@@ -167,6 +170,7 @@ function RegisterForm(props) {
                   )
                 }
                 placeholder="Confirm your password"
+                size='large'
               />
             </Form.Item>
 
@@ -214,7 +218,8 @@ function RegisterForm(props) {
                 },
               ]}
             >
-              <Input placeholder="Full Name" />
+              <Input placeholder="Full Name"
+                size='large' />
             </Form.Item>
 
             <Form.Item
@@ -226,7 +231,7 @@ function RegisterForm(props) {
                 },
               ]}
             >
-              <Select placeholder="Gender">
+              <Select placeholder="Gender" size='large'>
                 <Option value="male">Male</Option>
                 <Option value="female">Female</Option>
                 <Option value="other">Other</Option>
@@ -247,6 +252,7 @@ function RegisterForm(props) {
                 placeholder="Age"
                 className="input-style"
                 controls={false}
+                size='large'
               />
             </Form.Item>
 

@@ -5,7 +5,8 @@
   position: sticky;
   border-radius: 30px;
   right: 0;
-  width: fit-content;
+  min-width: 210px;
+  min-height: 70px;
   border: 1px solid none;
   background: $text-white-color;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -23,7 +24,7 @@
   }
 
   .safe-info {
-    width: fit-content;
+    min-width: 105px;
     display: flex;
     flex-direction: column;
     justify-content: center;

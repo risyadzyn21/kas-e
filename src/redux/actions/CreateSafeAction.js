@@ -1,5 +1,5 @@
-export const setSafeCard = ( token ) => {
-    return{
+export const setSafeCard = (token) => {
+    return {
         type: "SET_SAFECARD",
         payload: token,
     }
@@ -21,7 +21,7 @@ export const setUpdateSafe = (data) => {
 
 export const setCloseModal = () => {
     return {
-      type: "SET_CLOSE",
+        type: "SET_CLOSE",
     };
   };
   

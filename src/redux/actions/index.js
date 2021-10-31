@@ -1,4 +1,4 @@
-import { login, register, addTransaction, updateSafe } from "../../services";
+import { login, register, addTransaction, addIncome, editCategoryLimit, updateSafe } from "../../services";
 
 // Login
 
@@ -120,6 +120,7 @@ export const updateSafeAsync = (safeName, amount) => {
     } catch (error) {
       console.log(error.message);
       dispatch(updateSafeFailed(error.message));
+      dispatch(addIncomeFailed(error.message));
       return error
     }
   }
@@ -133,6 +134,49 @@ export const updateSafeSuccess = (updateSafe) => ({
 
 export const updateSafeFailed = (error) => ({
   type: "updateSafe/get-failed",
+
+export const addIncomeSuccess = (addIncome) => ({
+  type: "addincome/get-success",
+  payload: {
+    addIncome,
+  },
+});
+
+export const addIncomeFailed = (error) => ({
+  type: "addincome/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// Edit Category Limit
+export const editCategoryLimitAsync = (category_id, limit) => {
+  return async (dispatch) => {
+    dispatch({ type: "editcategory/get-start" });
+    try {
+      const response = await editCategoryLimit(category_id, limit)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(editCategoryLimitSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(editCategoryLimitFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const editCategoryLimitSuccess = (editCategoryLimit) => ({
+  type: "editcategory/get-success",
+  payload: {
+    editCategoryLimit,
+  },
+});
+
+export const editCategoryLimitFailed = (error) => ({
+  type: "editcategory/get-failed",
   payload: {
     error,
   },

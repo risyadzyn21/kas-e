@@ -12,6 +12,7 @@ import Trash from '../../../assets/icons/trash.png'
 
 function TransactionCard() {
   const [transactions, setTransactions] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getTransaction()
