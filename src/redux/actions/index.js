@@ -1,4 +1,4 @@
-import { login, register, addTransaction } from "../../services";
+import { login, register, addTransaction, updateSafe } from "../../services";
 
 // Login
 
@@ -100,6 +100,39 @@ export const addTransactionSuccess = (addTransaction) => ({
 
 export const addTransactionFailed = (error) => ({
   type: "addtransaction/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// update safe
+
+export const updateSafeAsync = (safeName, amount) => {
+  return async (dispatch) => {
+    dispatch({ type: "updateSafe/get-start" });
+    try {
+      const response = await updateSafe(safeName, amount)
+      console.log(response, "start")
+      if (response.data.data) {
+        dispatch(updateSafeSuccess(response.data.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(updateSafeFailed(error.message));
+      return error
+    }
+  }
+};
+export const updateSafeSuccess = (updateSafe) => ({
+  type: "updateSafe/get-success",
+  payload: {
+    addTransaction,
+  },
+});
+
+export const updateSafeFailed = (error) => ({
+  type: "updateSafe/get-failed",
   payload: {
     error,
   },

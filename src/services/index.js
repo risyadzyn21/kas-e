@@ -72,7 +72,7 @@ export const getSafe = async (token) => {
 };
 
 
-export const getCreateAcc = async ( safeName, amount, token) => {
+export const createAcc = async ( safeName, amount, token) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
     const data = {
       safeName: safeName,
@@ -94,13 +94,9 @@ export const getCreateAcc = async ( safeName, amount, token) => {
 };
 
 
-export const getUpdateSafe = async ( id, safeName, amount ) => {
-  const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
-    const data = {
-      id,
-      safeName,
-      amount,
-    }
+export const updateSafe = async ( data ) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`
+
   try {
     const response = await fetch(url, {
       method: "PUT",
@@ -112,6 +108,24 @@ export const getUpdateSafe = async ( id, safeName, amount ) => {
     });
     return response.json();
   } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteSafe = async () => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`
+
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -136,6 +150,8 @@ export const getLimitFirst = async (id, limit) => {
     throw error;
   }
 };
+
+
 export const getTransaction = () => {
 
   return axios({

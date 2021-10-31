@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
-import { getCreateAcc, getSafe } from "../../../services/index";
+import { createAcc, getSafe } from "../../../services/index";
 import { setcreateSafe } from "../../../redux/actions/CreateSafeAction";
 import "./CreateAcc.scss";
 import SafeIcon from "../../../assets/icons/brangkas.png";
@@ -14,7 +14,9 @@ const CreateAcc = ({ navigation }) => {
   const [amount, setAmount] = useState('')
   const token = localStorage.getItem('token')
   const [ status, setStatus] = useState('')
-const handleChange = (e) => {
+
+
+  const handleChange = (e) => {
   setsafeName(e.target.value)
   
  }
@@ -26,7 +28,7 @@ const handleChange = (e) => {
  const handleSubmit = (e) => {
   e.preventDefault()
   navigation.next()
-  getCreateAcc( safeName, amount, token )
+  createAcc( safeName, amount, token )
   .then((res) => {
     console.log(res)
   })
@@ -50,7 +52,7 @@ const handleChange = (e) => {
       console.log(res.success)
     })
 
-    })
+    }, [])
 
     useEffect(() => {
       if(status === "This is the list of safes") {
@@ -59,7 +61,7 @@ const handleChange = (e) => {
       } else {
         return setIsModalVisible(true)
       }
-    })
+    }, [])
  
   return (
     <div>
