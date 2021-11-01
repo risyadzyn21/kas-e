@@ -1,4 +1,4 @@
-import { login, register, addTransaction, addIncome, editCategoryLimit, updateSafe } from "../../services";
+import { login, register, addTransaction, getSafe, createSafe, updateSafe, deleteSafe, addIncome, editCategoryLimit } from "../../services";
 
 // Login
 
@@ -105,6 +105,75 @@ export const addTransactionFailed = (error) => ({
   },
 });
 
+// get safe
+
+export const getSafeAsync = (token) => {
+  return async (dispatch) => {
+    dispatch({ type: "getSafe/get-start" });
+    try {
+      const response = await getSafe(token)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(getSafeSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(getSafeFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const getSafeSuccess = (getSafe) => ({
+  type: "getSafe/get-success",
+  payload: {
+    getSafe,
+  },
+});
+
+export const getSafeFailed = (error) => ({
+  type: "getSafe/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// create safe 
+
+export const createSafeAsync = (safeName, amount) => {
+  return async (dispatch) => {
+    dispatch({ type: "createSafe/get-start" });
+    try {
+      const response = await createSafe(safeName, amount)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(createSafeSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(createSafeFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const createSafeSuccess = (createSafe) => ({
+  type: "createSafe/get-success",
+  payload: {
+    createSafe,
+  },
+});
+
+export const createSafeFailed = (error) => ({
+  type: "createSafe/get-failed",
+  payload: {
+    error,
+  },
+});
+
+
 // update safe
 
 export const updateSafeAsync = (safeName, amount) => {
@@ -120,7 +189,7 @@ export const updateSafeAsync = (safeName, amount) => {
     } catch (error) {
       console.log(error.message);
       dispatch(updateSafeFailed(error.message));
-      dispatch(addIncomeFailed(error.message));
+      
       return error
     }
   }
@@ -128,19 +197,76 @@ export const updateSafeAsync = (safeName, amount) => {
 export const updateSafeSuccess = (updateSafe) => ({
   type: "updateSafe/get-success",
   payload: {
-    addTransaction,
+    updateSafe,
   },
 });
 
 export const updateSafeFailed = (error) => ({
   type: "updateSafe/get-failed",
+  payload: {
+    error,
+  },
+});
 
+// delete safe 
+
+export const deleteSafeAsync = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: "deleteSafe/get-start" });
+    try {
+      const response = await deleteSafe(id)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(deleteSafeSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(deleteSafeFailed(error.message));
+      
+      return error
+    }
+  }
+};
+export const deleteSafeSuccess = (deleteSafe) => ({
+  type: "deleteSafe/get-success",
+  payload: {
+    deleteSafe,
+  },
+});
+
+export const deleteSafeFailed = (error) => ({
+  type: "deleteSafe/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// Add Income
+export const addIncomeAsync = (safe_id, expense) => {
+  return async (dispatch) => {
+    dispatch({ type: "addIncome/get-start" });
+    try {
+      const response = await addIncome(safe_id, expense)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch( addIncomeSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch( addIncomeFailed(error.message));
+      
+      return error
+    }
+  }
+};
 export const addIncomeSuccess = (addIncome) => ({
   type: "addincome/get-success",
   payload: {
     addIncome,
   },
-});
+})
 
 export const addIncomeFailed = (error) => ({
   type: "addincome/get-failed",

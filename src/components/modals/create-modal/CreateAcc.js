@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
-import { createAcc, getSafe } from "../../../services/index";
-import { setcreateSafe } from "../../../redux/actions/CreateSafeAction";
+import { createSafe, getSafe } from "../../../services/index";
 import "./CreateAcc.scss";
 import SafeIcon from "../../../assets/icons/brangkas.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +27,7 @@ const CreateAcc = ({ navigation }) => {
  const handleSubmit = (e) => {
   e.preventDefault()
   navigation.next()
-  createAcc( safeName, amount, token )
+  createSafe( safeName, amount, token )
   .then((res) => {
     console.log(res)
   })

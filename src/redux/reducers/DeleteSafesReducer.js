@@ -1,25 +1,25 @@
 const initialState = {
-    updateSafe: false,
-    updateSafeLoading: false,
-    updateSafeError: false
+    deleteSafe: false,
+    deleteSafeLoading: false,
+    deleteSafeError: false
   };
   
-  function UpdateSafeReducer(state = initialState, action) {
+  function DeleteSafesReducer(state = initialState, action) {
     // const { type, payload } = action
     switch (action.type) {
-      case ' updateSafe/get-start':
+      case ' deleteSafe/get-start':
         return {
           ...state,
           loading: true
         }
-      case ' updateSafe/get-success':
+      case ' deleteSafe/get-success':
         return {
           ...state,
-          updateSafe: action.payload.updateSafe,
+          deleteSafe: state.deleteSafe.filter(item => item.id !== action.payload),    
           loading: false,
           error: ''
         }
-      case ' updateSafe/get-failed':
+      case ' deleteSafe/get-failed':
         return {
           ...state,
           loading: false,
@@ -31,5 +31,5 @@ const initialState = {
   }
   
   
-  export default UpdateSafeReducer;
+  export default DeleteSafesReducer;
 

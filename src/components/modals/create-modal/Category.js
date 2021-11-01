@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
-import { getLimitFirst, getSafe } from "../../../services/index";
+import {  getCategory, categoryLimit } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
 import Fun from "../../../assets/icons/FunAndRelax.png";
@@ -10,10 +10,13 @@ import UrgentNeed from "../../../assets/icons/urgent-need.png";
 
 const Category = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [spendingLimit, setspendingLimit] = useState('')
+  const [spendingLimit, setspendingLimit] = useState([])
   const token = localStorage.getItem('token')
   // const { id, limit } = spendingLimit;
   const [ status, setStatus] = useState('')
+  const [categories, setCategories] = useState([])
+  const [category_id, setcategori_id] = useState('')
+  const [limit, setLimit] = useState('')
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -26,38 +29,40 @@ const Category = () => {
     setIsModalVisible(true);
   };
 
+  const handleChange = (e) => {
+    setspendingLimit(e.target.value)
+   }
+
   const handleSubmit = (e) => {
+    alert("oke")
     e.preventDefault();
-    getLimitFirst()
+    categoryLimit()
     .then((res) =>{
-      setspendingLimit(res.data)
-      console.log(res.data)
+      setspendingLimit(res?.data)
+      console.log(res?.data)
     })
    
   }
 
   useEffect(() => {
-    getSafe(token)
-    .then((res) => {
-      setStatus(res.success)
-      console.log(res.success)
-    })
+    getCategory()
+      .then((res) => {
+        setCategories(res?.data?.data)
 
-    })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
     useEffect(() => {
-      if(status === "This is the list of safes") {
+      if(status === "Successfully retrieved limit data") {
         return setIsModalVisible(false)
 
       } else {
         return setIsModalVisible(true)
       }
     })
- 
-
-  const handleChange = (e) => {
-   setspendingLimit(e.target.value)
-  }
 
 
   return (
@@ -177,7 +182,7 @@ const Category = () => {
               </div>
             </div>
             </div>
-            <button>Create</button>
+            <button onSubmit={handleSubmit}>Create</button>
           </div>
       </Modal>
     </div>

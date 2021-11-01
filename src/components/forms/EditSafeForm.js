@@ -1,20 +1,54 @@
 import { Form, Input, Button } from "antd";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import './EditSafeForm.scss'
 import Safe from '../../assets/icons/brangkas.svg'
+import { deleteSafeAsync, updateSafeAsync } from '../../redux/actions';
+import { getSafe, deleteSafe } from '../../services';
 
 function EditSafeForm() {
+  const [safes, setSafes] = useState([])
+
+  const editSafe = useSelector(state => state.UpdateSafeReducer)
+  const deleteSafes = useSelector(state => state.DeleteSafesReducer)
+  const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    getSafe(token)
+      .then((res) => {
+        setSafes(res?.data)
+
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
 
   const onFinish = (values) => {
     console.log('Success:', values);
+    dispatch(updateSafeAsync(values.safeName, values.amount))
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  const handlerDelete = (id) => {
+    // deleteSafe(id)
+    // .then((res) =>{
+      
+      
+    //   // console.log(res?.data)
+    // })
+    dispatch(deleteSafeAsync(id))
+  }
   return (
     <>
 
       <Form
+        onFinish={onFinish}
         className='edit-safe-container'
         layout="vertical"
         name="edit-profile"
@@ -30,6 +64,8 @@ function EditSafeForm() {
             Edit Safe
             <img src={Safe} alt='Safe' />
           </div>
+          
+          
           <div className='edit-safe-content'>
             <Form.Item
               name="safeName"
@@ -45,8 +81,8 @@ function EditSafeForm() {
             </Form.Item>
 
             <Form.Item
-              name="income"
-              label="Income"
+              name="amount"
+              label="amount"
               rules={[
                 {
                   required: true,
@@ -70,7 +106,7 @@ function EditSafeForm() {
             <Button className='save-safe-btn' htmlType="submit" block size='large'>
               Save
             </Button>
-            <Button className='delete-safe-btn' block size='large'>
+            <Button onClick={handlerDelete} className='delete-safe-btn' block size='large'>
               Delete
             </Button>
           </Form.Item>

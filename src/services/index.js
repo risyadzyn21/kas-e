@@ -72,11 +72,11 @@ export const getSafe = async (token) => {
 };
 
 
-export const createAcc = async ( safeName, amount, token) => {
+export const createSafe = async ( safeName, amount ) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
   const data = {
-    safeName: safeName,
-    amount: amount
+    safeName,
+    amount,
   }
   try {
     const response = await fetch(url, {
@@ -94,11 +94,14 @@ export const createAcc = async ( safeName, amount, token) => {
 };
 
 
-export const updateSafe = async ( data ) => {
+export const updateSafe = ( safeName, amount ) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe`
-
+  const data = {
+    safeName,
+    amount
+  }
   try {
-    const response = await fetch(url, {
+    const response = fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,18 +115,18 @@ export const updateSafe = async ( data ) => {
   }
 };
 
-export const deleteSafe = async () => {
-  const url = `https://kas-e.herokuapp.com/api/v1/safe`
-
+export const deleteSafe = (id) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe/${id}`
+ 
   try {
-    const response = await fetch(url, {
+    const response = fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
       },
     });
-    return response.json();
+    // return response.json();
   } catch (error) {
     console.log(error);
     throw error;
@@ -256,6 +259,23 @@ export const editCategoryLimit = (category_id, limit) => {
 
   return axios({
     method: 'PUT',
+    url: 'https://kas-e.herokuapp.com/api/v1/limit',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+
+export const categoryLimit = (category_id, limit) => {
+  const data = {
+    category_id,
+    limit
+  }
+
+  return axios({
+    method: 'POST',
     url: 'https://kas-e.herokuapp.com/api/v1/limit',
     headers: {
       'Authorization': `Bearer ${token}`,
