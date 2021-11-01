@@ -1,7 +1,39 @@
+@import "../../assets/abstracts/variables";
+
 .header-single {
+  background-color: $text-white-color;
   position: sticky;
   top: 0;
   z-index: 99;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.btn-print {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  color: $text-white-color;
+  background-color: $primary-color;
+  position: absolute;
+  margin-top: 20px;
+  margin-right: 40px;
+  top: 0;
+  right: 0;
+
+  &:hover {
+    background-color: $dark-color;
+    color: $text-white-color;
+  }
+
+  &:active {
+    background-color: ($dark-color);
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+  }
+
+  &:focus {
+    color: $text-white-color;
+    background-color: $primary-color;
+  }
 }

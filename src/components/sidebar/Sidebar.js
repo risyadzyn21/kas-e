@@ -21,7 +21,7 @@ const Sidebar = () => {
   };
 
   const menu = (
-    <Menu>
+    <Menu className='corner-dropdown-content'>
       <Menu.Item key="0">
         <Link to='/my-profile' className='myprofile-side'>
           <CgIcons.CgProfile className='icon-profile-side' />

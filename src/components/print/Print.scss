@@ -1,21 +1,93 @@
 @import "../../assets/abstracts/variables";
 
-.report-detail {
-  margin-left: 20%;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 2px 10px rgba(54, 79, 145, 0.3);
-  width: 40vw;
-}
-
-.report-detail h4 {
-  font-weight: bold;
-}
-
-.report-content {
+.print-report-detail {
   display: flex;
+  justify-content: center;
+  padding: 40px;
+
+  .print-card-container {
+    background-color: $text-white-color;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    .print-card-content {
+      padding: 20px;
+    }
+
+    .time-range-title {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .time-range-wrapper,
+    .income-wrapper,
+    .expense-wrapper,
+    .net-income-wrapper,
+    .ending-balance-wrapper {
+      margin-bottom: 20px;
+
+      .time-range-content {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+  }
+
+  .income-content,
+  .net-income-content-income,
+  .net-income-content-expense {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .income-title-value {
+    display: flex;
+
+    img {
+      width: 20px;
+      margin-right: 5px;
+    }
+  }
 }
-.report-text p{
-  margin-Left: 40px;
-  font-size: 13px;
+
+.indicator-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.minus-indicator {
+  font-size: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.line-indicator {
+  width: 100px;
+  border-bottom: 1px solid black;
+}
+
+.minus-result {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.print-card-container-result {
+  width: 100%;
+
+  .time-range-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
