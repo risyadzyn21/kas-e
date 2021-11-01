@@ -4,14 +4,12 @@ import logo from "../../assets/landing-page-images/logo-kas-e.png";
 import illustration1 from "../../assets/landing-page-images/illustration1.png";
 import illustration2 from "../../assets/landing-page-images/illustration2.png";
 import illustration3 from "../../assets/landing-page-images/illustration3.png";
-import Loading from '../../components/loading/Loading'
 import Footer from "../../components/footer/Footer.js";
 import "./LandingPage.scss";
 
 const LandingPage = () => {
   return (
     <div>
-      {/* <Loading /> */}
       <div className="header">
         <div className="header-container">
           <Link to="/" className="logo">
