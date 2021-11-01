@@ -41,13 +41,18 @@
     font-size: 16px;
     font-weight: bold;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .income-content,
   .net-income-content-income,
-  .net-income-content-expense {
+  .net-income-content-expense,
+  .ending-balance-content-op,
+  .ending-balance-content-income {
     display: flex;
     justify-content: space-between;
+    width: 100%;
   }
 
   .income-title-value {
@@ -78,7 +83,8 @@
 
 .minus-result {
   display: flex;
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .print-card-container-result {
@@ -89,5 +95,22 @@
     justify-content: space-between;
     font-size: 16px;
     font-weight: bold;
+  }
+}
+
+.expense-content-wrapper {
+  display: flex;
+  margin-bottom: 10px;
+
+  img {
+    width: 20px;
+    height: 100%;
+    margin-right: 5px;
+  }
+
+  .expense-content-value {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
 }
