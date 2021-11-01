@@ -22,7 +22,7 @@ function EditProfile({ form, onFinish, onFinishFailed, userData }) {
       fields={[
         {
           name: ["fullName"],
-          value: userData.fullName,
+          value: userData ? userData.fullName : null,
         },
         {
           name: ["email"],
@@ -30,11 +30,11 @@ function EditProfile({ form, onFinish, onFinishFailed, userData }) {
         },
         {
           name: ["gender"],
-          value: userData.gender,
+          value: userData ? userData.gender : null,
         },
         {
           name: ["age"],
-          value: userData.age,
+          value: userData ? userData.age : null,
         },
       ]}
     >

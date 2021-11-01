@@ -37,7 +37,7 @@ function ProfileCard() {
 
   return (
     <div className="main-profile">
-      <AvatarIcon name={userData.fullName} />
+      <AvatarIcon name={userData ? userData.fullName : null} />
       <div className="profile">
         <Link to="/see-all-safe">
           <Button className="all-safe-btn" block>
@@ -50,20 +50,19 @@ function ProfileCard() {
         <Card className="card-container">
           <Card className="profile-content">
             <h4>Name</h4>
-            <p>{userData.fullName}</p>
+            <p>{userData ? userData.fullName : null}</p>
           </Card>
           <Card className="profile-content">
             <h4>E-mail</h4>
-            {/* <p>{userData.User.email}</p> */}
-            {userData.User ? <p>{userData.User.email}</p> : null}
+            {userData ? <p>{userData.User.email}</p> : null}
           </Card>
           <Card className="profile-content">
             <h4>Gender</h4>
-            <p className="gender">{userData.gender}</p>
+            <p className="gender">{userData ? userData.gender : null}</p>
           </Card>
           <Card className="profile-content">
             <h4>Age</h4>
-            <p>{userData.age} Years</p>
+            <p>{userData ? userData.age : null} Years</p>
           </Card>
           {/* <Card className="profile-content">
             <h4>Password</h4>

@@ -7,7 +7,7 @@ export const getProfileAsync = () => {
       const response = await getProfile();
       console.log(response, "start");
       if (response.data) {
-        dispatch(getProfileSuccess(response.data.data));
+        dispatch(getProfileSuccess(response.data));
       }
       return response;
     } catch (error) {

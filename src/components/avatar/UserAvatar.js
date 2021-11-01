@@ -1,8 +1,19 @@
 import "./UserAvatar.scss";
 import Avatar from "react-avatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProfileAsync } from "../../redux/actions/profileAction";
 
 function UserAvatar() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchProfile = () => {
+      dispatch(getProfileAsync());
+    };
+    fetchProfile();
+  }, []);
+
   const userData = useSelector(
     (state) => state.profileReducer.profileData.data
   );

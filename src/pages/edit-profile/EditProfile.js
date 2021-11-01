@@ -81,7 +81,7 @@ function EditProfile() {
         <Content>
           <div className="container">
             <div className="main-edit">
-              <AvatarIcon name={userData.fullName} />
+              <AvatarIcon name={userData ? userData.fullName : null} />
               <Card>
                 <EditProfileForm
                   form={form}
