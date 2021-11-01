@@ -72,11 +72,11 @@ export const getSafe = async (token) => {
 };
 
 
-export const getCreateAcc = async (safeName, amount, token) => {
+export const createSafe = async ( safeName, amount ) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
   const data = {
-    safeName: safeName,
-    amount: amount
+    safeName,
+    amount,
   }
   try {
     const response = await fetch(url, {
@@ -94,15 +94,14 @@ export const getCreateAcc = async (safeName, amount, token) => {
 };
 
 
-export const getUpdateSafe = async (id, safeName, amount) => {
-  const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
+export const updateSafe = ( safeName, amount ) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`
   const data = {
-    id,
     safeName,
-    amount,
+    amount
   }
   try {
-    const response = await fetch(url, {
+    const response = fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,6 +111,24 @@ export const getUpdateSafe = async (id, safeName, amount) => {
     });
     return response.json();
   } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteSafe = (id) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe/${id}`
+ 
+  try {
+    const response = fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    // return response.json();
+  } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -136,6 +153,8 @@ export const getLimitFirst = async (id, limit) => {
     throw error;
   }
 };
+
+
 export const getTransaction = () => {
 
   return axios({
@@ -240,6 +259,23 @@ export const editCategoryLimit = (category_id, limit) => {
 
   return axios({
     method: 'PUT',
+    url: 'https://kas-e.herokuapp.com/api/v1/limit',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+
+export const categoryLimit = (category_id, limit) => {
+  const data = {
+    category_id,
+    limit
+  }
+
+  return axios({
+    method: 'POST',
     url: 'https://kas-e.herokuapp.com/api/v1/limit',
     headers: {
       'Authorization': `Bearer ${token}`,
