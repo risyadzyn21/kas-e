@@ -1,8 +1,6 @@
 import { Form, Input, InputNumber, Select } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
-import { useEffect, useState } from "react";
-import { profile } from "../../services";
 
 function EditProfile({ form, onFinish, onFinishFailed, userData }) {
   const { Option } = Select;
@@ -121,7 +119,7 @@ function EditProfile({ form, onFinish, onFinishFailed, userData }) {
               <img src={Hide} alt="Hide" />
             )
           }
-          placeholder="Please enter your password"
+          placeholder="Please enter your new password"
         />
       </Form.Item>
     </Form>

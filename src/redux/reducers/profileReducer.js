@@ -16,7 +16,7 @@ function profileReducer(state = initialState, { type, payload }) {
         profileData: payload.data,
         error: "",
       };
-    case "login/get-failed":
+    case "profile/get-failed":
       return {
         ...state,
         error: payload.error,
