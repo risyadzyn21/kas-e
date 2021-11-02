@@ -10,12 +10,18 @@ import EditProfileForm from "../../components/forms/EditProfileForm";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Loading from "../../components/loading/Loading";
+import {
+  getProfileFailed,
+  getProfileSuccess,
+} from "../../redux/actions/profileAction";
+import { useDispatch } from "react-redux";
 
 function EditProfile() {
   const { Sider, Content } = Layout;
   const [form] = Form.useForm();
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const userData = useSelector(
     (state) => state.profileReducer.profileData.data
@@ -48,11 +54,28 @@ function EditProfile() {
     })
       .then((res) => {
         console.log(res);
+        // window.location.reload();
+        axios({
+          method: "GET",
+          url: "http://kas-e.herokuapp.com/api/v1/profile",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            console.log(response.data);
+            dispatch(getProfileSuccess(response.data));
+          })
+          .catch((error) => {
+            console.log(error);
+            dispatch(getProfileFailed(error));
+          });
         setLoading(false);
-        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   };
 
