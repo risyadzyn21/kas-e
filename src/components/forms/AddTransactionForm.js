@@ -19,6 +19,7 @@ function AddTransactionForm() {
   const [safes, setSafes] = useState([])
   const dispatch = useDispatch()
   const transaction = useSelector(state => state.transactionReducer)
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
     getCategory()
@@ -32,7 +33,7 @@ function AddTransactionForm() {
   }, [])
 
   useEffect(() => {
-    getSafe()
+    getSafe(token)
       .then((res) => {
         setSafes(res?.data)
 
@@ -120,7 +121,7 @@ function AddTransactionForm() {
           ]}>
           <div className='input-wrapper' >
             <img src={YourExpense} alt='Your Expense' />
-            <Input size='large' prefix='Rp' />
+            <Input size='large' prefix='Rp' type='number' min='0' />
           </div>
         </Form.Item>
 
@@ -128,7 +129,6 @@ function AddTransactionForm() {
           name='safe_id'
           label="Taken From"
         >
-
           <Select className='select-container' size='large' placeholder="Select" defaultValue='select' >
             <Select.Option value="select" className='transaction-modal-default'>
               <img src={SelectIcon} alt='Select' />
@@ -142,7 +142,6 @@ function AddTransactionForm() {
                     <div className='transaction-safe-title'>{safe.safeName}</div>
                   </div>
                 </Select.Option>
-
               )
             })}
           </Select>

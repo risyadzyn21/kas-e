@@ -41,3 +41,21 @@
 .ant-tabs {
   overflow: unset;
 }
+
+.notification-dropdown {
+  position: absolute;
+  color: $primary-color;
+  margin: 20px;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+
+  &:hover {
+    color: $dark-color;
+  }
+}
+
+.notification-dropdown-content {
+  margin-top: -25px;
+  margin-right: 20px;
+}

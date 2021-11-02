@@ -16,6 +16,11 @@
       transform: scale(1.05);
       transition: all 0.5s ease;
     }
+
+    &:focus {
+      background: $chart-color2;
+      border-color: $chart-color2;
+    }
   }
 }
 

@@ -57,20 +57,101 @@ export const profile = () => {
   });
 };
 
-export const getSafe = async () => {
-  const url = "http://kas-e.herokuapp.com/api/v1/safe";
+export const getSafe = async (token) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`;
 
   try {
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.json();
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+};
+
+export const createSafe = async (safeName, amount) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe/create`;
+  const data = {
+    safeName,
+    amount,
+  };
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateSafe = (safeName, amount) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe`;
+  const data = {
+    safeName,
+    amount,
+  };
+  try {
+    const response = fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteSafe = (id) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/safe/${id}`;
+
+  try {
+    const response = fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // return response.json();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const getLimitFirst = async (id, limit) => {
+  const url = `https://kas-e.herokuapp.com/api/v1/limit`;
+  const data = {
+    id,
+    limit,
+  };
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  } catch (error) {
     throw error;
   }
 };
@@ -132,13 +213,75 @@ export const getProfile = () => {
   });
 };
 
-export const addIncome = () => {
+export const addIncome = (safe_id, expense) => {
+  const data = {
+    safe_id,
+    expense,
+  };
+
   return axios({
     method: "POST",
-    url: "https://kas-e.herokuapp.com/api/v1/safe/income",
+    url: "https://kas-e.herokuapp.com/api/v1/transaction/addincome",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
+    data: JSON.stringify(data),
+  });
+};
+
+export const getReportDaily = () => {
+  return axios({
+    method: "GET",
+    url: "https://kas-e.herokuapp.com/api/v1/report/daily",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const getReportMonthly = () => {
+  return axios({
+    method: "GET",
+    url: "https://kas-e.herokuapp.com/api/v1/report/monthly",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const editCategoryLimit = (category_id, limit) => {
+  const data = {
+    category_id,
+    limit,
+  };
+
+  return axios({
+    method: "PUT",
+    url: "https://kas-e.herokuapp.com/api/v1/limit",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify(data),
+  });
+};
+
+export const categoryLimit = (category_id, limit) => {
+  const data = {
+    category_id,
+    limit,
+  };
+
+  return axios({
+    method: "POST",
+    url: "https://kas-e.herokuapp.com/api/v1/limit",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify(data),
   });
 };

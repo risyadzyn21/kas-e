@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom'
 import NumberFormat from "react-number-format";
 import './PieChart.scss'
 import { Pie } from 'react-chartjs-2';
-import { getReportDaily, getSafe } from '../../services';
+import { getReportMonthly, getSafe } from '../../services';
 import * as FaIcons from 'react-icons/fa'
 
 
 const MonthlyChart = () => {
-  const [reportsDailyExpense, setReportsDailyExpense] = useState([])
-  const [reportsDailyIncome, setReportsDailyIncome] = useState([])
+  const [reportsMonthlyExpense, setReportsMonthlyExpense] = useState([])
+  const [reportsMonthlyIncome, setReportsMonthlyIncome] = useState([])
   const [totalIncome, setTotalIncome] = useState(0)
   const [totalExpense, setTotalExpense] = useState(0)
   const [balances, setBalances] = useState([])
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    getReportDaily()
+    getReportMonthly()
       .then((res) => {
-        setReportsDailyExpense(res?.data?.expense)
+        setReportsMonthlyExpense(res?.data?.expense)
         const total = res?.data?.expense?.reduce((prev, curr) => {
           return prev + parseInt(curr.totalExpense)
         }, 0)
@@ -30,9 +30,9 @@ const MonthlyChart = () => {
   }, [])
 
   useEffect(() => {
-    getReportDaily()
+    getReportMonthly()
       .then((res) => {
-        setReportsDailyIncome(res?.data?.addIncome)
+        setReportsMonthlyIncome(res?.data?.addIncome)
         const total = res?.data?.addIncome?.reduce((prev, curr) => {
           return prev + parseInt(curr.totalAddIncome)
         }, 0)
@@ -77,9 +77,9 @@ const MonthlyChart = () => {
 
       <div className='chart-container'>
         <div className='title-balance' >Balance</div>
-        {balances.map((balance, index) => {
+        {balances.map((balance) => {
           return (
-            <div key={balance.date + index} className='title-value-wrapper'>
+            <div className='title-value-wrapper'>
               <div className='title-value opening'>
                 Opening Balance
                 <div className='chart-report-value'>
@@ -126,7 +126,7 @@ const MonthlyChart = () => {
               Income
               <div className='chart-indicator-value'>
                 <NumberFormat
-                  value={reportsDailyIncome.reduce((prev, curr) => {
+                  value={reportsMonthlyIncome.reduce((prev, curr) => {
                     return prev + parseInt(curr.totalAddIncome)
                   }, 0)}
                   displayType="text"
@@ -142,7 +142,7 @@ const MonthlyChart = () => {
               Expense
               <div className='chart-indicator-value'>
                 <NumberFormat
-                  value={reportsDailyExpense.reduce((prev, curr) => {
+                  value={reportsMonthlyExpense.reduce((prev, curr) => {
                     return prev + parseInt(curr.totalExpense)
                   }, 0)}
                   displayType="text"

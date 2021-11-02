@@ -1,4 +1,4 @@
-import { Button, Card, Layout, PageHeader, Form } from 'antd';
+import { Layout } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderCategoryLimit from '../../components/header/HeaderCategoryLimit';
 import EditCategoryLimitForm from '../../components/forms/EditCategoryLimitForm';
@@ -6,9 +6,6 @@ import EditCategoryLimitForm from '../../components/forms/EditCategoryLimitForm'
 
 function EditCategoryLimit() {
   const { Sider, Content } = Layout;
-
-  const [form] = Form.useForm();
-
 
   return (
     <>

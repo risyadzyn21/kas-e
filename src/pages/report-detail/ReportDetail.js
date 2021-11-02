@@ -1,15 +1,14 @@
 import React from "react";
-import Print from "../../components/print/Print";
-import { Layout, PageHeader } from "antd";
+import ReportDetailMonth from "../../components/print/ReportDetailMonth";
+import { Layout } from "antd";
 import { Link } from "react-router-dom";
-
 import Sidebar from "../../components/sidebar/Sidebar";
-
 import './ReportDetail.scss';
-import ArrowLeft from "../../assets/icons/arrow-left.png";
+import HeaderReportDetail from "../../components/header/HeaderReportDetail";
 
 const ReportDetail = () => {
-  const { Header, Sider, Content } = Layout;
+
+  const { Sider, Content } = Layout;
 
   return (
     <div>
@@ -17,27 +16,12 @@ const ReportDetail = () => {
         <Sider theme="light" width={326} className="sidebar">
           <Sidebar />
         </Sider>
+
         <Layout>
-          <PageHeader>
-            <div
-              style={{ display: "flex", justifyContent: "space-between"}}
-              className="header-report"
-            >
-              <div className="header-detail">
-                <Link to="/report-page">
-              <img src={ArrowLeft} alt="back" />
-              </Link>
-              <h2 style={{ fontWeight: "bold" }}>Report Detail</h2>
-              </div>
-              <div className="print-btn">
-              <button>
-                Print
-              </button>
-            </div>
-            </div>
-          </PageHeader>
-          <Content>
-            <Print />
+          <HeaderReportDetail />
+
+          <Content className="container-report-detail-page">
+            <ReportDetailMonth />
           </Content>
         </Layout>
       </Layout>
