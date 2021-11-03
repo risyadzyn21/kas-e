@@ -2,7 +2,7 @@ import { Form, Input, InputNumber, Select } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
 
-function EditProfile({ form, onFinish, onFinishFailed }) {
+function EditProfile({ form, onFinish, onFinishFailed, userData }) {
   const { Option } = Select;
 
   return (
@@ -17,6 +17,24 @@ function EditProfile({ form, onFinish, onFinishFailed }) {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       requiredMark={false}
+      fields={[
+        {
+          name: ["fullName"],
+          value: userData ? userData.fullName : null,
+        },
+        {
+          name: ["email"],
+          value: userData ? userData.User.email : null,
+        },
+        {
+          name: ["gender"],
+          value: userData ? userData.gender : null,
+        },
+        {
+          name: ["age"],
+          value: userData ? userData.age : null,
+        },
+      ]}
     >
       <Form.Item
         name="fullName"
@@ -101,7 +119,7 @@ function EditProfile({ form, onFinish, onFinishFailed }) {
               <img src={Hide} alt="Hide" />
             )
           }
-          placeholder="Please enter your password"
+          placeholder="Please enter your new password"
         />
       </Form.Item>
     </Form>
