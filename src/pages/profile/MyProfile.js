@@ -22,7 +22,11 @@ function MyProfile() {
               <Button type="primary">
                 <Link to="edit-profile">Edit</Link>
               </Button>
-              <Button type="danger">Logout</Button>
+              <Button type="danger">
+                <Link to="/" onClick={() => localStorage.clear()}>
+                  Logout
+                </Link>
+              </Button>
             </div>
           </div>
         </Content>

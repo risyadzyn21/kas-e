@@ -1,14 +1,21 @@
 import { PageHeader, Tabs, Dropdown, Menu } from 'antd';
+import { useDispatch } from 'react-redux';
 import './HeaderTime.scss'
 import KasESmall from '../../assets/logo/Rectangle-9-1.png'
 import KasELetterSmall from '../../assets/logo/Kas-E-1.png'
 import EmptyPage from '../empty-page/EmptyPage';
 import * as IoIcons from 'react-icons/io'
+import TransactionCard from '../cards/transaction-card/TransactionCard';
+import SafeCard from '../cards/safe-card/SafeCard';
+import { filterTransactions } from '../../redux/actions';
 
 function HeaderTimeDaily() {
+  const dispatch = useDispatch()
   const { TabPane } = Tabs;
 
+
   function callback(key) {
+    dispatch(filterTransactions(key))
     console.log(key);
   }
 
@@ -33,14 +40,16 @@ function HeaderTimeDaily() {
           </Dropdown>
         </PageHeader>
 
-        <Tabs defaultActiveKey="2" onChange={callback} className="site-page-tab">
-          <TabPane tab="Yesterday" key="1">
+
+        <Tabs defaultActiveKey="today" onChange={callback} className="site-page-tab">
+
+          <TabPane tab="Yesterday" key="yesterday">
 
           </TabPane>
-          <TabPane tab="Today" key="2">
-
+          <TabPane tab="Today" key="today">
+            {/* <TransactionCard /> */}
           </TabPane>
-          <TabPane tab="Tomorrow" key="3">
+          <TabPane tab="Tomorrow" key="tomorrow">
 
           </TabPane>
         </Tabs>

@@ -60,7 +60,7 @@ const original = [{
   "limit": 100000
 }]
 
-  const onFinish = id => (values) => {
+  const onFinish = (values) => {
     console.log("Success:", values);
     Object.keys(values).map(item => ({ category_id: item, limit: values[item]}))
     dispatch(limitFirstAsync(values.category_id, values.limit))

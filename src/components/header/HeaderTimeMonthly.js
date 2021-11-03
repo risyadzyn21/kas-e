@@ -33,13 +33,13 @@ function HeaderTimeMonthly() {
       </PageHeader>
 
       <Tabs defaultActiveKey="2" onChange={callback} className="site-page-tab">
-        <TabPane tab="Last Month" key="1">
+        <TabPane tab="Last Month" key="lastMonth">
           <EmptyPage />
         </TabPane>
-        <TabPane tab="This Month" key="2">
+        <TabPane tab="This Month" key="thisMonth">
           <EmptyPage />
         </TabPane>
-        <TabPane tab="Next Month" key="3">
+        <TabPane tab="Next Month" key="nextMonth">
           <EmptyPage />
         </TabPane>
       </Tabs>

@@ -21,6 +21,10 @@ function AddTransactionForm() {
   const transaction = useSelector(state => state.transactionReducer)
   const token = localStorage.getItem('token')
 
+  const { filtered: transactions } = useSelector(
+    (state) => state.GetTransactionReducer
+  );
+
   useEffect(() => {
     getCategory()
       .then((res) => {

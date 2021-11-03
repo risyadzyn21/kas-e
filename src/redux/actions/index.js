@@ -1,60 +1,110 @@
-import { login, register, addTransaction, getSafe, createSafe, updateSafe, deleteSafe, addIncome, limitFirst, editCategoryLimit } from "../../services";
+import axios from "axios";
+import {
+  login,
+  register,
+  addTransaction,
+  getSafe,
+  createSafe,
+  updateSafe,
+  deleteSafe,
+  addIncome,
+  editCategoryLimit,
+  limitFirst,
+  getTransaction
+} from "../../services";
+
+import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
+
+export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
+export const GET_TRANSACTIONS_SUCCESS = "GET_TRANSACTIONS_SUCCESS";
+export const GET_TRANSACTIONS_FAILURE = "GET_TRANSACTIONS_FAILURE";
+export const TRANSACTIONS_FILTER_BY = "TRANSACTIONS_FILTER_BY";
 
 // Login
-
 export const getLoginAsync = (email, password, cb) => {
   return async (dispatch) => {
     dispatch({ type: "login/get-start" });
     try {
-      const response = await login(email, password, cb)
-      console.log(response, "start")
+      const response = await login(email, password, cb);
+      console.log(response, "start");
       if (response.data) {
         dispatch(getLoginSuccess(response.data));
-        localStorage.setItem('token', response.data.token)
-        cb(response.data.token)
+        localStorage.setItem("token", response.data.token);
+        cb(response.data.token);
+        axios({
+          method: "GET",
+          url: "http://kas-e.herokuapp.com/api/v1/profile",
+          headers: {
+            Authorization: `Bearer ${response.data.token}`,
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            console.log(response.data);
+            dispatch(getProfileSuccess(response.data));
+          })
+          .catch((error) => {
+            console.log(error);
+            dispatch(getProfileFailed(error));
+          });
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error);
       dispatch(getLoginFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const getLoginSuccess = (login) => ({
-  type: 'login/get-success',
+  type: "login/get-success",
   payload: {
-    login
-  }
-})
+    login,
+  },
+});
 
 export const getLoginFailed = (error) => ({
-  type: 'login/get-failed',
+  type: "login/get-failed",
   payload: {
-    error
-  }
-})
+    error,
+  },
+});
 
 // Register
 
-export const getRegisterAsync = (email, password, confirmPassword, fullName, gender, age, cb) => {
+export const getRegisterAsync = (
+  email,
+  password,
+  confirmPassword,
+  fullName,
+  gender,
+  age,
+  cb
+) => {
   return async (dispatch) => {
     dispatch({ type: "register/get-start" });
     try {
-      const response = await register(email, password, confirmPassword, fullName, gender, age)
-      console.log(response, "start")
+      const response = await register(
+        email,
+        password,
+        confirmPassword,
+        fullName,
+        gender,
+        age
+      );
+      console.log(response, "start");
       if (response.data) {
         dispatch(getRegisterSuccess(response.data));
-        cb()
+        cb();
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(getRegisterFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const getRegisterSuccess = (register) => ({
@@ -71,24 +121,34 @@ export const getRegisterFailed = (error) => ({
   },
 });
 
-// Transaction
+// Add Transaction
 
-export const addTransactionAsync = (category_id, detailExpense, expense, safe_id) => {
+export const addTransactionAsync = (
+  category_id,
+  detailExpense,
+  expense,
+  safe_id
+) => {
   return async (dispatch) => {
     dispatch({ type: "addtransaction/get-start" });
     try {
-      const response = await addTransaction(category_id, detailExpense, expense, safe_id)
-      console.log(response, "start")
+      const response = await addTransaction(
+        category_id,
+        detailExpense,
+        expense,
+        safe_id
+      );
+      console.log(response, "start");
       if (response.data) {
         dispatch(addTransactionSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(addTransactionFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const addTransactionSuccess = (addTransaction) => ({
@@ -111,18 +171,18 @@ export const getSafeAsync = (token) => {
   return async (dispatch) => {
     dispatch({ type: "getSafe/get-start" });
     try {
-      const response = await getSafe(token)
-      console.log(response, "start")
+      const response = await getSafe(token);
+      console.log(response, "start");
       if (response.data) {
         dispatch(getSafeSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(getSafeFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const getSafeSuccess = (getSafe) => ({
@@ -139,7 +199,7 @@ export const getSafeFailed = (error) => ({
   },
 });
 
-// create safe 
+// create safe
 
 export const createSafeAsync = (safeName, amount) => {
   return (dispatch) => {
@@ -213,25 +273,25 @@ export const updateSafeFailed = (error) => ({
   },
 });
 
-// delete safe 
+// delete safe
 
 export const deleteSafeAsync = (id) => {
   return async (dispatch) => {
     dispatch({ type: "deleteSafe/get-start" });
     try {
-      const response = await deleteSafe(id)
-      console.log(response, "start")
+      const response = await deleteSafe(id);
+      console.log(response, "start");
       if (response.data) {
         dispatch(deleteSafeSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(deleteSafeFailed(error.message));
-      
-      return error
+
+      return error;
     }
-  }
+  };
 };
 export const deleteSafeSuccess = (deleteSafe) => ({
   type: "deleteSafe/get-success",
@@ -252,26 +312,26 @@ export const addIncomeAsync = (safe_id, expense) => {
   return async (dispatch) => {
     dispatch({ type: "addIncome/get-start" });
     try {
-      const response = await addIncome(safe_id, expense)
-      console.log(response, "start")
+      const response = await addIncome(safe_id, expense);
+      console.log(response, "start");
       if (response.data) {
-        dispatch( addIncomeSuccess(response.data));
+        dispatch(addIncomeSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
-      dispatch( addIncomeFailed(error.message));
-      
+      dispatch(addIncomeFailed(error.message));
+
       return error
     }
-  }
+  };
 };
 export const addIncomeSuccess = (addIncome) => ({
   type: "addincome/get-success",
   payload: {
     addIncome,
   },
-})
+});
 
 export const addIncomeFailed = (error) => ({
   type: "addincome/get-failed",
@@ -319,18 +379,18 @@ export const editCategoryLimitAsync = (category_id, limit) => {
   return async (dispatch) => {
     dispatch({ type: "editcategory/get-start" });
     try {
-      const response = await editCategoryLimit(category_id, limit)
-      console.log(response, "start")
+      const response = await editCategoryLimit(category_id, limit);
+      console.log(response, "start");
       if (response.data) {
         dispatch(editCategoryLimitSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(editCategoryLimitFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const editCategoryLimitSuccess = (editCategoryLimit) => ({
@@ -346,3 +406,44 @@ export const editCategoryLimitFailed = (error) => ({
     error,
   },
 });
+
+// Get Transaction
+export const getTransactions = () => ({
+  type: GET_TRANSACTIONS
+});
+
+export const getTransactionsSuccess = (transactions) => {
+  return {
+    type: GET_TRANSACTIONS_SUCCESS,
+    payload: transactions
+  };
+};
+
+export const getTransasctionsFailure = (error) => {
+  return {
+    type: GET_TRANSACTIONS_FAILURE,
+    payload: error
+  };
+};
+
+export const filterTransactions = (filter) => {
+  return {
+    type: TRANSACTIONS_FILTER_BY,
+    payload: filter
+  };
+};
+
+// Async actions
+export const getTransactionAsync = () => {
+  return async (dispatch) => {
+    dispatch(getTransactions());
+    try {
+      const res = await getTransaction();
+
+      dispatch(getTransactionsSuccess(res.data.data.transactions));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getTransasctionsFailure(error));
+    }
+  };
+};
