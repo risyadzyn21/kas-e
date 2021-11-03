@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
-import { getLimitFirst, getSafe } from "../../../services/index";
+import { getCategory, categoryLimit } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
 import Fun from "../../../assets/icons/FunAndRelax.png";
@@ -10,10 +10,13 @@ import UrgentNeed from "../../../assets/icons/urgent-need.png";
 
 const Category = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [spendingLimit, setspendingLimit] = useState('')
+  const [spendingLimit, setspendingLimit] = useState([])
   const token = localStorage.getItem('token')
   // const { id, limit } = spendingLimit;
-  const [ status, setStatus] = useState('')
+  const [status, setStatus] = useState('')
+  const [categories, setCategories] = useState([])
+  const [category_id, setcategori_id] = useState('')
+  const [limit, setLimit] = useState('')
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -26,38 +29,40 @@ const Category = () => {
     setIsModalVisible(true);
   };
 
+  const handleChange = (e) => {
+    setspendingLimit(e.target.value)
+  }
+
   const handleSubmit = (e) => {
+    alert("oke")
     e.preventDefault();
-    getLimitFirst()
-    .then((res) =>{
-      setspendingLimit(res.data)
-      console.log(res.data)
-    })
-   
+    categoryLimit()
+      .then((res) => {
+        setspendingLimit(res?.data)
+        console.log(res?.data)
+      })
+
   }
 
   useEffect(() => {
-    getSafe(token)
-    .then((res) => {
-      setStatus(res.success)
-      console.log(res.success)
-    })
+    getCategory()
+      .then((res) => {
+        setCategories(res?.data?.data)
 
-    })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
-    useEffect(() => {
-      if(status === "This is the list of safes") {
-        return setIsModalVisible(false)
+  useEffect(() => {
+    if (status === "Successfully retrieved limit data") {
+      return setIsModalVisible(false)
 
-      } else {
-        return setIsModalVisible(true)
-      }
-    })
- 
-
-  const handleChange = (e) => {
-   setspendingLimit(e.target.value)
-  }
+    } else {
+      return setIsModalVisible(true)
+    }
+  })
 
 
   return (
@@ -70,7 +75,7 @@ const Category = () => {
       >
         <div style={{ margin: 0 }} className="category">
           <div className="category-title">
-            <h2 style={{ fontWeight: 'bold'}}>Set your spending limit</h2>
+            <h2 style={{ fontWeight: 'bold' }}>Set your spending limit</h2>
             <p>
               Make your spending more controlled, by setting your spending limit
             </p>
@@ -124,7 +129,7 @@ const Category = () => {
                   Your rent bills, insurance, payments for electricity, water,
                   gas and other arrears
                 </p>
-                <input type="text" placeholder="RP" value={spendingLimit}  onChange={handleChange} />
+                <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
             <div className="daily-needs">
@@ -149,7 +154,7 @@ const Category = () => {
                   This category is for your daily needs, such as toiletries,
                   household and others
                 </p>
-                <input type="text" placeholder="RP" value={spendingLimit}  onChange={handleChange}/>
+                <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
             <div className="urgent-needs">
@@ -176,9 +181,9 @@ const Category = () => {
                 <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
-            </div>
-            <button>Create</button>
           </div>
+          <button onSubmit={handleSubmit}>Create</button>
+        </div>
       </Modal>
     </div>
   );

@@ -3,10 +3,18 @@ import transactionReducer from './TransactionReducer'
 import incomeReducer from './IncomeReducer'
 import editCategoryLimitReducer from './EditCategoryLimitReducer'
 import { combineReducers } from "redux";
-import CreateSafeReducer from "./CreateSafeReducer";
+import UpdateSafeReducer from "./UpdateSafeReducer";
+import DeleteSafesReducer from "./DeleteSafesReducer";
+import GetTransactionReducer from './GetTransactionReducer'
 
 const rootReducer = combineReducers({
-  userReducer, CreateSafeReducer, transactionReducer, incomeReducer, editCategoryLimitReducer
+  userReducer,
+  transactionReducer,
+  incomeReducer,
+  editCategoryLimitReducer,
+  UpdateSafeReducer,
+  DeleteSafesReducer,
+  GetTransactionReducer
 
 });
 
