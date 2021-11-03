@@ -72,14 +72,15 @@ export const getSafe = async (token) => {
 };
 
 
-export const createSafe = async ( safeName, amount ) => {
+export const createSafe = ( safeName, amount ) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
   const data = {
     safeName,
     amount,
   }
   try {
-    const response = await fetch(url, {
+   
+    const response = fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +88,8 @@ export const createSafe = async ( safeName, amount ) => {
       },
       body: JSON.stringify(data),
     });
-    return response.json();
+   
+    return response;
   } catch (error) {
     throw error;
   }
@@ -109,7 +111,7 @@ export const updateSafe = ( safeName, amount ) => {
       },
       body: JSON.stringify(data),
     });
-    return response.json();
+    return response;
   } catch (error) {
     throw error;
   }
@@ -126,34 +128,12 @@ export const deleteSafe = (id) => {
         "Authorization": `Bearer ${token}`
       },
     });
-    // return response.json();
+    return response;
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
-
-export const getLimitFirst = async (id, limit) => {
-  const url = `https://kas-e.herokuapp.com/api/v1/limit`
-  const data = {
-    id,
-    limit
-  }
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
-    return response.json();
-  } catch (error) {
-    throw error;
-  }
-};
-
 
 export const getTransaction = () => {
 
@@ -268,7 +248,7 @@ export const editCategoryLimit = (category_id, limit) => {
   })
 }
 
-export const categoryLimit = (category_id, limit) => {
+export const limitFirst = (category_id, limit) => {
   const data = {
     category_id,
     limit

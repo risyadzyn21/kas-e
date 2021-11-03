@@ -1,42 +1,35 @@
 const initialState = {
-  data: [],
-  loading: false,
-  error: false,
+  createSafe: false,
+  createSafeLoading: false,
+  createSafeError: false
 };
 
-const SafesReducer = (state = initialState, action) => {
+function SafesReducer(state = initialState, action) {
+  // const { type, payload } = action
   switch (action.type) {
-    case "SAFES/GET-DATA":
-      return state;
-      
-    case "SAFES/GET-DATA-FAILED":
-      return state;
-    case "SAFES/GET-DATA-SUCCESS":
-      return state;
-
-    case "SAFES/ADD-DATA":
-      return state;
-    case "SAFES/ADD-DATA-FAILED":
-      return state;
-    case "SAFES/ADD-DATA-SUCCESS":
-      return state;
-
-    case "SAFES/UPDATE-DATA":
-      return state;
-    case "SAFES/UPDATE-DATA-FAILED":
-      return state;
-    case "SAFES/UPDATE-DATA-SUCCESS":
-      return state;
-
-    case "SAFES/DELETE-DATA":
-      return state;
-    case "SAFES/DELETE-DATA-FAILED":
-      return state;
-    case "SAFES/DELETE-DATA-SUCCESS":
-      return state;
+    case 'createSafe/get-start':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'createSafe/get-success':
+      // console.log(action.payload)
+      return {
+        ...state,
+        createSafe: action.payload.createSafe,
+        loading: false,
+        error: ''
+      }
+    case 'createSafe/get-failed':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
     default:
-      return state;
+      return state
   }
-};
+}
+
 
 export default SafesReducer;
