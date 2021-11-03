@@ -24,22 +24,6 @@ export const getLoginAsync = (email, password, cb) => {
         dispatch(getLoginSuccess(response.data));
         localStorage.setItem("token", response.data.token);
         cb(response.data.token);
-        axios({
-          method: "GET",
-          url: "http://kas-e.herokuapp.com/api/v1/profile",
-          headers: {
-            Authorization: `Bearer ${response.data.token}`,
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            console.log(response.data);
-            dispatch(getProfileSuccess(response.data));
-          })
-          .catch((error) => {
-            console.log(error);
-            dispatch(getProfileFailed(error));
-          });
       }
       return response;
     } catch (error) {

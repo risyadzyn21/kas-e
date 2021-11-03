@@ -4,37 +4,7 @@ import { Link } from "react-router-dom";
 import AvatarIcon from "../../avatar/AvatarIcon";
 import Right from "../../../assets/icons/arrow-right.png";
 
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-// import { profile } from "../../../services";
-// import { useDispatch } from "react-redux";
-// import { getProfileAsync } from "../../../redux/actions/profileAction";
-import { useSelector } from "react-redux";
-
-function ProfileCard() {
-  // const [userData, setUserData] = useState("");
-  // const token = localStorage.getItem("token");
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await axios({
-  //       method: "GET",
-  //       url: "http://kas-e.herokuapp.com/api/v1/profile",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     console.log(result);
-  //     setUserData(result.data.data);
-  //   };
-  //   fetchData();
-  // }, []);
-
-  const userData = useSelector(
-    (state) => state.profileReducer.profileData.data
-  );
-
+function ProfileCard({ userData }) {
   return (
     <div className="main-profile">
       <AvatarIcon name={userData ? userData.fullName : null} />
