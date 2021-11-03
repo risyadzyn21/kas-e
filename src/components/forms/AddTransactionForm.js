@@ -9,21 +9,24 @@ import TakenFrom from '../../assets/icons/brangkas.svg'
 import SelectIcon from '../../assets/icons/select.svg'
 import './AddTransactionForm.scss'
 import { getCategory, getSafe } from '../../services';
-import { addTransactionAsync } from '../../redux/actions';
+import { addTransactionAsync, getCategoriesAsync, getSafeAsync, getSafesAsc2 } from '../../redux/actions';
 import Loading from '../loading/Loading';
+import { isToday, isThisMonth } from 'date-fns';
 
 
 
 function AddTransactionForm() {
   const [categories, setCategories] = useState([])
-  const [safes, setSafes] = useState([])
+  // const [safes, setSafes] = useState([])
   const dispatch = useDispatch()
   const transaction = useSelector(state => state.transactionReducer)
   const token = localStorage.getItem('token')
 
-  const { filtered: transactions } = useSelector(
-    (state) => state.GetTransactionReducer
+  const safes = useSelector(
+    (state) => state.GetSafeReducer.safes.map(safe => ({ ...safe, createdAt: new Date(safe.createdAt) }))
+      .filter(safe => isThisMonth(safe.createdAt))
   );
+
 
   useEffect(() => {
     getCategory()
@@ -37,15 +40,26 @@ function AddTransactionForm() {
   }, [])
 
   useEffect(() => {
-    getSafe(token)
-      .then((res) => {
-        setSafes(res?.data)
-
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    dispatch(getSafesAsc2(token))
   }, [])
+
+
+  useEffect(() => {
+    dispatch(getCategoriesAsync())
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   getSafe(token)
+  //     .then((res) => {
+  //       setSafes(res?.data)
+
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }, [])
 
   const onFinish = (values) => {
     console.log('Success:', values);

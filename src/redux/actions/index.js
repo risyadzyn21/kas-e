@@ -9,7 +9,10 @@ import {
   deleteSafe,
   addIncome,
   editCategoryLimit,
-  getTransaction
+  getTransaction,
+  getCategory,
+  getReportMonthly,
+  getReportDaily
 } from "../../services";
 
 import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
@@ -18,6 +21,25 @@ export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
 export const GET_TRANSACTIONS_SUCCESS = "GET_TRANSACTIONS_SUCCESS";
 export const GET_TRANSACTIONS_FAILURE = "GET_TRANSACTIONS_FAILURE";
 export const TRANSACTIONS_FILTER_BY = "TRANSACTIONS_FILTER_BY";
+
+export const GET_SAFES = "GET_SAFES";
+export const GET_SAFES_SUCCESS = "GET_SAFES_SUCCESS";
+export const GET_SAFES_FAILURE = "GET_SAFES_FAILURE";
+
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const GET_CATEGORIES_SUCCESS = "GET_CATEGORIES_SUCCESS";
+export const GET_CATEGORIES_FAILURE = "GET_CATEGORIES_FAILURE";
+
+export const GET_REPORT_DAILY_EXPENSE = "GET_REPORT_DAILY_EXPENSE";
+export const GET_REPORT_DAILY_EXPENSE_SUCCESS = "GET_REPORT_DAILY_EXPENSE_SUCCESS";
+export const GET_REPORT_DAILY_EXPENSE_FAILURE = "GET_REPORT_DAILY_EXPENSE_FAILURE";
+export const GET_REPORT_DAILY_EXPENSE_FILTER_BY = "GET_REPORT_DAILY_EXPENSE_FILTER_BY";
+
+export const GET_REPORT_MONTHLY_EXPENSE = "GET_REPORT_MONTHLY_EXPENSE";
+export const GET_REPORT_MONTHLY_EXPENSE_SUCCESS = "GET_REPORT_MONTHLY_EXPENSE_SUCCESS";
+export const GET_REPORT_MONTHLY_EXPENSE_FAILURE = "GET_REPORT_MONTHLY_EXPENSE_FAILURE";
+export const GET_REPORT_MONTHLY_EXPENSE_FILTER_BY = "GET_REPORT_MONTHLY_EXPENSE_FILTER_BY";
+
 
 // Login
 export const getLoginAsync = (email, password, cb) => {
@@ -392,17 +414,166 @@ export const filterTransactions = (filter) => {
   };
 };
 
-// Async actions
-export const getTransactionAsync = () => {
+export const getTransactionAsync = (cb) => {
   return async (dispatch) => {
     dispatch(getTransactions());
     try {
       const res = await getTransaction();
 
       dispatch(getTransactionsSuccess(res.data.data.transactions));
+      cb()
       console.log(res.data)
     } catch (error) {
       dispatch(getTransasctionsFailure(error));
     }
   };
 };
+
+// Get Safe 2
+export const getSafes2 = () => ({
+  type: GET_SAFES
+});
+
+export const getSafesSuccess2 = (safes) => {
+  return {
+    type: GET_SAFES_SUCCESS,
+    payload: safes
+  };
+};
+
+export const getSafesFailure2 = (error) => {
+  return {
+    type: GET_SAFES_FAILURE,
+    payload: error
+  };
+};
+
+export const getSafesAsc2 = (token) => {
+  return async (dispatch) => {
+    dispatch(getSafes2(token));
+    try {
+      const res = await getSafe(token);
+
+      dispatch(getSafesSuccess2(res.data));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getSafesFailure2(error));
+    }
+  };
+};
+
+
+// Get Categories
+export const getCategories = () => ({
+  type: GET_CATEGORIES
+});
+
+export const getCategoriesSuccess = (categories) => {
+  return {
+    type: GET_CATEGORIES_SUCCESS,
+    payload: categories
+  };
+};
+
+export const getCategoriesFailure = (error) => {
+  return {
+    type: GET_CATEGORIES_FAILURE,
+    payload: error
+  };
+};
+
+export const getCategoriesAsync = () => {
+  return async (dispatch) => {
+    dispatch(getCategories());
+    try {
+      const res = await getCategory();
+
+      dispatch(getCategoriesSuccess(res.data.data));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getCategoriesFailure(error));
+    }
+  };
+};
+
+// Get Report Monthly Expense
+export const getReportsMonthlyExpense = () => ({
+  type: GET_REPORT_MONTHLY_EXPENSE
+});
+
+export const getReportsMonthlyExpenseSuccess = (reportMonthlyExpense) => {
+  return {
+    type: GET_REPORT_MONTHLY_EXPENSE_SUCCESS,
+    payload: reportMonthlyExpense
+  };
+};
+
+export const getReportsMonthlyExpenseFailure = (error) => {
+  return {
+    type: GET_REPORT_MONTHLY_EXPENSE_FAILURE,
+    payload: error
+  };
+};
+
+export const filterReportsMonthlyExpense = (filter) => {
+  return {
+    type: GET_REPORT_MONTHLY_EXPENSE_FILTER_BY,
+    payload: filter
+  };
+};
+
+export const getReportMonthlyExpenseAsync = () => {
+  return async (dispatch) => {
+    dispatch(getReportsMonthlyExpense());
+    try {
+      const res = await getReportMonthly();
+
+      dispatch(getReportsMonthlyExpenseSuccess(res.data.expense));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getReportsMonthlyExpenseFailure(error));
+    }
+  };
+};
+
+// Get Report Daily Expense
+export const getReportsDailyExpense = () => ({
+  type: GET_REPORT_DAILY_EXPENSE
+});
+
+export const getReportsDailyExpenseSuccess = (reportDailyExpense) => {
+  return {
+    type: GET_REPORT_DAILY_EXPENSE_SUCCESS,
+    payload: reportDailyExpense
+  };
+};
+
+export const getReportsDailyExpenseFailure = (error) => {
+  return {
+    type: GET_REPORT_DAILY_EXPENSE_FAILURE,
+    payload: error
+  };
+};
+
+export const filterReportsDailyExpense = (filter) => {
+  return {
+    type: GET_REPORT_DAILY_EXPENSE_FILTER_BY,
+    payload: filter
+  };
+};
+
+export const getReportDailyExpenseAsync = () => {
+  return async (dispatch) => {
+    dispatch(getReportsDailyExpense());
+    try {
+      const res = await getReportDaily();
+
+      dispatch(getReportsDailyExpenseSuccess(res.data.expense));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getReportsDailyExpenseFailure(error));
+    }
+  };
+};
+
+

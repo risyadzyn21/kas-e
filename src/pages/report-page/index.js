@@ -26,6 +26,7 @@ function ReportPage() {
             <SafeCard />
           </div>
           <Content >
+            {/* <DailyChart /> */}
             <MonthlyChart />
           </Content>
         </Layout>

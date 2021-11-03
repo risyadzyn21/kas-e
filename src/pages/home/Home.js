@@ -7,6 +7,7 @@ import SeeCard from '../../components/cards/card-see-all/SeeCard'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 import Main from '../../components/modals/create-modal/Main';
 import TransactionCard from '../../components/cards/transaction-card/TransactionCard';
+import HeaderTimeMonthly from '../../components/header/HeaderTimeMonthly';
 
 const Home = () => {
   const { Sider, Content } = Layout;
@@ -19,6 +20,7 @@ const Home = () => {
 
         <Layout>
           <HeaderTimeDaily />
+          {/* <HeaderTimeMonthly /> */}
           <div className='page-title-wrapper'>
             <div className='page-title'>
               Transactions

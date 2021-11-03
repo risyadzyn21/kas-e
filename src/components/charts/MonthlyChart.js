@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import NumberFormat from "react-number-format";
 import './PieChart.scss'
@@ -6,9 +7,12 @@ import { Pie } from 'react-chartjs-2';
 import { getReportMonthly, getSafe } from '../../services';
 import * as FaIcons from 'react-icons/fa'
 import Loading from '../loading/Loading'
+import { getReportMonthlyExpenseAsync } from '../../redux/actions';
+import { isThisMonth } from 'date-fns';
 
 
 const MonthlyChart = () => {
+  const dispatch = useDispatch()
   const [reportsMonthlyExpense, setReportsMonthlyExpense] = useState([])
   const [reportsMonthlyIncome, setReportsMonthlyIncome] = useState([])
   const [totalIncome, setTotalIncome] = useState(0)
@@ -16,6 +20,7 @@ const MonthlyChart = () => {
   const [balances, setBalances] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const token = localStorage.getItem('token')
+
 
   useEffect(() => {
     setIsLoading(true)
@@ -69,7 +74,8 @@ const MonthlyChart = () => {
     datasets: [
       {
         label: '# of Votes',
-        data: [totalIncome, totalExpense],
+        // data: [totalIncome, totalExpense],
+        data: [2050000, 1550000],
         backgroundColor: [
           '#003F88',
           '#1EAE98',
@@ -85,42 +91,45 @@ const MonthlyChart = () => {
 
       <div className='chart-container'>
         <div className='title-balance' >Balance</div>
-        {balances.map((balance) => {
-          return (
-            <div className='title-value-wrapper'>
-              <div className='title-value opening'>
-                Opening Balance
-                <div className='chart-report-value'>
-                  <NumberFormat
-                    value={balance.openingBalance}
-                    displayType="text"
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    prefix="Rp"
-                  />
-                </div>
-              </div >
-              <div className='title-value ending'>
-                Ending Balance
-                <div className='chart-report-value'>
-                  <NumberFormat
-                    value={balance.amount}
-                    displayType="text"
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    prefix="Rp"
-                  />
-                </div>
-              </div>
+        {/* {balances.map((balance) => { */}
+        {/* return ( */}
+        <div className='title-value-wrapper'>
+          <div className='title-value opening'>
+            Opening Balance
+            <div className='chart-report-value'>
+              <NumberFormat
+                // value={balance.openingBalance}
+                value={10000000}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                prefix="Rp"
+              />
             </div>
-          )
-        })}
+          </div >
+          <div className='title-value ending'>
+            Ending Balance
+            <div className='chart-report-value'>
+              <NumberFormat
+                // value={balance.amount}
+                value={1500000}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                prefix="Rp"
+              />
+            </div>
+          </div>
+        </div>
+        {/* ) */}
+        {/* })} */}
 
         <div className='title-value-wrapper'>
           <div className='title-netincome'>Net Income
             <div className='chart-report-value'>
               <NumberFormat
-                value={netIncome}
+                // value={netIncome}
+                value={500000}
                 displayType="text"
                 thousandSeparator="."
                 decimalSeparator=","
@@ -134,9 +143,10 @@ const MonthlyChart = () => {
               Income
               <div className='chart-indicator-value'>
                 <NumberFormat
-                  value={reportsMonthlyIncome.reduce((prev, curr) => {
-                    return prev + parseInt(curr.totalAddIncome)
-                  }, 0)}
+                  // value={reportsMonthlyIncome.reduce((prev, curr) => {
+                  //   return prev + parseInt(curr.totalAddIncome)
+                  // }, 0)}
+                  value={2050000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -150,9 +160,10 @@ const MonthlyChart = () => {
               Expense
               <div className='chart-indicator-value'>
                 <NumberFormat
-                  value={reportsMonthlyExpense.reduce((prev, curr) => {
-                    return prev + parseInt(curr.totalExpense)
-                  }, 0)}
+                  // value={reportsMonthlyExpense.reduce((prev, curr) => {
+                  //   return prev + parseInt(curr.totalExpense)
+                  // }, 0)}
+                  value={1550000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","

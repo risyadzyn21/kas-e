@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { isToday } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux'
-import { getTransactionAsync } from '../../../redux/actions';
+import { getTransactionAsync, filterTransactions } from '../../../redux/actions';
 import { Tooltip } from 'antd';
 import { getTransaction } from '../../../services';
 import NumberFormat from "react-number-format";
@@ -27,7 +27,9 @@ function TransactionCard() {
   const loading = useSelector(state => state.GetTransactionReducer)
 
   useEffect(() => {
-    dispatch(getTransactionAsync())
+    dispatch(getTransactionAsync(() => {
+      dispatch(filterTransactions('today'))
+    }))
   }, [])
 
   // useEffect(() => {

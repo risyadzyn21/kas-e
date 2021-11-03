@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Sidebar.scss";
 import { Dropdown, Menu, Radio } from "antd";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from 'react-redux'
 import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
 import AddIncomeModal from '../modals/AddIncomeModal';
@@ -10,15 +10,17 @@ import LogoutBtn from '../../assets/icons/logout-btn.png'
 import * as BiIcons from 'react-icons/bi'
 import * as FiIcons from 'react-icons/fi'
 import * as CgIcons from 'react-icons/cg'
+import { updateTabVariant } from '../../redux/actions'
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);
   const { SubMenu } = Menu;
+  const dispatch = useDispatch()
 
-  const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
+  // const onChange = (e) => {
+  //   console.log("radio checked", e.target.value);
+  //   setValue(e.target.value);
+  // };
 
   const menu = (
     <Menu className='corner-dropdown-content'>
@@ -61,11 +63,11 @@ const Sidebar = () => {
         <SubMenu key="sub1" title="Time Range">
           <Radio.Group
             className="radio-group"
-            onChange={onChange}
-            value={value}
+            onChange={e => dispatch({ type: 'UPDATE_TAB_VARIANT', payload: e.target.value })}
+            defaultValue='day'
           >
-            <Radio value={1}>Daily</Radio>
-            <Radio value={2}>Monthly</Radio>
+            <Radio value='day'>Daily</Radio>
+            <Radio value='month'>Monthly</Radio>
           </Radio.Group>
         </SubMenu>
 

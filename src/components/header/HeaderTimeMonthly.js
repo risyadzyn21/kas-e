@@ -4,11 +4,15 @@ import KasESmall from '../../assets/logo/Rectangle-9-1.png'
 import KasELetterSmall from '../../assets/logo/Kas-E-1.png'
 import EmptyPage from '../empty-page/EmptyPage';
 import * as IoIcons from 'react-icons/io'
+import { useDispatch } from 'react-redux';
+import { filterTransactions } from '../../redux/actions';
 
 function HeaderTimeMonthly() {
+  const dispatch = useDispatch()
   const { TabPane } = Tabs;
 
   function callback(key) {
+    dispatch(filterTransactions(key))
     console.log(key);
   }
 
@@ -32,15 +36,15 @@ function HeaderTimeMonthly() {
         </Dropdown>
       </PageHeader>
 
-      <Tabs defaultActiveKey="2" onChange={callback} className="site-page-tab">
+      <Tabs defaultActiveKey="thisMonth" onChange={callback} className="site-page-tab">
         <TabPane tab="Last Month" key="lastMonth">
-          <EmptyPage />
+
         </TabPane>
         <TabPane tab="This Month" key="thisMonth">
-          <EmptyPage />
+
         </TabPane>
         <TabPane tab="Next Month" key="nextMonth">
-          <EmptyPage />
+
         </TabPane>
       </Tabs>
     </>

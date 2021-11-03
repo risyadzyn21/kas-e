@@ -2,21 +2,12 @@ import * as actions from '../actions'
 import { isToday, isYesterday, isThisMonth } from 'date-fns';
 
 const initialState = {
+  tabVariant: 'day',
   transactions: [],
   filtered: [],
   isLoading: false,
   hasErrors: false
 };
-
-const today = transactions => {
-  transactions.map(transaction => ({ ...transaction, updateAt: new Date(transaction.updateAt) }))
-    .filter(transaction => isToday(transaction.updatedAt))
-}
-
-const yesterday = transactions => {
-  transactions.map(transaction => ({ ...transaction, updateAt: new Date(transaction.updateAt) }))
-    .filter(transaction => isYesterday(transaction.updatedAt))
-}
 
 
 function GetTransactionReducer(state = initialState, action) {
@@ -41,31 +32,37 @@ function GetTransactionReducer(state = initialState, action) {
         hasErrors: action.error
       };
 
+    case 'UPDATE_TAB_VARIANT':
+      return {
+        ...state,
+        tabVariant: action.payload
+      }
+
     // Ini untuk ngehandle filter
     case actions.TRANSACTIONS_FILTER_BY:
       if (action.payload === 'today') {
         return {
           ...state,
-          filtered: state.transactions.map(transaction => ({ ...transaction, updatedAt: new Date(transaction.updatedAt) }))
-            .filter(transaction => isToday(transaction.updatedAt))
+          filtered: state.transactions?.map(transaction => ({ ...transaction, createdAt: new Date(transaction.createdAt) }))
+            .filter(transaction => isToday(transaction.createdAt))
         }
       } else if (action.payload === 'yesterday') {
         return {
           ...state,
-          filtered: state.transactions.map(transaction => ({ ...transaction, updatedAt: new Date(transaction.updatedAt) }))
-            .filter(transaction => isYesterday(transaction.updatedAt))
+          filtered: state.transactions?.map(transaction => ({ ...transaction, createdAt: new Date(transaction.createdAt) }))
+            .filter(transaction => isYesterday(transaction.createdAt))
         }
       } else if (action.payload === 'thisMonth') {
         return {
           ...state,
-          filtered: state.transactions.map(transaction => ({ ...transaction, updatedAt: new Date(transaction.updatedAt) }))
-            .filter(transaction => isThisMonth(transaction.updatedAt))
+          filtered: state.transactions?.map(transaction => ({ ...transaction, createdAt: new Date(transaction.createdAt) }))
+            .filter(transaction => isThisMonth(transaction.createdAt))
         }
       }
       return {
         ...state,
-        filtered: state.transactions.filter((transactions) => {
-          return transactions.detailExpense.includes(action.filter);
+        filtered: state.transactions?.filter((transactions) => {
+          return transactions?.detailExpense?.includes(action?.filter);
         })
       };
     default:
