@@ -9,11 +9,17 @@ import {
   deleteSafe,
   addIncome,
   editCategoryLimit,
+  getTransaction
 } from "../../services";
+
 import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
 
-// Login
+export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
+export const GET_TRANSACTIONS_SUCCESS = "GET_TRANSACTIONS_SUCCESS";
+export const GET_TRANSACTIONS_FAILURE = "GET_TRANSACTIONS_FAILURE";
+export const TRANSACTIONS_FILTER_BY = "TRANSACTIONS_FILTER_BY";
 
+// Login
 export const getLoginAsync = (email, password, cb) => {
   return async (dispatch) => {
     dispatch({ type: "login/get-start" });
@@ -114,7 +120,7 @@ export const getRegisterFailed = (error) => ({
   },
 });
 
-// Transaction
+// Add Transaction
 
 export const addTransactionAsync = (
   category_id,
@@ -309,7 +315,7 @@ export const addIncomeAsync = (safe_id, expense) => {
       console.log(error.message);
       dispatch(addIncomeFailed(error.message));
 
-      return error;
+      return error
     }
   };
 };
@@ -359,3 +365,44 @@ export const editCategoryLimitFailed = (error) => ({
     error,
   },
 });
+
+// Get Transaction
+export const getTransactions = () => ({
+  type: GET_TRANSACTIONS
+});
+
+export const getTransactionsSuccess = (transactions) => {
+  return {
+    type: GET_TRANSACTIONS_SUCCESS,
+    payload: transactions
+  };
+};
+
+export const getTransasctionsFailure = (error) => {
+  return {
+    type: GET_TRANSACTIONS_FAILURE,
+    payload: error
+  };
+};
+
+export const filterTransactions = (filter) => {
+  return {
+    type: TRANSACTIONS_FILTER_BY,
+    payload: filter
+  };
+};
+
+// Async actions
+export const getTransactionAsync = () => {
+  return async (dispatch) => {
+    dispatch(getTransactions());
+    try {
+      const res = await getTransaction();
+
+      dispatch(getTransactionsSuccess(res.data.data.transactions));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getTransasctionsFailure(error));
+    }
+  };
+};

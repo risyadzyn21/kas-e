@@ -18,7 +18,6 @@ function SafeCard() {
     getSafe(token)
       .then((res) => {
         setSafes(res?.data)
-        console.log(res.data)
         setIsLoading(false)
       })
   }, [])

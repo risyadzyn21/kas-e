@@ -5,6 +5,7 @@ import './PieChart.scss'
 import { Pie } from 'react-chartjs-2';
 import { getReportMonthly, getSafe } from '../../services';
 import * as FaIcons from 'react-icons/fa'
+import Loading from '../loading/Loading'
 
 
 const MonthlyChart = () => {
@@ -13,12 +14,15 @@ const MonthlyChart = () => {
   const [totalIncome, setTotalIncome] = useState(0)
   const [totalExpense, setTotalExpense] = useState(0)
   const [balances, setBalances] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const token = localStorage.getItem('token')
 
   useEffect(() => {
+    setIsLoading(true)
     getReportMonthly()
       .then((res) => {
         setReportsMonthlyExpense(res?.data?.expense)
+        setIsLoading(false)
         const total = res?.data?.expense?.reduce((prev, curr) => {
           return prev + parseInt(curr.totalExpense)
         }, 0)
@@ -30,9 +34,11 @@ const MonthlyChart = () => {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true)
     getReportMonthly()
       .then((res) => {
         setReportsMonthlyIncome(res?.data?.addIncome)
+        setIsLoading(false)
         const total = res?.data?.addIncome?.reduce((prev, curr) => {
           return prev + parseInt(curr.totalAddIncome)
         }, 0)
@@ -44,10 +50,11 @@ const MonthlyChart = () => {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true)
     getSafe(token)
       .then((res) => {
         setBalances(res?.data)
-
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error)
@@ -74,6 +81,7 @@ const MonthlyChart = () => {
 
   return (
     <div>
+      {isLoading ? (<Loading />) : ''}
 
       <div className='chart-container'>
         <div className='title-balance' >Balance</div>

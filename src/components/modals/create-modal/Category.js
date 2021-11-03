@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
-import {  getCategory, categoryLimit } from "../../../services/index";
+import { getCategory, categoryLimit } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
 import Fun from "../../../assets/icons/FunAndRelax.png";
@@ -13,7 +13,7 @@ const Category = () => {
   const [spendingLimit, setspendingLimit] = useState([])
   const token = localStorage.getItem('token')
   // const { id, limit } = spendingLimit;
-  const [ status, setStatus] = useState('')
+  const [status, setStatus] = useState('')
   const [categories, setCategories] = useState([])
   const [category_id, setcategori_id] = useState('')
   const [limit, setLimit] = useState('')
@@ -31,17 +31,17 @@ const Category = () => {
 
   const handleChange = (e) => {
     setspendingLimit(e.target.value)
-   }
+  }
 
   const handleSubmit = (e) => {
     alert("oke")
     e.preventDefault();
     categoryLimit()
-    .then((res) =>{
-      setspendingLimit(res?.data)
-      console.log(res?.data)
-    })
-   
+      .then((res) => {
+        setspendingLimit(res?.data)
+        console.log(res?.data)
+      })
+
   }
 
   useEffect(() => {
@@ -55,14 +55,14 @@ const Category = () => {
       })
   }, [])
 
-    useEffect(() => {
-      if(status === "Successfully retrieved limit data") {
-        return setIsModalVisible(false)
+  useEffect(() => {
+    if (status === "Successfully retrieved limit data") {
+      return setIsModalVisible(false)
 
-      } else {
-        return setIsModalVisible(true)
-      }
-    })
+    } else {
+      return setIsModalVisible(true)
+    }
+  })
 
 
   return (
@@ -75,7 +75,7 @@ const Category = () => {
       >
         <div style={{ margin: 0 }} className="category">
           <div className="category-title">
-            <h2 style={{ fontWeight: 'bold'}}>Set your spending limit</h2>
+            <h2 style={{ fontWeight: 'bold' }}>Set your spending limit</h2>
             <p>
               Make your spending more controlled, by setting your spending limit
             </p>
@@ -129,7 +129,7 @@ const Category = () => {
                   Your rent bills, insurance, payments for electricity, water,
                   gas and other arrears
                 </p>
-                <input type="text" placeholder="RP" value={spendingLimit}  onChange={handleChange} />
+                <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
             <div className="daily-needs">
@@ -154,7 +154,7 @@ const Category = () => {
                   This category is for your daily needs, such as toiletries,
                   household and others
                 </p>
-                <input type="text" placeholder="RP" value={spendingLimit}  onChange={handleChange}/>
+                <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
             <div className="urgent-needs">
@@ -181,9 +181,9 @@ const Category = () => {
                 <input type="text" placeholder="RP" value={spendingLimit} onChange={handleChange} />
               </div>
             </div>
-            </div>
-            <button onSubmit={handleSubmit}>Create</button>
           </div>
+          <button onSubmit={handleSubmit}>Create</button>
+        </div>
       </Modal>
     </div>
   );

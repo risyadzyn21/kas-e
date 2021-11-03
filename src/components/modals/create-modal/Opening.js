@@ -25,7 +25,7 @@ const Opening = ({ navigation }) => {
     getSafe(token)
       .then((res) => {
         setStatus(res.success);
-        console.log(res.success);
+        console.log(res);
 
         if (res.data && res.data.length) {
           setIsModalVisible(false);
