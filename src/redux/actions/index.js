@@ -12,7 +12,8 @@ import {
   getTransaction,
   getCategory,
   getReportMonthly,
-  getReportDaily
+  getReportDaily,
+  limitFirst
 } from "../../services";
 
 import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
@@ -223,21 +224,24 @@ export const getSafeFailed = (error) => ({
 // create safe
 
 export const createSafeAsync = (safeName, amount) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({ type: "createSafe/get-start" });
-    try {
-      const response = await createSafe(safeName, amount);
-      console.log(response, "start");
-      if (response.data) {
-        dispatch(createSafeSuccess(response.data));
-      }
-      return response;
-    } catch (error) {
-      console.log(error.message);
-      dispatch(createSafeFailed(error.message));
-      return error;
-    }
-  };
+    createSafe(safeName, amount)
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        console.log(response)
+        if (response.data) {
+          dispatch(createSafeSuccess(response.data));
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        dispatch(createSafeFailed(error.message));
+        return error
+      })
+  }
 };
 
 export const createSafeSuccess = (createSafe) => ({
@@ -254,26 +258,29 @@ export const createSafeFailed = (error) => ({
   },
 });
 
-// update safe
+// update safe test
 
 export const updateSafeAsync = (safeName, amount) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({ type: "updateSafe/get-start" });
-    try {
-      const response = await updateSafe(safeName, amount);
-      console.log(response, "start");
-      if (response.data.data) {
-        dispatch(updateSafeSuccess(response.data.data));
-      }
-      return response;
-    } catch (error) {
-      console.log(error.message);
-      dispatch(updateSafeFailed(error.message));
-
-      return error;
-    }
-  };
+    updateSafe(safeName, amount)
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        console.log(response.data.data)
+        if (response.data.data) {
+          dispatch(updateSafeSuccess(response.data.data));
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        dispatch(updateSafeFailed(error.message));
+        return error
+      })
+  }
 };
+
 export const updateSafeSuccess = (updateSafe) => ({
   type: "updateSafe/get-success",
   payload: {
@@ -350,6 +357,40 @@ export const addIncomeSuccess = (addIncome) => ({
 
 export const addIncomeFailed = (error) => ({
   type: "addincome/get-failed",
+  payload: {
+    error,
+  },
+});
+
+// Limit First category
+
+export const limitFirstAsync = (category_id, limit) => {
+  return async (dispatch) => {
+    dispatch({ type: "limitFirst/get-start" });
+    try {
+      const response = await limitFirst(category_id, limit)
+      console.log(response, "start")
+      if (response.data) {
+        dispatch(limitFirstSuccess(response.data));
+      }
+      return response
+    } catch (error) {
+      console.log(error.message);
+      dispatch(limitFirstFailed(error.message));
+      return error
+    }
+  }
+};
+
+export const limitFirstSuccess = (limitFirst) => ({
+  type: "limitFirst/get-success",
+  payload: {
+    limitFirst,
+  },
+});
+
+export const limitFirstFailed = (error) => ({
+  type: "limitFirst/get-failed",
   payload: {
     error,
   },

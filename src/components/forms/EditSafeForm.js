@@ -8,7 +8,6 @@ import { getSafe, deleteSafe } from '../../services';
 
 function EditSafeForm() {
   const [safes, setSafes] = useState([])
-
   const editSafe = useSelector(state => state.UpdateSafeReducer)
   const deleteSafes = useSelector(state => state.DeleteSafesReducer)
   const dispatch = useDispatch()
@@ -16,8 +15,8 @@ function EditSafeForm() {
 
   useEffect(() => {
     getSafe(token)
-      .then((res) => {
-        setSafes(res?.data)
+      .then((response) => {
+        setSafes(response?.data)
 
       })
       .catch((error) => {
@@ -35,15 +34,16 @@ function EditSafeForm() {
     console.log('Failed:', errorInfo);
   };
 
-  const handlerDelete = (id) => {
-    // deleteSafe(id)
-    // .then((res) =>{
+  const handlerDelete = (e) => {
+    deleteSafe()
+    .then((res) =>{
+      setSafes(res?.data.id)
       
-      
-    //   // console.log(res?.data)
-    // })
-    dispatch(deleteSafeAsync(id))
+      console.log(res?.data.id)
+    })
+    dispatch(deleteSafeAsync)
   }
+
   return (
     <>
 

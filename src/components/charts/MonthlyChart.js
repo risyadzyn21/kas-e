@@ -75,7 +75,7 @@ const MonthlyChart = () => {
       {
         label: '# of Votes',
         // data: [totalIncome, totalExpense],
-        data: [2050000, 1550000],
+        data: [2750000, 2150000],
         backgroundColor: [
           '#003F88',
           '#1EAE98',
@@ -112,7 +112,7 @@ const MonthlyChart = () => {
             <div className='chart-report-value'>
               <NumberFormat
                 // value={balance.amount}
-                value={1500000}
+                value={10600000}
                 displayType="text"
                 thousandSeparator="."
                 decimalSeparator=","
@@ -129,7 +129,7 @@ const MonthlyChart = () => {
             <div className='chart-report-value'>
               <NumberFormat
                 // value={netIncome}
-                value={500000}
+                value={600000}
                 displayType="text"
                 thousandSeparator="."
                 decimalSeparator=","
@@ -146,7 +146,7 @@ const MonthlyChart = () => {
                   // value={reportsMonthlyIncome.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalAddIncome)
                   // }, 0)}
-                  value={2050000}
+                  value={2750000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -163,7 +163,7 @@ const MonthlyChart = () => {
                   // value={reportsMonthlyExpense.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalExpense)
                   // }, 0)}
-                  value={1550000}
+                  value={2150000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","

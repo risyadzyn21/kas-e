@@ -128,7 +128,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   return ( */}
                 <NumberFormat
                   // value={income.totalAddIncome}
-                  value={2050000}
+                  value={2750000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -152,7 +152,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   return ( */}
                 <NumberFormat
                   // value={income.expense}
-                  value={2050000}
+                  value={2750000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -171,7 +171,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   // value={expenseNet.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalExpense)
                   // }, 0)}
-                  value={1550000}
+                  value={2150000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -211,7 +211,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                 <div>Net Income</div>
                 <NumberFormat
                   // value={netIncome}
-                  value={500000}
+                  value={600000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -227,7 +227,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   // value={incomeNet.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalAddIncome)
                   // }, 0)}
-                  value={2050000}
+                  value={2750000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -242,7 +242,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   // value={expenseNet.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalExpense)
                   // }, 0)}
-                  value={1550000}
+                  value={2150000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -259,7 +259,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                 <div>Net Income</div>
                 <NumberFormat
                   // value={netIncome}
-                  value={500000}
+                  value={600000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -274,7 +274,8 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               <div className='section-title'>
                 <div>Ending Balance</div>
                 <NumberFormat
-                  value={netIncome}
+                  // value={netIncome}
+                  value={10600000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -307,7 +308,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   // value={incomeNet.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalAddIncome)
                   // }, 0)}
-                  value={2050000}
+                  value={2750000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -328,7 +329,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   // value={expenseNet.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalExpense)
                   // }, 0)}
-                  value={12050000}
+                  value={12750000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -343,7 +344,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   // value={expenseNet.reduce((prev, curr) => {
                   //   return prev + parseInt(curr.totalExpense)
                   // }, 0)}
-                  value={1550000}
+                  value={2150000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -360,7 +361,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                 <div>Ending Balance</div>
                 <NumberFormat
                   // value={netIncome}
-                  value={10500000}
+                  value={10600000}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
