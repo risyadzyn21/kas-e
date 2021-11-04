@@ -6,7 +6,7 @@ import {
   getSafe,
   createSafe,
   updateSafe,
-  deleteSafe,
+  deleteSafeId,
   addIncome,
   editCategoryLimit,
   limitFirst,
@@ -275,33 +275,33 @@ export const updateSafeFailed = (error) => ({
 
 // delete safe
 
-export const deleteSafeAsync = (id) => {
+export const deleteSafeIdAsync = (id) => {
   return async (dispatch) => {
-    dispatch({ type: "deleteSafe/get-start" });
+    dispatch({ type: "deleteSafeId/get-start" });
     try {
-      const response = await deleteSafe(id);
+      const response = await deleteSafeId(id);
       console.log(response, "start");
       if (response.data) {
-        dispatch(deleteSafeSuccess(response.data));
+        dispatch(deleteSafeIdSuccess(response.data));
       }
       return response;
     } catch (error) {
       console.log(error.message);
-      dispatch(deleteSafeFailed(error.message));
+      dispatch(deleteSafeIdFailed(error.message));
 
       return error;
     }
   };
 };
-export const deleteSafeSuccess = (deleteSafe) => ({
-  type: "deleteSafe/get-success",
+export const deleteSafeIdSuccess = (deleteSafeId) => ({
+  type: "deleteSafeId/get-success",
   payload: {
-    deleteSafe,
+    deleteSafeId,
   },
 });
 
-export const deleteSafeFailed = (error) => ({
-  type: "deleteSafe/get-failed",
+export const deleteSafeIdFailed = (error) => ({
+  type: "deleteSafeId/get-failed",
   payload: {
     error,
   },
@@ -342,11 +342,11 @@ export const addIncomeFailed = (error) => ({
  
 // Limit First category
 
-export const limitFirstAsync = (category_id, limit) => {
+export const limitFirstAsync = (params) => {
   return async (dispatch) => {
     dispatch({ type: "limitFirst/get-start" });
     try {
-      const response = await limitFirst(category_id, limit)
+      const response = await limitFirst(params)
       console.log(response, "start")
       if (response.data) {
         dispatch(limitFirstSuccess(response.data));

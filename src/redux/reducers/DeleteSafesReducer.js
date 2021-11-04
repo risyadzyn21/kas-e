@@ -1,24 +1,24 @@
 const initialState = {
-    deleteSafe: false,
+    deleteSafeId: false,
     deleteSafeLoading: false,
     deleteSafeError: false
   };
   
   function DeleteSafesReducer(state = initialState, action) {
     switch (action.type) {
-      case ' deleteSafe/get-start':
+      case 'deleteSafeId/get-start':
         return {
           ...state,
           loading: true
         }
-      case ' deleteSafe/get-success':
+      case 'deleteSafeId/get-success':
         return {
           ...state,
-          deleteSafe: action.payload.deleteSafe,    
+          deleteSafeId: action.payload.deleteSafeId,    
           loading: false,
           error: ''
         }
-      case ' deleteSafe/get-failed':
+      case ' deleteSafeId/get-failed':
         return {
           ...state,
           loading: false,
