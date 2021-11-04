@@ -120,24 +120,21 @@ export const updateSafe = (safeName, amount) => {
   }
 };
 
-export const deleteSafe = (id) => {
-  const url = `https://kas-e.herokuapp.com/api/v1/safe/${id}`;
-
-  try {
-    const response = fetch(url, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response;
-  } catch (error) {
-    console.log(error);
-    throw error;
+export const deleteSafeId = (id) => {
+  const data = {
+    id,
   }
+  return axios({
+    method: "DELETE",
+    url: `https://kas-e.herokuapp.com/api/v1/safe/${id}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify(data),
+  });
 };
-
+    
 export const getTransaction = () => {
   return axios({
     method: "GET",
@@ -251,11 +248,11 @@ export const editCategoryLimit = (category_id, limit) => {
   });
 };
 
-export const limitFirst = (category_id, limit) => {
-  const data = {
-    category_id,
-    limit,
-  };
+export const limitFirst = (params) => {
+  // const data = {
+  //   category_id,
+  //   limit,
+  // };
 
   return axios({
     method: "POST",
@@ -264,6 +261,6 @@ export const limitFirst = (category_id, limit) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(data),
+    data: JSON.stringify(params),
   });
 };

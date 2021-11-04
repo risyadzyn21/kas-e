@@ -3,27 +3,31 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import './EditSafeForm.scss'
 import Safe from '../../assets/icons/brangkas.svg'
-import { deleteSafeAsync, updateSafeAsync } from '../../redux/actions';
-import { getSafe, deleteSafe } from '../../services';
+import { deleteSafeIdAsync, updateSafeAsync } from '../../redux/actions';
+import { getSafe} from '../../services';
+import Loading from '../loading/Loading';
+
 
 function EditSafeForm() {
-  const [safes, setSafes] = useState([])
+  const [currentSafe, setCurrentSafe] = useState({})
   const editSafe = useSelector(state => state.UpdateSafeReducer)
   const deleteSafes = useSelector(state => state.DeleteSafesReducer)
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
+  
 
   useEffect(() => {
     getSafe(token)
       .then((response) => {
-        setSafes(response?.data)
-
+        setCurrentSafe(response?.data[0])
+         
       })
       .catch((error) => {
         console.log(error)
       })
   }, [])
 
+  console.log(currentSafe)
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -35,18 +39,15 @@ function EditSafeForm() {
   };
 
   const handlerDelete = (e) => {
-    deleteSafe()
-    .then((res) =>{
-      setSafes(res?.data.id)
-      
-      console.log(res?.data.id)
-    })
-    dispatch(deleteSafeAsync)
+    dispatch(deleteSafeIdAsync(currentSafe.id))
+    console.log(currentSafe.id)
   }
 
   return (
     <>
-
+      {deleteSafes.loading ? <Loading /> : ''}
+      {editSafe.loading ? <Loading /> : ''}
+      
       <Form
         onFinish={onFinish}
         className='edit-safe-container'
@@ -58,18 +59,29 @@ function EditSafeForm() {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         requiredMark={false}
+        fields={[
+          {
+          name:["safeName"],
+          value: currentSafe.safeName
+          },
+          {
+          name:["amount"],
+          value: currentSafe.amount
+          }
+        ]}
       >
         <div className='edit-safe-card'>
           <div className='edit-safe-card-title'>
             Edit Safe
             <img src={Safe} alt='Safe' />
           </div>
-          
-          
+{/*           
+          <h1>{currentSafe.safeName}</h1> */}
           <div className='edit-safe-content'>
             <Form.Item
               name="safeName"
               label="Safe Name"
+              // initialValue={currentSafe.safeName}
               rules={[
                 {
                   required: true,
@@ -82,7 +94,8 @@ function EditSafeForm() {
 
             <Form.Item
               name="amount"
-              label="amount"
+              label="Amount"
+              // initialValue={currentSafe.amount}
               rules={[
                 {
                   required: true,
