@@ -5,13 +5,11 @@ export const getProfileAsync = (token) => {
     dispatch({ type: "profile/get-start" });
     try {
       const response = await getProfile(token);
-      console.log(response, "start");
       if (response.data) {
         dispatch(getProfileSuccess(response.data));
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(getProfileFailed(error.message));
       return error;
     }

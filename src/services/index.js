@@ -205,7 +205,7 @@ export const getCategory = () => {
 export const getProfile = (token) => {
   return axios({
     method: "GET",
-    url: "http://kas-e.herokuapp.com/api/v1/profile",
+    url: "https://kas-e.herokuapp.com/api/v1/profile",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

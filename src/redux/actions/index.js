@@ -10,7 +10,6 @@ import {
   addIncome,
   editCategoryLimit,
 } from "../../services";
-import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
 
 // Login
 

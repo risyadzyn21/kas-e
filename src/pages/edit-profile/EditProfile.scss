@@ -94,3 +94,24 @@
   border-radius: 7px;
   width: 100%;
 }
+
+.modal-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .ant-btn {
+    border-radius: 7px;
+    width: 50%;
+    margin: 5px 0;
+  }
+  .ant-btn-primary {
+    background: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      background: $dark-color;
+    }
+  }
+}

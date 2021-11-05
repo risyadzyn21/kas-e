@@ -1,17 +1,17 @@
 import "./EditProfile.scss";
 import { useState } from "react";
-import { Button, Card, Layout, PageHeader, Form } from "antd";
+import { Button, Card, Layout, PageHeader, Form, Modal } from "antd";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import arrowLeft from "../../assets/icons/arrow-left.png";
 import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
-import axios from "axios";
-import { useSelector } from "react-redux";
 import Loading from "../../components/loading/Loading";
 import { getProfileAsync } from "../../redux/actions/profileAction";
-import { useDispatch } from "react-redux";
 
 function EditProfile() {
   const { Sider, Content } = Layout;
@@ -19,6 +19,8 @@ function EditProfile() {
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const [message, setMessage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const userData = useSelector(
     (state) => state.profileReducer.profileData.data
@@ -50,13 +52,17 @@ function EditProfile() {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res.data);
+        setMessage(res.data.message);
         dispatch(getProfileAsync(token));
         setLoading(false);
+        setIsModalVisible(true);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        setMessage(error.message);
         setLoading(false);
+        setIsModalVisible(true);
       });
   };
 
@@ -64,9 +70,32 @@ function EditProfile() {
     console.log("Failed:", errorInfo);
   };
 
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
       {loading === true ? <Loading /> : userData ? null : <Loading />}
+      <Modal
+        visible={isModalVisible}
+        onCancel={handleCancel}
+        footer={null}
+        closable={false}
+      >
+        <div className="modal-edit">
+          <h2>{message}</h2>
+          <Button
+            type="primary"
+            onClick={(e) => {
+              e.preventDefault();
+              handleCancel();
+            }}
+          >
+            Ok
+          </Button>
+        </div>
+      </Modal>
       <Layout>
         <Sider theme="light" width={326} className="sidebar">
           <Sidebar />
