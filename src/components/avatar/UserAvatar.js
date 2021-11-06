@@ -21,7 +21,11 @@ function UserAvatar() {
 
   return (
     <div className="user-avatar">
-      <Avatar name={userData ? userData.fullName : null} round={true} />
+      {userData?.profilePicture ? (
+        <img src={userData.profilePicture} alt="Avatar" className="avatar" />
+      ) : (
+        <Avatar name={userData ? userData.fullName : null} round={true} />
+      )}
       <div className="user-info">
         <h3>{userData ? userData.fullName : null}</h3>
         <h4>{userData ? userData.User.email : null}</h4>

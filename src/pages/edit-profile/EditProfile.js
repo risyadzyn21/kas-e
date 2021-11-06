@@ -1,6 +1,6 @@
 import "./EditProfile.scss";
 import { useState } from "react";
-import { Button, Card, Layout, PageHeader, Form, Modal } from "antd";
+import { Button, Card, Layout, PageHeader, Form, Modal, Upload } from "antd";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -22,6 +22,9 @@ function EditProfile() {
   const [message, setMessage] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePictureList, setProfilePictureList] = useState([]);
+
   const userData = useSelector(
     (state) => state.profileReducer.profileData.data
   );
@@ -39,6 +42,9 @@ function EditProfile() {
     formData.append("gender", gender);
     formData.append("age", age);
     formData.append("password", password);
+    if (profilePicture !== null) {
+      formData.append("profilePicture", profilePicture.originFileObj);
+    }
 
     setLoading(true);
 
@@ -52,14 +58,13 @@ function EditProfile() {
       data: formData,
     })
       .then((res) => {
-        // console.log(res.data);
         setMessage(res.data.message);
         dispatch(getProfileAsync(token));
+        setProfilePictureList([]);
         setLoading(false);
         setIsModalVisible(true);
       })
       .catch((error) => {
-        // console.log(error);
         setMessage(error.message);
         setLoading(false);
         setIsModalVisible(true);
@@ -70,8 +75,31 @@ function EditProfile() {
     console.log("Failed:", errorInfo);
   };
 
+  const onChange = (info) => {
+    switch (info.file.status) {
+      case "uploading":
+        setProfilePictureList([info.file]);
+        break;
+      case "done":
+        setProfilePicture(info.file);
+        setProfilePictureList([info.file]);
+        break;
+
+      default:
+        // error or removed
+        setProfilePicture(null);
+        setProfilePictureList([]);
+    }
+  };
+
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
   };
 
   return (
@@ -114,7 +142,22 @@ function EditProfile() {
           <Content>
             <div className="container">
               <div className="main-edit">
-                <AvatarIcon name={userData ? userData.fullName : null} />
+                <Upload
+                  fileList={profilePictureList}
+                  customRequest={dummyRequest}
+                  onChange={onChange}
+                >
+                  {userData?.profilePicture ? (
+                    <img
+                      src={userData.profilePicture}
+                      alt="Avatar"
+                      className="avatar"
+                    />
+                  ) : (
+                    <AvatarIcon name={userData ? userData.fullName : null} />
+                  )}
+                  <Button>Change Profile Picture</Button>
+                </Upload>
                 <Card>
                   <EditProfileForm
                     form={form}

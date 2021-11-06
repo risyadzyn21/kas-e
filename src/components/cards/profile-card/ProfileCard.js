@@ -7,7 +7,11 @@ import Right from "../../../assets/icons/arrow-right.png";
 function ProfileCard({ userData }) {
   return (
     <div className="main-profile">
-      <AvatarIcon name={userData ? userData.fullName : null} />
+      {userData?.profilePicture ? (
+        <img src={userData.profilePicture} alt="Avatar" className="avatar" />
+      ) : (
+        <AvatarIcon name={userData ? userData.fullName : null} />
+      )}
       <div className="profile">
         <Link to="/see-all-safe">
           <Button className="all-safe-btn" block>
