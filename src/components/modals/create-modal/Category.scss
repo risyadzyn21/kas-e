@@ -1,5 +1,9 @@
 @import "../../../assets/abstracts/variables";
 
+// .category-container Form.Item {
+//     margin-left: 20px;
+// }
+
 .category-title h2 {
     font-size: 20px; 
     font-Weight: 'bold';
@@ -17,39 +21,25 @@
     height: 150px;
 }
 
-.category-form {
+.category-container {
     max-height: 350px;
     overflow-y: auto; 
 } 
 
-.category-form::-webkit-scrollbar {
+.category-container::-webkit-scrollbar {
     box-shadow: inset 2px 2px 5px 0 rgba(rgb(146, 146, 146), 0.5);
     border-radius: 10px;
     width: 10px;
 }
 
-.category-form::-webkit-scrollbar-thumb {
+.category-container::-webkit-scrollbar-thumb {
     background-color:rgb(146, 146, 146);
     border-radius: 10px;
 }
-.category-form input {
-    width: 350px;
-    border: 1px solid #8E8E8E;
-    border-radius: 5px;
-    height: 35px;
-    padding-left: 10px;
-}
 
-.category button {
-        background: $primary-color;
-        color: white;
-        border: none;
-        color: "white";
-        border-Radius: 5px;
-        width: 400px;
-        margin-Left: 35px;
-        margin-Right: 35px;
-        height: 35px;
-        margin-top: 10px;
-        cursor: 'pointer';
-}
+.category-modal-btn Button {
+    background-color: $primary-color;
+    color: $text-white-color;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }

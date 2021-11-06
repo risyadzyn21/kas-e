@@ -5,6 +5,9 @@ import editCategoryLimitReducer from "./EditCategoryLimitReducer";
 import { combineReducers } from "redux";
 import UpdateSafeReducer from "./UpdateSafeReducer";
 import DeleteSafesReducer from "./DeleteSafesReducer";
+import SafesReducer from "./SafesReducer";
+import GetTransactionReducer from './GetTransactionReducer'
+import LimitFirstReducer from "./LimitFirstReducer";
 import profileReducer from "./profileReducer";
 
 const rootReducer = combineReducers({
@@ -14,6 +17,9 @@ const rootReducer = combineReducers({
   editCategoryLimitReducer,
   UpdateSafeReducer,
   DeleteSafesReducer,
+  SafesReducer,
+  GetTransactionReducer,
+  LimitFirstReducer,
   profileReducer,
 });
 

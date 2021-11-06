@@ -1,24 +1,24 @@
 const initialState = {
-    deleteSafeId: false,
-    deleteSafeLoading: false,
-    deleteSafeError: false
+    limitFirst: false,
+    limitFirstLoading: false,
+    limitFirstError: false
   };
   
-  function DeleteSafesReducer(state = initialState, action) {
+  function LimitFirstReducer(state = initialState, action) {
     switch (action.type) {
-      case 'deleteSafeId/get-start':
+      case 'limitFirst/get-start':
         return {
           ...state,
           loading: true
         }
-      case 'deleteSafeId/get-success':
+      case 'limitFirst/get-success':
         return {
           ...state,
-          deleteSafeId: action.payload.deleteSafeId,    
+          limitFirst: action.payload.limitFirst,
           loading: false,
           error: ''
         }
-      case ' deleteSafeId/get-failed':
+      case 'limitFirst/get-failed':
         return {
           ...state,
           loading: false,
@@ -30,5 +30,4 @@ const initialState = {
   }
   
   
-  export default DeleteSafesReducer;
-
+  export default LimitFirstReducer;

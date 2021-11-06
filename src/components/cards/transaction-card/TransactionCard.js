@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { isToday } from 'date-fns';
+import { useSelector, useDispatch } from 'react-redux'
+import { getTransactionAsync } from '../../../redux/actions';
 import { Tooltip } from 'antd';
 import { getTransaction } from '../../../services';
 import NumberFormat from "react-number-format";
@@ -13,25 +16,36 @@ import Loading from '../../loading/Loading'
 
 
 function TransactionCard() {
-  const [transactions, setTransactions] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const dispatch = useDispatch()
+  // const [transactions, setTransactions] = useState([])
+  // const [isLoading, setIsLoading] = useState(false)
+
+  const { filtered: transactions } = useSelector(
+    (state) => state.GetTransactionReducer
+  );
+
+  const loading = useSelector(state => state.GetTransactionReducer)
 
   useEffect(() => {
-    setIsLoading(true)
-    getTransaction()
-      .then((res) => {
-        setTransactions(res?.data?.data?.transactions)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-        setIsLoading(false)
-      })
+    dispatch(getTransactionAsync())
   }, [])
+
+  // useEffect(() => {
+  //   setIsLoading(true)
+  //   getTransaction()
+  //     .then((res) => {
+  //       setTransactions(res?.data?.data?.transactions)
+  //       setIsLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //       setIsLoading(false)
+  //     })
+  // }, [])
 
   return (
     <>
-      {isLoading ? (<Loading />) : ''}
+      {loading.isLoading ? <Loading /> : ''}
 
       <div className='transaction-content'>
         {transactions?.map((transaction) => {

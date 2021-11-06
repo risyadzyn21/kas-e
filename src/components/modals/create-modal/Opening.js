@@ -11,6 +11,7 @@ const Opening = ({ navigation }) => {
   const token = localStorage.getItem("token");
   const [status, setStatus] = useState("");
   const dispatch = useDispatch();
+  const [safes, setSafes] = useState([])
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -24,8 +25,7 @@ const Opening = ({ navigation }) => {
   useEffect(() => {
     getSafe(token)
       .then((res) => {
-        setStatus(res.success);
-        console.log(res.success);
+        setSafes(res?.data)
 
         if (res.data && res.data.length) {
           setIsModalVisible(false);
@@ -34,15 +34,15 @@ const Opening = ({ navigation }) => {
         }
       })
       .catch((error) => {
-        alert("server down");
-        console.log(error, "error");
-      });
-  }, []);
+        console.log(error)
+      })
+  }, [])
+  
 
   return (
     <div>
       <Modal
-        visible={isModalVisible}
+        visible={true}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
@@ -57,7 +57,15 @@ const Opening = ({ navigation }) => {
             src={SafeIlustration}
             alt="illus"
           />
-          <button onClick={() => navigation.next()}>Create New Safe</button>
+          <div className="open-modal-btn">
+            <Button
+              htmlType="submit"
+              block
+              size="large"
+              onClick={() => navigation.next()}>
+              Create New Safe
+            </Button>
+          </div>
         </div>
       </Modal>
     </div>

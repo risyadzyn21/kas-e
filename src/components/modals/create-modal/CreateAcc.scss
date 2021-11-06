@@ -1,38 +1,23 @@
 @import "../../../assets/abstracts/variables";
 
-
 .create-form {
-    margin-left: 60px;
-    margin-right: 60px;
-    display: grid;
-}
-.create-form input {
-    width: 350px;
-    height: 35px;
-    border: 1px solid #00509D;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 13px;
-    padding-left: 10px;
-}
-.create-form p {
-    width: 350px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .create-form img {
-    border-radius: 10px;
-    background:"#003F88";
-    margin-Left: 180px; 
-    margin-Right: 180px; 
+  border-radius: 10px;
+  background: "#003F88";
+  margin-left: 180px;
+  margin-right: 180px;
+}
+.create-first-wrapper {
+  margin-top: 20px;
 }
 
-.create-second button {
-    background: grey;
-    border: none;
-    color: white;
-    height: 30px;
-    border-radius: 5px;
-    margin-top: 20px;
-    width: 360px;
-    cursor: 'pointer';
+.create-modal-btn Button {
+  background-color: $primary-color;
+  color: $text-white-color;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
