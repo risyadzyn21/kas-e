@@ -38,7 +38,6 @@ const Opening = ({ navigation }) => {
       })
   }, [])
   
-// {isModalVisible}
   return (
     <div>
       <Modal

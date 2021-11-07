@@ -4,25 +4,21 @@ import "./SafeCard.scss";
 import NumberFormat from "react-number-format";
 import SafeIcon from "../../../assets/icons/brangkas.svg";
 import ArrowRight from "../../../assets/icons/arrow-right.png";
-import { getSafe } from "../../../services";
 import { getSafeAsync } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import SafesReducer from "../../../redux/reducers/SafesReducer";
 
 function SafeCard() {
-  const [safes, setSafes] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const safesReducer = useSelector((state) => state.SafesReducer);
+  const { activeSafe } = useSelector((state) => state.SafesReducer);
 
   useEffect(() => {
-    getSafe(token).then((response) => {
-      setSafes(response?.data);
-    });
-  }, [safesReducer.createSafe]);
+   dispatch(getSafeAsync())
+  }, []);
+  console.log(activeSafe, "SAFE ACTIVE")
 
   function renderSafeCard(data) {
+    console.log(data, "CEK DATA")
     return (
     <div className="safe-card">
       <div className="safe-icon">
@@ -30,10 +26,10 @@ function SafeCard() {
       </div>
 
       <div className="safe-info">
-        <h4 className="safe-name">{data && data[data?.length - 1].safeName}</h4>
+        <h4 className="safe-name">{data?.safeName}</h4>
         <h4 className="safe-amount">
           <NumberFormat
-            value={data && data[data?.length - 1].amount}
+            value={data ? data.amount : 0}
             displayType="text"
             thousandSeparator="."
             decimalSeparator=","
@@ -49,9 +45,7 @@ function SafeCard() {
   }
   return (
     <>
-      {safes?.length === 0
-        ? renderSafeCard(SafesReducer.createSafe)
-        : renderSafeCard(safes)}
+      {renderSafeCard(activeSafe)}
     </>
   );
 }
