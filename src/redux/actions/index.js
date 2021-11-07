@@ -1,4 +1,5 @@
 import axios from "axios";
+import { message } from 'antd';
 import {
   login,
   register,
@@ -9,16 +10,58 @@ import {
   deleteSafeId,
   addIncome,
   editCategoryLimit,
+  getTransaction,
+  getCategory,
+  getReportMonthly,
+  getReportDaily,
   limitFirst,
-  getTransaction
+  getTransactionDaily,
+  getTransactionMonthly,
+  deleteTransaction
 } from "../../services";
-
-import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
 
 export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
 export const GET_TRANSACTIONS_SUCCESS = "GET_TRANSACTIONS_SUCCESS";
 export const GET_TRANSACTIONS_FAILURE = "GET_TRANSACTIONS_FAILURE";
 export const TRANSACTIONS_FILTER_BY = "TRANSACTIONS_FILTER_BY";
+
+export const DELETE_TRANSACTIONS = "DELETE_TRANSACTIONS";
+export const DELETE_TRANSACTIONS_SUCCESS = "DELETE_TRANSACTIONS_SUCCESS";
+export const DELETE_TRANSACTIONS_FAILURE = "DELETE_TRANSACTIONS_FAILURE";
+
+export const GET_SAFES = "GET_SAFES";
+export const GET_SAFES_SUCCESS = "GET_SAFES_SUCCESS";
+export const GET_SAFES_FAILURE = "GET_SAFES_FAILURE";
+
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const GET_CATEGORIES_SUCCESS = "GET_CATEGORIES_SUCCESS";
+export const GET_CATEGORIES_FAILURE = "GET_CATEGORIES_FAILURE";
+
+export const GET_REPORT_DAILY_EXPENSE = "GET_REPORT_DAILY_EXPENSE";
+export const GET_REPORT_DAILY_EXPENSE_SUCCESS = "GET_REPORT_DAILY_EXPENSE_SUCCESS";
+export const GET_REPORT_DAILY_EXPENSE_FAILURE = "GET_REPORT_DAILY_EXPENSE_FAILURE";
+
+export const GET_REPORT_DAILY_INCOME = "GET_REPORT_DAILY_INCOME";
+export const GET_REPORT_DAILY_INCOME_SUCCESS = "GET_REPORT_DAILY_INCOME_SUCCESS";
+export const GET_REPORT_DAILY_INCOME_FAILURE = "GET_REPORT_DAILY_INCOME_FAILURE";
+
+export const GET_REPORT_MONTHLY_EXPENSE = "GET_REPORT_MONTHLY_EXPENSE";
+export const GET_REPORT_MONTHLY_EXPENSE_SUCCESS = "GET_REPORT_MONTHLY_EXPENSE_SUCCESS";
+export const GET_REPORT_MONTHLY_EXPENSE_FAILURE = "GET_REPORT_MONTHLY_EXPENSE_FAILURE";
+export const GET_REPORT_MONTHLY_EXPENSE_FILTER_BY = "GET_REPORT_MONTHLY_EXPENSE_FILTER_BY";
+
+export const GET_REPORT_MONTHLY_INCOME = "GET_REPORT_MONTHLY_INCOME";
+export const GET_REPORT_MONTHLY_INCOME_SUCCESS = "GET_REPORT_MONTHLY_INCOME_SUCCESS";
+export const GET_REPORT_MONTHLY_INCOME_FAILURE = "GET_REPORT_MONTHLY_INCOME_FAILURE";
+
+export const GET_TRANSACTIONS_DAILY = "GET_TRANSACTIONS_DAILY"
+export const GET_TRANSACTIONS_DAILY_SUCCESS = "GET_TRANSACTIONS_DAILY_SUCCESS"
+export const GET_TRANSACTIONS_DAILY_FAILURE = "GET_TRANSACTIONS_DAILY_FAILURE"
+
+export const GET_TRANSACTIONS_MONTHLY = "GET_TRANSACTIONS_MONTHLY"
+export const GET_TRANSACTIONS_MONTHLY_SUCCESS = "GET_TRANSACTIONS_MONTHLY_SUCCESS"
+export const GET_TRANSACTIONS_MONTHLY_FAILURE = "GET_TRANSACTIONS_MONTHLY_FAILURE"
+
 
 // Login
 export const getLoginAsync = (email, password, cb) => {
@@ -42,6 +85,7 @@ export const getLoginAsync = (email, password, cb) => {
           .then((response) => {
             console.log(response.data);
             dispatch(getProfileSuccess(response.data));
+            message.success(response.data.message)
           })
           .catch((error) => {
             console.log(error);
@@ -50,9 +94,9 @@ export const getLoginAsync = (email, password, cb) => {
       }
       return response;
     } catch (error) {
-      console.log(error);
+      console.log(JSON.stringify(error.response.data));
       dispatch(getLoginFailed(error.message));
-      return error;
+      return message.warning(error.response.data.message);
     }
   };
 };
@@ -93,7 +137,6 @@ export const getRegisterAsync = (
         gender,
         age
       );
-      console.log(response, "start");
       if (response.data) {
         dispatch(getRegisterSuccess(response.data));
         cb();
@@ -102,7 +145,7 @@ export const getRegisterAsync = (
     } catch (error) {
       console.log(error.message);
       dispatch(getRegisterFailed(error.message));
-      return error;
+      return message.warning(error.response.data.message);
     }
   };
 };
@@ -138,32 +181,34 @@ export const addTransactionAsync = (
         expense,
         safe_id
       );
-      console.log(response, "start");
       if (response.data) {
-        dispatch(addTransactionSuccess(response.data));
+        // console.log(response.data.data.data, '3x data')
+        dispatch(addTransactionSuccess(response.data.data.data));
+        return response;
       }
-      return response;
+
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       dispatch(addTransactionFailed(error.message));
-      return error;
     }
   };
 };
 
-export const addTransactionSuccess = (addTransaction) => ({
+export const addTransactionSuccess = (transaction) => ({
   type: "addtransaction/get-success",
   payload: {
-    addTransaction,
+    transaction,
   },
 });
-
-export const addTransactionFailed = (error) => ({
-  type: "addtransaction/get-failed",
-  payload: {
-    error,
-  },
-});
+export const addTransactionFailed = (error) => {
+  console.log(error)
+  return {
+    type: "addtransaction/get-failed",
+    payload: {
+      error,
+    },
+  }
+};
 
 // get safe
 
@@ -180,7 +225,6 @@ export const getSafeAsync = (token) => {
     } catch (error) {
       console.log(error.message);
       dispatch(getSafeFailed(error.message));
-      return error;
     }
   };
 };
@@ -204,21 +248,21 @@ export const getSafeFailed = (error) => ({
 export const createSafeAsync = (safeName, amount) => {
   return (dispatch) => {
     dispatch({ type: "createSafe/get-start" });
-     createSafe(safeName, amount)
-     .then((response) => {
-      return response.json()
-     })
-     .then((response) => {
-       console.log(response)
-      if (response.data) {
+    createSafe(safeName, amount)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data) {
           dispatch(createSafeSuccess(response.data));
         }
-     })
-     .catch((error) => {
-      console.log(error.message);
-          dispatch(createSafeFailed(error.message));
-          return error
-     })
+      })
+      .catch((error) => {
+        console.log(error.message);
+        dispatch(createSafeFailed(error.message));
+        return message.warning(error.response.data.message)
+      })
   }
 };
 
@@ -246,17 +290,16 @@ export const updateSafeAsync = (safeName, amount) => {
       return response.json()
      })
      .then((response) => {
-      //  console.log(response.data.data)
       if (response.data.data) {
           dispatch(updateSafeSuccess(response.data.data));
         }
-     })
-     .catch((error) => {
-      console.log(error.message);
-          dispatch(updateSafeFailed(error.message));
-          return error
-     })
-  }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        dispatch(updateSafeFailed(error.message));
+        return error;
+      });
+  };
 };
 
 export const updateSafeSuccess = (updateSafe) => ({
@@ -289,7 +332,7 @@ export const deleteSafeIdAsync = (id) => {
       console.log(error.message);
       dispatch(deleteSafeIdFailed(error.message));
 
-      return error;
+      return message.warning(error.response.data.message);
     }
   };
 };
@@ -321,16 +364,13 @@ export const addIncomeAsync = (safe_id, expense) => {
     } catch (error) {
       console.log(error.message);
       dispatch(addIncomeFailed(error.message));
-
-      return error
+      return message.warning(error.response.data.message)
     }
   };
 };
-export const addIncomeSuccess = (addIncome) => ({
+export const addIncomeSuccess = (transactions) => ({
   type: "addincome/get-success",
-  payload: {
-    addIncome,
-  },
+  payload: transactions
 });
 
 export const addIncomeFailed = (error) => ({
@@ -339,25 +379,25 @@ export const addIncomeFailed = (error) => ({
     error,
   },
 });
- 
+
 // Limit First category
 
 export const limitFirstAsync = (params) => {
   return async (dispatch) => {
     dispatch({ type: "limitFirst/get-start" });
     try {
-      const response = await limitFirst(params)
-      console.log(response, "start")
+      const response = await limitFirst(params);
+      console.log(response, "start");
       if (response.data) {
         dispatch(limitFirstSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(limitFirstFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const limitFirstSuccess = (limitFirst) => ({
@@ -388,7 +428,7 @@ export const editCategoryLimitAsync = (category_id, limit) => {
     } catch (error) {
       console.log(error.message);
       dispatch(editCategoryLimitFailed(error.message));
-      return error;
+      return message.warning(error.response.data.message);
     }
   };
 };
@@ -409,41 +449,349 @@ export const editCategoryLimitFailed = (error) => ({
 
 // Get Transaction
 export const getTransactions = () => ({
-  type: GET_TRANSACTIONS
+  type: GET_TRANSACTIONS,
 });
 
 export const getTransactionsSuccess = (transactions) => {
   return {
     type: GET_TRANSACTIONS_SUCCESS,
-    payload: transactions
+    payload: transactions,
   };
 };
 
 export const getTransasctionsFailure = (error) => {
   return {
     type: GET_TRANSACTIONS_FAILURE,
-    payload: error
+    payload: error,
   };
 };
 
 export const filterTransactions = (filter) => {
   return {
     type: TRANSACTIONS_FILTER_BY,
-    payload: filter
+    payload: filter,
   };
 };
 
-// Async actions
-export const getTransactionAsync = () => {
+export const getTransactionAsync = (cb) => {
   return async (dispatch) => {
     dispatch(getTransactions());
     try {
       const res = await getTransaction();
 
       dispatch(getTransactionsSuccess(res.data.data.transactions));
+      cb()
       console.log(res.data)
     } catch (error) {
       dispatch(getTransasctionsFailure(error));
+      return message.warning(error.response.data.message)
     }
   };
 };
+
+// Get Safe 2
+export const getSafes2 = () => ({
+  type: GET_SAFES
+});
+
+export const getSafesSuccess2 = (safes) => {
+  return {
+    type: GET_SAFES_SUCCESS,
+    payload: safes
+  };
+};
+
+export const getSafesFailure2 = (error) => {
+  return {
+    type: GET_SAFES_FAILURE,
+    payload: error
+  };
+};
+
+export const getSafesAsc2 = (token) => {
+  return async (dispatch) => {
+    dispatch(getSafes2(token));
+    try {
+      const res = await getSafe(token);
+
+      dispatch(getSafesSuccess2(res.data));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getSafesFailure2(error));
+      return message.warning(error.response.data.message)
+    }
+  };
+};
+
+
+// Get Categories
+export const getCategories = () => ({
+  type: GET_CATEGORIES
+});
+
+export const getCategoriesSuccess = (categories) => {
+  return {
+    type: GET_CATEGORIES_SUCCESS,
+    payload: categories
+  };
+};
+
+export const getCategoriesFailure = (error) => {
+  return {
+    type: GET_CATEGORIES_FAILURE,
+    payload: error
+  };
+};
+
+export const getCategoriesAsync = () => {
+  return async (dispatch) => {
+    dispatch(getCategories());
+    try {
+      const res = await getCategory();
+
+      dispatch(getCategoriesSuccess(res.data.data));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getCategoriesFailure(error));
+      return message.warning(error.response.data.message)
+    }
+  };
+};
+
+// Get Report Monthly Expense
+export const getReportsMonthlyExpense = () => ({
+  type: GET_REPORT_MONTHLY_EXPENSE
+});
+
+export const getReportsMonthlyExpenseSuccess = (reportsExpense) => {
+  return {
+    type: GET_REPORT_MONTHLY_EXPENSE_SUCCESS,
+    payload: reportsExpense
+  };
+};
+
+export const getReportsMonthlyExpenseFailure = (error) => {
+  return {
+    type: GET_REPORT_MONTHLY_EXPENSE_FAILURE,
+    payload: error
+  };
+};
+
+
+export const getReportMonthlyExpenseAsync = (date) => {
+  return async (dispatch) => {
+    dispatch(getReportsMonthlyExpense());
+    try {
+      const res = await getReportMonthly(date);
+
+      dispatch(getReportsMonthlyExpenseSuccess(res.data.expense));
+      console.log(res.data)
+    } catch (error) {
+      dispatch(getReportsMonthlyExpenseFailure(error));
+    }
+  };
+};
+
+// Get Report Monthly Income
+export const getReportsMonthlyIncome = () => ({
+  type: GET_REPORT_MONTHLY_INCOME
+});
+
+export const getReportsMonthlyIncomeSuccess = (reportsIncome) => {
+  return {
+    type: GET_REPORT_MONTHLY_INCOME_SUCCESS,
+    payload: reportsIncome
+  };
+};
+
+export const getReportsMonthlyIncomeFailure = (error) => {
+  return {
+    type: GET_REPORT_MONTHLY_INCOME_FAILURE,
+    payload: error
+  };
+};
+
+
+export const getReportMonthlyIncomeAsync = (date) => {
+  return async (dispatch) => {
+    dispatch(getReportsDailyIncome());
+    try {
+      const res = await getReportMonthly(date);
+      dispatch(getReportsMonthlyIncomeSuccess(res.data.addIncome));
+    } catch (error) {
+      dispatch(getReportsMonthlyIncomeFailure(error));
+    }
+  };
+};
+
+// Get Report Daily Expense
+export const getReportsDailyExpense = () => ({
+  type: GET_REPORT_DAILY_EXPENSE
+});
+
+export const getReportsDailyExpenseSuccess = (reportsExpense) => {
+  return {
+    type: GET_REPORT_DAILY_EXPENSE_SUCCESS,
+    payload: reportsExpense
+  };
+};
+
+export const getReportsDailyExpenseFailure = (error) => {
+  return {
+    type: GET_REPORT_DAILY_EXPENSE_FAILURE,
+    payload: error
+  };
+};
+
+
+export const getReportDailyExpenseAsync = (date) => {
+  return async (dispatch) => {
+    dispatch(getReportsDailyExpense());
+    try {
+      const res = await getReportDaily(date);
+
+      dispatch(getReportsDailyExpenseSuccess(res.data.expense));
+    } catch (error) {
+      dispatch(getReportsDailyExpenseFailure(error));
+      return message.warning(error.response.data.message)
+    }
+  };
+};
+
+// Get Report Daily Income
+export const getReportsDailyIncome = () => ({
+  type: GET_REPORT_DAILY_INCOME
+});
+
+export const getReportsDailyIncomeSuccess = (reportsIncome) => {
+  return {
+    type: GET_REPORT_DAILY_INCOME_SUCCESS,
+    payload: reportsIncome
+  };
+};
+
+export const getReportsDailyIncomeFailure = (error) => {
+  return {
+    type: GET_REPORT_DAILY_INCOME_FAILURE,
+    payload: error
+  };
+};
+
+
+export const getReportDailyIncomeAsync = (date) => {
+  return async (dispatch) => {
+    dispatch(getReportsDailyIncome());
+    try {
+      const res = await getReportDaily(date);
+      console.log(res.data, 'yahooooo')
+      dispatch(getReportsDailyIncomeSuccess(res.data.addIncome));
+    } catch (error) {
+      dispatch(getReportsDailyIncomeFailure(error));
+      return message.warning(error.response.data.message)
+    }
+  };
+};
+
+
+// Get Transaction by Date
+export const getTransactionsDailyStart = () => ({
+  type: GET_TRANSACTIONS_DAILY
+});
+
+export const getTransactionsDailySuccess = (transactions) => {
+  return {
+    type: GET_TRANSACTIONS_DAILY_SUCCESS,
+    payload: transactions
+  };
+};
+
+export const getTransactionsDailyFailure = (error) => {
+  return {
+    type: GET_TRANSACTIONS_DAILY_FAILURE,
+    payload: error
+  };
+};
+
+export const getTransactionsDailyAsync = (date) => {
+  return async (dispatch) => {
+    dispatch(getTransactionsDailyStart())
+    try {
+      const res = await getTransactionDaily(date)
+
+      dispatch(getTransactionsDailySuccess(res.data.data.transactions))
+    } catch (error) {
+      console.log(error)
+      dispatch(getTransactionsDailyFailure(error))
+    }
+
+  }
+}
+
+export const getTransactionsMonthlyStart = () => ({
+  type: GET_TRANSACTIONS_MONTHLY
+});
+
+export const getTransactionsMonthlySuccess = (transactions) => {
+  return {
+    type: GET_TRANSACTIONS_MONTHLY_SUCCESS,
+    payload: transactions
+  };
+};
+
+export const getTransactionsMonthlyFailure = (error) => {
+  return {
+    type: GET_TRANSACTIONS_MONTHLY_FAILURE,
+    payload: error
+  };
+};
+
+export const getTransactionsMonthlyAsync = (date) => {
+  return async (dispatch) => {
+    dispatch(getTransactionsMonthlyStart())
+    try {
+      const res = await getTransactionMonthly(date)
+
+      dispatch(getTransactionsMonthlySuccess(res.data.data.transactions))
+    } catch (error) {
+      dispatch(getTransactionsMonthlyFailure(error))
+    }
+
+  }
+}
+
+
+// Delete Transaction
+export const deleteTransactionStart = () => ({
+  type: DELETE_TRANSACTIONS
+});
+
+export const deleteTransactionSuccess = (reportDailyExpense) => {
+  return {
+    type: DELETE_TRANSACTIONS_SUCCESS,
+    payload: reportDailyExpense
+  };
+};
+
+export const deleteTransactionFailure = (error) => {
+  return {
+    type: DELETE_TRANSACTIONS_FAILURE,
+    payload: error
+  };
+};
+
+
+export const deleteTransactionAsync = (id_transaction) => {
+  return async (dispatch) => {
+    dispatch(deleteTransactionStart());
+    try {
+      const res = await deleteTransaction(id_transaction);
+
+      dispatch(deleteTransactionSuccess(res.data));
+    } catch (error) {
+      dispatch(deleteTransactionFailure(error));
+    }
+  };
+};
+
+
+

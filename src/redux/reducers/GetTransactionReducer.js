@@ -1,76 +1,115 @@
 import * as actions from '../actions'
-import { isToday, isYesterday, isThisMonth } from 'date-fns';
 
 const initialState = {
+  tabVariant: 'day',
   transactions: [],
-  filtered: [],
   isLoading: false,
   hasErrors: false
 };
 
-const today = transactions => {
-  transactions.map(transaction => ({ ...transaction, updateAt: new Date(transaction.updateAt) }))
-    .filter(transaction => isToday(transaction.updatedAt))
-}
 
-const yesterday = transactions => {
-  transactions.map(transaction => ({ ...transaction, updateAt: new Date(transaction.updateAt) }))
-    .filter(transaction => isYesterday(transaction.updatedAt))
-}
-
-
-function GetTransactionReducer(state = initialState, action) {
+function TransactionReducer(state = initialState, action) {
   switch (action.type) {
-    case actions.GET_TRANSACTIONS:
+    case actions.GET_TRANSACTIONS_DAILY:
       return {
         ...state,
         isLoading: true
       };
-    case actions.GET_TRANSACTIONS_SUCCESS:
+    case actions.GET_TRANSACTIONS_DAILY_SUCCESS:
       return {
         ...state,
-        filtered: action.payload,
         transactions: action.payload,
         isLoading: false
 
       };
-    case actions.GET_TRANSACTIONS_FAILURE:
+    case actions.GET_TRANSACTIONS_DAILY_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        transactions: [],
+        hasErrors: action.error
+      };
+    case actions.DELETE_TRANSACTIONS:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case actions.DELETE_TRANSACTIONS_SUCCESS:
+      return {
+        ...state,
+        transactions: action.payload,
+        isLoading: false
+
+      };
+    case actions.DELETE_TRANSACTIONS_FAILURE:
       return {
         ...state,
         isLoading: false,
         hasErrors: action.error
       };
-
-    // Ini untuk ngehandle filter
-    case actions.TRANSACTIONS_FILTER_BY:
-      if (action.payload === 'today') {
-        return {
-          ...state,
-          filtered: state.transactions.map(transaction => ({ ...transaction, updatedAt: new Date(transaction.updatedAt) }))
-            .filter(transaction => isToday(transaction.updatedAt))
-        }
-      } else if (action.payload === 'yesterday') {
-        return {
-          ...state,
-          filtered: state.transactions.map(transaction => ({ ...transaction, updatedAt: new Date(transaction.updatedAt) }))
-            .filter(transaction => isYesterday(transaction.updatedAt))
-        }
-      } else if (action.payload === 'thisMonth') {
-        return {
-          ...state,
-          filtered: state.transactions.map(transaction => ({ ...transaction, updatedAt: new Date(transaction.updatedAt) }))
-            .filter(transaction => isThisMonth(transaction.updatedAt))
-        }
-      }
+    case actions.GET_TRANSACTIONS_MONTHLY:
       return {
         ...state,
-        filtered: state.transactions.filter((transactions) => {
-          return transactions.detailExpense.includes(action.filter);
-        })
+        isLoading: true
       };
+    case actions.GET_TRANSACTIONS_MONTHLY_SUCCESS:
+      return {
+        ...state,
+        transactions: action.payload,
+        isLoading: false
+      };
+    case actions.GET_TRANSACTIONS_MONTHLY_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        transactions: [],
+        hasErrors: action.error
+      };
+    case 'addtransaction/get-start':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'addtransaction/get-success':
+      return {
+        ...state,
+        transactions: [...state.transactions, action.payload.transaction],
+        loading: false,
+        error: ''
+      }
+    case 'addtransaction/get-failed':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      }
+
+    case 'UPDATE_TAB_VARIANT':
+      return {
+        ...state,
+        tabVariant: action.payload
+      }
+    case 'addincome/get-start':
+      return {
+        ...state,
+        isLoading: true
+      }
+    case 'addincome/get-success':
+      return {
+        ...state,
+        transactions: action.payload.transactions,
+        isLoading: false,
+        error: ''
+      }
+    case 'addincome/get-failed':
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.error
+      }
     default:
       return state;
   }
 }
 
-export default GetTransactionReducer
+export default TransactionReducer

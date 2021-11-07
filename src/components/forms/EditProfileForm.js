@@ -62,7 +62,11 @@ function EditProfile({ form, onFinish, onFinishFailed, userData }) {
           },
         ]}
       >
-        <Input placeholder="Please enter your email" className="input-style" />
+        <Input
+          placeholder="Please enter your email"
+          className="input-style"
+          disabled="true"
+        />
       </Form.Item>
 
       <Form.Item

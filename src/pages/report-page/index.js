@@ -6,6 +6,7 @@ import EmptyPage from '../../components/empty-page/EmptyPage';
 import DailyChart from '../../components/charts/DailyChart'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 import MonthlyChart from '../../components/charts/MonthlyChart';
+import HeaderTimeMonthly from '../../components/header/HeaderTimeMonthly';
 
 function ReportPage() {
   const { Sider, Content } = Layout;
@@ -18,7 +19,7 @@ function ReportPage() {
         </Sider>
 
         <Layout>
-          <HeaderTimeDaily />
+          <HeaderTimeMonthly />
           <div className='page-title-wrapper'>
             <div className='page-title'>
               Report
@@ -26,6 +27,7 @@ function ReportPage() {
             <SafeCard />
           </div>
           <Content >
+            {/* <DailyChart /> */}
             <MonthlyChart />
           </Content>
         </Layout>
