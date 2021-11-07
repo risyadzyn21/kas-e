@@ -222,15 +222,15 @@ export const addIncomeAsync2 = (
         expense
       );
       if (response.data) {
-        console.log(response, 'yeay')
+        console.log(response.data.data.data, 'yeay')
         dispatch(addIncomeSuccess(response.data.data.data));
         return response;
       }
 
     } catch (error) {
-      console.log(error);
+      console.log(JSON.stringify(error));
       dispatch(addIncomeFailed(error.message));
-      return message.warning(error.response.data.message)
+      // return message.warning(error.response.data.message)
     }
   };
 };
@@ -325,11 +325,11 @@ export const updateSafeAsync = (safeName, amount) => {
   return (dispatch) => {
     dispatch({ type: "updateSafe/get-start" });
     updateSafe(safeName, amount)
-     .then((response) => {
-      return response.json()
-     })
-     .then((response) => {
-      if (response.data.data) {
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        if (response.data.data) {
           dispatch(updateSafeSuccess(response.data.data));
         }
       })
@@ -594,7 +594,7 @@ export const getReportMonthlyExpenseAsync = (date) => {
     try {
       const res = await getReportMonthly(date);
 
-      dispatch(getReportsMonthlyExpenseSuccess(res.data.expense));
+      dispatch(getReportsMonthlyExpenseSuccess(res.data.expense || []));
       console.log(res.data)
     } catch (error) {
       dispatch(getReportsMonthlyExpenseFailure(error));
@@ -627,7 +627,7 @@ export const getReportMonthlyIncomeAsync = (date) => {
     dispatch(getReportsDailyIncome());
     try {
       const res = await getReportMonthly(date);
-      dispatch(getReportsMonthlyIncomeSuccess(res.data.addIncome));
+      dispatch(getReportsMonthlyIncomeSuccess(res.data.addIncome || []));
     } catch (error) {
       dispatch(getReportsMonthlyIncomeFailure(error));
     }
@@ -660,7 +660,7 @@ export const getReportDailyExpenseAsync = (date) => {
     try {
       const res = await getReportDaily(date);
 
-      dispatch(getReportsDailyExpenseSuccess(res.data.expense));
+      dispatch(getReportsDailyExpenseSuccess(res.data.expense || []));
     } catch (error) {
       dispatch(getReportsDailyExpenseFailure(error));
     }
@@ -693,7 +693,7 @@ export const getReportDailyIncomeAsync = (date) => {
     try {
       const res = await getReportDaily(date);
       console.log(res.data, 'yahooooo')
-      dispatch(getReportsDailyIncomeSuccess(res.data.addIncome));
+      dispatch(getReportsDailyIncomeSuccess(res.data.addIncome || []));
     } catch (error) {
       dispatch(getReportsDailyIncomeFailure(error));
     }
@@ -773,10 +773,10 @@ export const deleteTransactionStart = () => ({
   type: DELETE_TRANSACTIONS
 });
 
-export const deleteTransactionSuccess = (reportDailyExpense) => {
+export const deleteTransactionSuccess = (transactions) => {
   return {
     type: DELETE_TRANSACTIONS_SUCCESS,
-    payload: reportDailyExpense
+    payload: transactions
   };
 };
 
@@ -789,12 +789,13 @@ export const deleteTransactionFailure = (error) => {
 
 
 export const deleteTransactionAsync = (id_transaction) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     dispatch(deleteTransactionStart());
     try {
       const res = await deleteTransaction(id_transaction);
-
-      dispatch(deleteTransactionSuccess(res.data));
+      const { transactions } = getState().GetTransactionReducer
+      const filteredTrans = transactions.filter(item => item.id !== id_transaction)
+      dispatch(deleteTransactionSuccess(filteredTrans));
     } catch (error) {
       dispatch(deleteTransactionFailure(error));
     }

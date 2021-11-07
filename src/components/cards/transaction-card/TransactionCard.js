@@ -33,7 +33,6 @@ function TransactionCard() {
     }
   }, [tabVariant])
 
-
   console.log(transactions)
 
   return (
@@ -52,9 +51,9 @@ function TransactionCard() {
                   <h3>{transaction?.Categories?.categoryName}</h3>
                   <img src={transaction?.Categories?.image_url} alt={transaction?.Categories?.categoryName} />
                   {transaction.Categories.Limit.map((limit) => {
-                    return limit.newLimit < 0 ? (<div style={{ "fontWeight": "bold" }}>
+                    return limit.amount < 0 ? (<div style={{ "fontWeight": "bold" }}>
                       Over Limit: <NumberFormat
-                        value={limit.newLimit}
+                        value={limit.amount}
                         displayType="text"
                         thousandSeparator="."
                         decimalSeparator=","
@@ -123,7 +122,7 @@ function TransactionCard() {
             ) : (
               <div key={transaction?.id} className='transaction-card'>
                 <Tooltip title="Delete" className='trash-button-transaction'>
-                  <img src={Trash} alt='delete' />
+                  <img src={Trash} alt='delete' onClick={() => dispatch(deleteTransactionAsync(transaction.id))} />
                 </Tooltip>
                 <div className='card-content-container'>
                   <h3>Income</h3>

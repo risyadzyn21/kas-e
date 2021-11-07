@@ -30,6 +30,7 @@ const LoginForm = (props) => {
     console.log(JSON.stringify(values, null, 2));
     const cb = (token) => {
       history.push('/transactions')
+      window.location.reload(false)
     }
     dispatch(getLoginAsync(values.email, values.password, cb))
   };
@@ -37,6 +38,7 @@ const LoginForm = (props) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
 
   return (
     <>
@@ -114,7 +116,7 @@ const LoginForm = (props) => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" block>
+          <Button type="primary" htmlType="submit" block >
             Login
           </Button>
           <p className="button-text">

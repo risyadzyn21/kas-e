@@ -91,13 +91,14 @@ function GetTransactionReducer(state = initialState, action) {
     case 'addincome/get-success':
       return {
         ...state,
-        transactions: action.payload,
+        transactions: [...state.transactions, action.payload.transactions],
         isLoading: false,
         error: ''
       }
     case 'addincome/get-failed':
       return {
         ...state,
+        transactions: initialState.transactions,
         isLoading: false,
         error: action.payload.error
       }

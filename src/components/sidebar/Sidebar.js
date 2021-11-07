@@ -16,6 +16,11 @@ const Sidebar = () => {
   const { SubMenu } = Menu;
   const dispatch = useDispatch()
 
+  function refreshPage() {
+    localStorage.clear()
+    window.location.reload(false);
+  }
+
   // const onChange = (e) => {
   //   console.log("radio checked", e.target.value);
   //   setValue(e.target.value);
@@ -30,7 +35,7 @@ const Sidebar = () => {
         </Link>
       </Menu.Item>
       <Menu.Item key="1">
-        <Link to='/' onClick={() => localStorage.clear()} className='logout-btn-side'>
+        <Link to='/' onClick={refreshPage} className='logout-btn-side'>
           {/* <img src={LogoutBtn} className='icon-logout' /> */}
           <BiIcons.BiLogOut className='icon-logout' />
           Logout

@@ -77,36 +77,32 @@ const MonthlyChart = () => {
 
       <div className='chart-container'>
         <div className='title-balance' >Balance</div>
-        {safes.map((balance) => {
-          return (
-            <div className='title-value-wrapper'>
-              <div className='title-value opening'>
-                Opening Balance
-                <div className='chart-report-value'>
-                  <NumberFormat
-                    value={balance.openingBalance}
-                    displayType="text"
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    prefix="Rp"
-                  />
-                </div>
-              </div >
-              <div className='title-value ending'>
-                Ending Balance
-                <div className='chart-report-value'>
-                  <NumberFormat
-                    value={balance.amount}
-                    displayType="text"
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    prefix="Rp"
-                  />
-                </div>
-              </div>
+        <div className='title-value-wrapper'>
+          <div className='title-value opening'>
+            Opening Balance
+            <div className='chart-report-value'>
+              <NumberFormat
+                value={reportsIncome[0]?.Safe?.openingBalance}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                prefix="Rp"
+              />
             </div>
-          )
-        })}
+          </div >
+          <div className='title-value ending'>
+            Ending Balance
+            <div className='chart-report-value'>
+              <NumberFormat
+                value={reportsIncome[0]?.amount}
+                displayType="text"
+                thousandSeparator="."
+                decimalSeparator=","
+                prefix="Rp"
+              />
+            </div>
+          </div>
+        </div>
 
         <div className='title-value-wrapper'>
           <div className='title-netincome'>Net Income

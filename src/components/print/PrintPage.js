@@ -33,17 +33,18 @@ const PrintPage = forwardRef((props, ref) => {
   }, 0)
 
   const totalIncomeEnd = reportsIncome.map((income) => {
-    return income.Safe.openingBalance + income.expense
+    return income.Safe.openingBalance + totalInc
   })
+
 
   const totalEndingBalance = parseInt(totalIncomeEnd) - totalExp
 
   useEffect(() => {
     if (tabVariant === 'day') {
-      dispatch(getReportDailyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
-      dispatch(getReportDailyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
-      // dispatch(getReportDailyExpenseAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
-      // dispatch(getReportDailyIncomeAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
+      dispatch(getReportDailyExpenseAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+      dispatch(getReportDailyIncomeAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
     } else {
       dispatch(getReportMonthlyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
       dispatch(getReportMonthlyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
@@ -74,8 +75,10 @@ const PrintPage = forwardRef((props, ref) => {
                 Time Range
               </div>
               <div className='time-range-content'>
-                <div>Daily</div>
-                <div>{format(new Date(), 'dd LLLL yyyy')}</div>
+                {tabVariant === 'day' ? (<div>Daily</div>) : (<div>Monthly</div>)}
+                {tabVariant === 'day' ? (<div>{format(new Date(), 'dd LLLL yyyy')}</div>)
+                  : (<div>{format(new Date(), 'LLLL yyyy')}</div>)}
+
               </div>
               <div><hr /></div>
             </div>
@@ -84,39 +87,35 @@ const PrintPage = forwardRef((props, ref) => {
             <div className='income-wrapper'>
               <div className='section-title'>
                 <div>Income</div>
-                {reportsIncome.map((income) => {
-                  return (
-                    <NumberFormat
-                      value={income.expense}
-                      displayType="text"
-                      thousandSeparator="."
-                      decimalSeparator=","
-                      prefix="Rp"
-                    />
-                  )
-                })}
+
+                <NumberFormat
+                  value={reportsIncome.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
+                  displayType="text"
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  prefix="Rp"
+                />
+
               </div>
               <div><hr /></div>
               <div className='income-content'>
                 <div className='income-title-value'>
                   <img src={SafeIcon} alt='Safe Name' />
-                  {reportsIncome?.map((safe) => {
-                    return (
-                      <div>To {safe.Safe.safeName}</div>
-                    )
-                  })}
+                  <div>To {reportsIncome[0]?.Safe?.safeName}</div>
                 </div>
-                {reportsIncome.map((income) => {
-                  return (
-                    <NumberFormat
-                      value={income.expense}
-                      displayType="text"
-                      thousandSeparator="."
-                      decimalSeparator=","
-                      prefix="Rp"
-                    />
-                  )
-                })}
+
+                <NumberFormat
+                  value={reportsIncome.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
+                  displayType="text"
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  prefix="Rp"
+                />
+
               </div>
             </div>
 
@@ -238,17 +237,14 @@ const PrintPage = forwardRef((props, ref) => {
                 <div className='ending-balance-title-value'>
                   Opening Balance
                 </div>
-                {reportsIncome?.map((safe) => {
-                  return (
-                    <NumberFormat
-                      value={safe.Safe.openingBalance}
-                      displayType="text"
-                      thousandSeparator="."
-                      decimalSeparator=","
-                      prefix="Rp"
-                    />
-                  )
-                })}
+
+                <NumberFormat
+                  value={reportsIncome[0]?.Safe?.openingBalance}
+                  displayType="text"
+                  thousandSeparator="."
+                  decimalSeparator=","
+                  prefix="Rp"
+                />
               </div>
               <div className='ending-balance-content-income'>
                 <div className='ending-balance-title-value'>

@@ -43,18 +43,9 @@ function HeaderTimeDaily() {
       default:
         break;
     }
-    // dispatch(filterTransactions(key))
-    // dispatch(filterReportsDailyExpense(key))
-    console.log(key);
   }
 
-  const menu = (
-    <Menu className='notification-dropdown-content'>
-      hahahahaha
-      <Menu.Divider />
-    </Menu>
-  );
-  console.log(variant)
+
   return (
     <>
       <div className='header-wrapper'>
@@ -62,11 +53,6 @@ function HeaderTimeDaily() {
           className="site-page-header"
           title={<img src={KasESmall} alt='Kas-E' />}
           subTitle={<img src={KasELetterSmall} alt='Kas-E' />}>
-          <Dropdown overlay={menu} trigger={['click']} className='notification-dropdown' placement="bottomRight" >
-            <a className="ant-dropdown-notification" onClick={e => e.preventDefault()}>
-              <IoIcons.IoMdNotifications />
-            </a>
-          </Dropdown>
         </PageHeader>
 
 

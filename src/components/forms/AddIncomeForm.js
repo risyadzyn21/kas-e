@@ -55,7 +55,7 @@ function AddIncomeForm({ handleOk }) {
           ]}>
           <div className='input-wrapper' >
             <img src={PiggyBank} alt='Expense' />
-            <InputNumber size='large' prefix='Rp' type='number' min='0' />
+            <Input size='large' prefix='Rp' type='number' min='0' />
           </div>
         </Form.Item>
 

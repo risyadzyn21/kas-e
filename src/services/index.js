@@ -228,7 +228,7 @@ export const getProfile = (token) => {
 export const addIncome = (safe_id, expense) => {
   const data = {
     safe_id,
-    expense,
+    expense: parseInt(expense),
   };
 
   return axios({
@@ -238,7 +238,7 @@ export const addIncome = (safe_id, expense) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(data),
+    data,
   });
 };
 
