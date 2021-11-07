@@ -11,12 +11,8 @@ const CreateAcc = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dispatch = useDispatch();
   const createSafes = useSelector((state) => state.SafesReducer);
-  const [safes, setSafes] = useState({
-    safeName: "",
-    amount: "",
-  });
+  const [safes, setSafes] = useState([])
   const token = localStorage.getItem("token");
-
 
 
   const onFinish = (values) => {
@@ -54,9 +50,11 @@ const CreateAcc = ({ navigation }) => {
 
   return (
     <div>
+
       {/* {createSafes.loading ? <Loading /> : ''} */}
+
       <Modal
-        visible={isModalVisible}
+        visible={true}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}

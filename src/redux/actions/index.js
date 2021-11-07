@@ -7,7 +7,7 @@ import {
   getSafe,
   createSafe,
   updateSafe,
-  deleteSafe,
+  deleteSafeId,
   addIncome,
   editCategoryLimit,
   getTransaction,
@@ -19,8 +19,6 @@ import {
   getTransactionMonthly,
   deleteTransaction
 } from "../../services";
-
-import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
 
 export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
 export const GET_TRANSACTIONS_SUCCESS = "GET_TRANSACTIONS_SUCCESS";
@@ -252,10 +250,10 @@ export const createSafeAsync = (safeName, amount) => {
     dispatch({ type: "createSafe/get-start" });
     createSafe(safeName, amount)
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         if (response.data) {
           dispatch(createSafeSuccess(response.data));
         }
@@ -289,10 +287,10 @@ export const updateSafeAsync = (safeName, amount) => {
     dispatch({ type: "updateSafe/get-start" });
     updateSafe(safeName, amount)
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((response) => {
-        console.log(response.data.data)
+        console.log(response.data.data);
         if (response.data.data) {
           dispatch(updateSafeSuccess(response.data.data));
         }
@@ -300,8 +298,9 @@ export const updateSafeAsync = (safeName, amount) => {
       .catch((error) => {
         console.log(error.message);
         dispatch(updateSafeFailed(error.message));
-      })
-  }
+        return error;
+      });
+  };
 };
 
 export const updateSafeSuccess = (updateSafe) => ({
@@ -320,33 +319,33 @@ export const updateSafeFailed = (error) => ({
 
 // delete safe
 
-export const deleteSafeAsync = (id) => {
+export const deleteSafeIdAsync = (id) => {
   return async (dispatch) => {
-    dispatch({ type: "deleteSafe/get-start" });
+    dispatch({ type: "deleteSafeId/get-start" });
     try {
-      const response = await deleteSafe(id);
+      const response = await deleteSafeId(id);
       console.log(response, "start");
       if (response.data) {
-        dispatch(deleteSafeSuccess(response.data));
+        dispatch(deleteSafeIdSuccess(response.data));
       }
       return response;
     } catch (error) {
       console.log(error.message);
-      dispatch(deleteSafeFailed(error.message));
+      dispatch(deleteSafeIdFailed(error.message));
 
       return message.warning(error.response.data.message);
     }
   };
 };
-export const deleteSafeSuccess = (deleteSafe) => ({
-  type: "deleteSafe/get-success",
+export const deleteSafeIdSuccess = (deleteSafeId) => ({
+  type: "deleteSafeId/get-success",
   payload: {
-    deleteSafe,
+    deleteSafeId,
   },
 });
 
-export const deleteSafeFailed = (error) => ({
-  type: "deleteSafe/get-failed",
+export const deleteSafeIdFailed = (error) => ({
+  type: "deleteSafeId/get-failed",
   payload: {
     error,
   },
@@ -384,22 +383,22 @@ export const addIncomeFailed = (error) => ({
 
 // Limit First category
 
-export const limitFirstAsync = (category_id, limit) => {
+export const limitFirstAsync = (params) => {
   return async (dispatch) => {
     dispatch({ type: "limitFirst/get-start" });
     try {
-      const response = await limitFirst(category_id, limit)
-      console.log(response, "start")
+      const response = await limitFirst(params);
+      console.log(response, "start");
       if (response.data) {
         dispatch(limitFirstSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(limitFirstFailed(error.message));
-      return message.warning(error.response.data.message)
+      return error;
     }
-  }
+  };
 };
 
 export const limitFirstSuccess = (limitFirst) => ({
@@ -451,27 +450,27 @@ export const editCategoryLimitFailed = (error) => ({
 
 // Get Transaction
 export const getTransactions = () => ({
-  type: GET_TRANSACTIONS
+  type: GET_TRANSACTIONS,
 });
 
 export const getTransactionsSuccess = (transactions) => {
   return {
     type: GET_TRANSACTIONS_SUCCESS,
-    payload: transactions
+    payload: transactions,
   };
 };
 
 export const getTransasctionsFailure = (error) => {
   return {
     type: GET_TRANSACTIONS_FAILURE,
-    payload: error
+    payload: error,
   };
 };
 
 export const filterTransactions = (filter) => {
   return {
     type: TRANSACTIONS_FILTER_BY,
-    payload: filter
+    payload: filter,
   };
 };
 

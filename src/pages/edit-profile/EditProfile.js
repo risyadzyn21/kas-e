@@ -1,20 +1,17 @@
 import "./EditProfile.scss";
 import { useState } from "react";
-import { Button, Card, Layout, PageHeader, Form } from "antd";
+import { Button, Card, Layout, PageHeader, Form, Modal, Upload } from "antd";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import arrowLeft from "../../assets/icons/arrow-left.png";
 import AvatarIcon from "../../components/avatar/AvatarIcon";
 import EditProfileForm from "../../components/forms/EditProfileForm";
-import axios from "axios";
-import { useSelector } from "react-redux";
 import Loading from "../../components/loading/Loading";
-import {
-  getProfileFailed,
-  getProfileSuccess,
-} from "../../redux/actions/profileAction";
-import { useDispatch } from "react-redux";
+import { getProfileAsync } from "../../redux/actions/profileAction";
 
 function EditProfile() {
   const { Sider, Content } = Layout;
@@ -22,6 +19,11 @@ function EditProfile() {
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const [message, setMessage] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePictureList, setProfilePictureList] = useState([]);
 
   const userData = useSelector(
     (state) => state.profileReducer.profileData.data
@@ -40,6 +42,9 @@ function EditProfile() {
     formData.append("gender", gender);
     formData.append("age", age);
     formData.append("password", password);
+    if (profilePicture !== null) {
+      formData.append("profilePicture", profilePicture.originFileObj);
+    }
 
     setLoading(true);
 
@@ -53,29 +58,16 @@ function EditProfile() {
       data: formData,
     })
       .then((res) => {
-        console.log(res);
-        // window.location.reload();
-        axios({
-          method: "GET",
-          url: "http://kas-e.herokuapp.com/api/v1/profile",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            console.log(response.data);
-            dispatch(getProfileSuccess(response.data));
-          })
-          .catch((error) => {
-            console.log(error);
-            dispatch(getProfileFailed(error));
-          });
+        setMessage(res.data.message);
+        dispatch(getProfileAsync(token));
+        setProfilePictureList([]);
         setLoading(false);
+        setIsModalVisible(true);
       })
       .catch((error) => {
-        console.log(error);
+        setMessage(error.message);
         setLoading(false);
+        setIsModalVisible(true);
       });
   };
 
@@ -83,9 +75,55 @@ function EditProfile() {
     console.log("Failed:", errorInfo);
   };
 
+  const onChange = (info) => {
+    switch (info.file.status) {
+      case "uploading":
+        setProfilePictureList([info.file]);
+        break;
+      case "done":
+        setProfilePicture(info.file);
+        setProfilePictureList([info.file]);
+        break;
+
+      default:
+        // error or removed
+        setProfilePicture(null);
+        setProfilePictureList([]);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
+  };
+
   return (
     <>
-      {loading === true ? <Loading /> : null}
+      {loading === true ? <Loading /> : userData ? null : <Loading />}
+      <Modal
+        visible={isModalVisible}
+        onCancel={handleCancel}
+        footer={null}
+        closable={false}
+      >
+        <div className="modal-edit">
+          <h2>{message}</h2>
+          <Button
+            type="primary"
+            onClick={(e) => {
+              e.preventDefault();
+              handleCancel();
+            }}
+          >
+            Ok
+          </Button>
+        </div>
+      </Modal>
       <Layout>
         <Sider theme="light" width={326} className="sidebar">
           <Sidebar />
@@ -104,7 +142,22 @@ function EditProfile() {
           <Content>
             <div className="container">
               <div className="main-edit">
-                <AvatarIcon name={userData ? userData.fullName : null} />
+                <Upload
+                  fileList={profilePictureList}
+                  customRequest={dummyRequest}
+                  onChange={onChange}
+                >
+                  {userData?.profilePicture ? (
+                    <img
+                      src={userData.profilePicture}
+                      alt="Avatar"
+                      className="avatar"
+                    />
+                  ) : (
+                    <AvatarIcon name={userData ? userData.fullName : null} />
+                  )}
+                  <Button>Change Profile Picture</Button>
+                </Upload>
                 <Card>
                   <EditProfileForm
                     form={form}

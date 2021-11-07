@@ -7,6 +7,7 @@ import UpdateSafeReducer from "./UpdateSafeReducer";
 import DeleteSafesReducer from "./DeleteSafesReducer";
 import SafesReducer from "./SafesReducer";
 import GetTransactionReducer from './GetTransactionReducer'
+import LimitFirstReducer from "./LimitFirstReducer";
 import profileReducer from "./profileReducer";
 import GetSafeReducer from './GetSafeReducer'
 import GetCategoryReducer from "./GetCategoryReducer";
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   DeleteSafesReducer,
   SafesReducer,
   GetTransactionReducer,
+  LimitFirstReducer,
   profileReducer,
   GetSafeReducer,
   GetCategoryReducer,

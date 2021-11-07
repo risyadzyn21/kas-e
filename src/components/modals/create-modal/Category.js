@@ -43,7 +43,7 @@ const Category = () => {
       });
   }, []);
 
-const original = [{
+const item = [{
   "category_id": 1,
   "limit": 500000
 },
@@ -113,6 +113,11 @@ const original = [{
                   snack or hangout with friends and shop
                 </p>
               </div>
+              {/* {categories?.map((category) = > {
+                return (
+                  <div key={category.id}className="category-limit-first">
+                )
+              })} */}
               <Form.Item
                 name="1"
                 rules={[
@@ -238,6 +243,7 @@ const original = [{
                   min="0"
                 />
               </Form.Item>
+              {/* </div> */}
             </div>
             <div className="category-modal-btn">
               <Button htmlType="submit" block size="large" onClick={closeModal}>
