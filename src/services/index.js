@@ -76,14 +76,14 @@ export const getSafe = async (token) => {
 };
 
 
-export const createSafe = ( safeName, amount ) => {
+export const createSafe = (safeName, amount) => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe/create`
   const data = {
     safeName,
     amount,
   };
   try {
-   
+
     const response = fetch(url, {
       method: "POST",
       headers: {
@@ -92,7 +92,7 @@ export const createSafe = ( safeName, amount ) => {
       },
       body: JSON.stringify(data),
     });
-   
+
     return response;
   } catch (error) {
     throw error;
@@ -134,11 +134,33 @@ export const deleteSafeId = (id) => {
     data: JSON.stringify(data),
   });
 };
-    
+
 export const getTransaction = () => {
   return axios({
     method: "GET",
     url: "https://kas-e.herokuapp.com/api/v1/transaction",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const getTransactionDaily = (date) => {
+  return axios({
+    method: "GET",
+    url: `https://kas-e.herokuapp.com/api/v1/transaction/daily?date=${date}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const getTransactionMonthly = (date) => {
+  return axios({
+    method: "GET",
+    url: `https://kas-e.herokuapp.com/api/v1/transaction/monthly?date=${date}`,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -169,6 +191,17 @@ export const addTransaction = (
     data: JSON.stringify(data),
   });
 };
+
+export const deleteTransaction = (id_transaction) => {
+  return axios({
+    method: 'DELETE',
+    url: `https://kas-e.herokuapp.com/api/v1/transaction/${id_transaction}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  })
+}
 
 export const getCategory = () => {
   return axios({
@@ -209,27 +242,17 @@ export const addIncome = (safe_id, expense) => {
   });
 };
 
-export const getReportDaily = () => {
-  return axios({
-    method: "GET",
-    url: "https://kas-e.herokuapp.com/api/v1/report/daily",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-};
+// export const getReportDaily = () => {
+//   return axios({
+//     method: "GET",
+//     url: "https://kas-e.herokuapp.com/api/v1/report/daily",
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//       "Content-Type": "application/json",
+//     },
+//   });
+// };
 
-export const getReportMonthly = () => {
-  return axios({
-    method: "GET",
-    url: "https://kas-e.herokuapp.com/api/v1/report/monthly",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-};
 
 export const editCategoryLimit = (category_id, limit) => {
   const data = {
@@ -262,5 +285,27 @@ export const limitFirst = (params) => {
       "Content-Type": "application/json",
     },
     data: JSON.stringify(params),
+  });
+};
+
+export const getReportDaily = (date) => {
+  return axios({
+    method: "GET",
+    url: `https://kas-e.herokuapp.com/api/v1/report/daily?date=${date}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const getReportMonthly = (date) => {
+  return axios({
+    method: "GET",
+    url: `https://kas-e.herokuapp.com/api/v1/report/monthly?date=${date}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
   });
 };

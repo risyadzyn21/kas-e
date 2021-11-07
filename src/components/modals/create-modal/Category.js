@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Input, Button, Checkbox } from "antd";
-import { getCategory, categoryLimit } from "../../../services/index";
+import {  getCategory, getSafe } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
 import Fun from "../../../assets/icons/FunAndRelax.png";
@@ -16,6 +16,7 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
   const limitsFirst = useSelector(state => state.LimitFirstReducer)
+  const [safes, setSafes] = useState([])
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -27,21 +28,32 @@ const Category = () => {
   const closeModal = () => {
     setIsModalVisible(false);
   };
+  useEffect(() => {
+    getSafe(token)
+      .then((res) => {
+        setSafes(res?.data)
+        if (res.data && res.data.length) {
+          setIsModalVisible(false);
+        } else {
+          setIsModalVisible(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
   useEffect(() => {
     getCategory()
       .then((res) => {
-        setCategories(res.data);
-        if (res.data && res.data.length) {
-          setIsModalVisible(false);
-        } else {
-        setIsModalVisible(true);
-        }
+        setCategories(res?.data?.data)
+
       })
       .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+        console.log(error)
+      })
+  }, [])
+  
 
 const item = [{
   "category_id": 1,
@@ -62,8 +74,8 @@ const item = [{
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    Object.keys(values).map(item => ({ category_id: item, limit: values[item]}))
-    dispatch(limitFirstAsync(values.category_id, values.limit))
+   const params = Object.keys(values).map(item => ({ category_id: item, limit: values[item]}))
+    dispatch(limitFirstAsync(params))
   };
 
   const onFinishFailed = (errorInfo) => {

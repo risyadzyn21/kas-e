@@ -8,7 +8,7 @@ import ReportPage from "../pages/report-page";
 import MyProfile from "../pages/profile/MyProfile";
 import EditProfile from "../pages/edit-profile/EditProfile";
 import EditCategoryLimit from "../pages/edit-category-limit";
-import SeeAllSafe from "../pages/see all safe/SeeAllSafe";
+import SeeAllSafe from "../pages/see-all-safe/SeeAllSafe";
 import ReportDetail from "../pages/report-detail/ReportDetail";
 import ProtectedRoute from './ProtectedRoute'
 

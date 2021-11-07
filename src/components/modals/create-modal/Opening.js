@@ -37,12 +37,11 @@ const Opening = ({ navigation }) => {
         console.log(error)
       })
   }, [])
-  
 
   return (
     <div>
       <Modal
-        visible={true}
+        visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}

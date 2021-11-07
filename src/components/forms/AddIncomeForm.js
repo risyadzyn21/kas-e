@@ -1,35 +1,34 @@
 import { useState, useEffect } from 'react';
-import { Form, Input, Button, Select } from 'antd'
+import { Form, Input, Button, Select, InputNumber } from 'antd'
 import { useDispatch, useSelector } from "react-redux";
 import Safe from '../../assets/icons/brangkas.png'
 import PiggyBank from '../../assets/icons/piggy-bank.png'
-import { getSafe } from '../../services';
 import TakenFrom from '../../assets/icons/brangkas.svg'
 import SelectIcon from '../../assets/icons/select.svg'
-import { addIncomeAsync } from '../../redux/actions';
+import { addIncomeAsync2, getSafesAsc2 } from '../../redux/actions';
 import './AddTransactionForm.scss'
 import Loading from '../loading/Loading';
+import { isThisMonth } from 'date-fns'
 
-function AddIncomeForm() {
-  const [safes, setSafes] = useState([])
+
+function AddIncomeForm({ handleOk }) {
   const token = localStorage.getItem('token')
   const dispatch = useDispatch()
-  const income = useSelector(state => state.incomeReducer)
+  const { isLoading } = useSelector(state => state.GetTransactionReducer)
+
+  const safes = useSelector(
+    (state) => state.GetSafeReducer.safes.map(safe => ({ ...safe, createdAt: new Date(safe.createdAt) }))
+      .filter(safe => isThisMonth(safe.createdAt))
+  );
 
   useEffect(() => {
-    getSafe(token)
-      .then((res) => {
-        setSafes(res?.data)
-
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    dispatch(getSafesAsc2(token))
   }, [])
 
   const onFinish = (values) => {
     console.log('Success:', values);
-    dispatch(addIncomeAsync(values.safe_id, values.expense))
+    dispatch(addIncomeAsync2(values.safe_id, values.expense))
+      .then(res => handleOk())
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -38,7 +37,7 @@ function AddIncomeForm() {
 
   return (
     <div>
-      {income.loading ? <Loading /> : ''}
+      {isLoading ? <Loading /> : ''}
       <Form
         name='addIncome'
         layout='vertical'
@@ -56,7 +55,7 @@ function AddIncomeForm() {
           ]}>
           <div className='input-wrapper' >
             <img src={PiggyBank} alt='Expense' />
-            <Input size='large' prefix='Rp' type='number' min='0' />
+            <InputNumber size='large' prefix='Rp' type='number' min='0' />
           </div>
         </Form.Item>
 

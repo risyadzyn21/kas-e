@@ -114,3 +114,10 @@
     justify-content: space-between;
   }
 }
+
+@media print {
+  @page {
+    size: auto;
+    margin: 20mm 0 10mm 0;
+  }
+}

@@ -14,12 +14,12 @@ function ProfileCard({ userData }) {
       )}
       <div className="profile">
         <Link to="/see-all-safe">
-          <Button className="all-safe-btn" block>
+          {/* <Button className="all-safe-btn" block>
             <h4>See all safe</h4>
             <span>
               <img src={Right} alt="Pointer" />
             </span>
-          </Button>
+          </Button> */}
         </Link>
         <Card className="card-container">
           <Card className="profile-content">
