@@ -17,18 +17,11 @@ function SafeCard() {
   const safesReducer = useSelector((state) => state.SafesReducer);
 
   useEffect(() => {
-    // setIsLoading(true)
     getSafe(token).then((response) => {
       setSafes(response?.data);
-      console.log(response, "test");
-      // setIsLoading(false)
     });
-    // if (setSafes === null) {
-    //   safesReducer(true);
-    // }
   }, [safesReducer.createSafe]);
 
-  // console.log(safesReducer, "bisayuk")
   function renderSafeCard(data) {
     return (
     <div className="safe-card">

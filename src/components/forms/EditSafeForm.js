@@ -10,11 +10,9 @@ import Loading from '../loading/Loading';
 
 function EditSafeForm() {
   const [currentSafe, setCurrentSafe] = useState({})
-  const editSafe = useSelector(state => state.UpdateSafeReducer)
-  const deleteSafes = useSelector(state => state.DeleteSafesReducer)
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-  
+  const safesReducer = useSelector((state) => state.SafesReducer);
 
   useEffect(() => {
     getSafe(token)
@@ -25,7 +23,7 @@ function EditSafeForm() {
       .catch((error) => {
         console.log(error)
       })
-  }, [])
+  }, [safesReducer.updateSafe])
 
   console.log(currentSafe)
 
@@ -45,8 +43,8 @@ function EditSafeForm() {
 
   return (
     <>
-      {deleteSafes.loading ? <Loading /> : ''}
-      {editSafe.loading ? <Loading /> : ''}
+      {safesReducer.loading ? <Loading /> : ''}
+      {/* {safesReducer.loading ? <Loading /> : ''}  */}
       
       <Form
         onFinish={onFinish}
@@ -81,7 +79,6 @@ function EditSafeForm() {
             <Form.Item
               name="safeName"
               label="Safe Name"
-              // initialValue={currentSafe.safeName}
               rules={[
                 {
                   required: true,
@@ -95,7 +92,6 @@ function EditSafeForm() {
             <Form.Item
               name="amount"
               label="Amount"
-              // initialValue={currentSafe.amount}
               rules={[
                 {
                   required: true,

@@ -54,7 +54,7 @@ const CreateAcc = ({ navigation }) => {
       {/* {createSafes.loading ? <Loading /> : ''} */}
 
       <Modal
-        visible={true}
+        visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}

@@ -246,7 +246,7 @@ export const updateSafeAsync = (safeName, amount) => {
       return response.json()
      })
      .then((response) => {
-       console.log(response.data.data)
+      //  console.log(response.data.data)
       if (response.data.data) {
           dispatch(updateSafeSuccess(response.data.data));
         }
