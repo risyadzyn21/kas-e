@@ -6,7 +6,6 @@ function HeaderSafePage() {
     <>
       <PageHeader
         className="header-single"
-        onBack={() => null}
         title="Edit Safe"
       />
     </>

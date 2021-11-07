@@ -1,30 +1,30 @@
 // import * as actions from '../actions'
-// import { isToday, isYesterday, isThisMonth } from 'date-fns';
 // const initialState = {
 //   tabVariant: 'day',
-//   reportsDailyExpense: [],
+//   reportsDailyIncome: [],
 //   filtered: [],
 //   isLoading: false,
 //   hasErrors: false
 // };
 
 
-// function GetReportDailyExpenseReducer(state = initialState, action) {
+// function getReportDailyIncomeReducer(state = initialState, action) {
 //   switch (action.type) {
-//     case actions.GET_REPORT_DAILY_EXPENSE:
+//     case actions.GET_REPORT_DAILY_INCOME:
 //       return {
 //         ...state,
 //         isLoading: true
 //       };
-//     case actions.GET_REPORT_DAILY_EXPENSE_SUCCESS:
+//     case actions.GET_REPORT_DAILY_INCOME_SUCCESS:
+//       console.log(action.payload)
 //       return {
 //         ...state,
 //         filtered: action.payload,
-//         reportsDailyExpense: action.payload,
+//         reportsDailyIncome: action.payload,
 //         isLoading: false
 
 //       };
-//     case actions.GET_REPORT_DAILY_EXPENSE_FAILURE:
+//     case actions.GET_REPORT_DAILY_INCOME_FAILURE:
 //       return {
 //         ...state,
 //         isLoading: false,
@@ -41,4 +41,4 @@
 //   }
 // }
 
-// export default GetReportDailyExpenseReducer
+// export default getReportDailyIncomeReducer

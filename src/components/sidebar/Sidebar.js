@@ -6,11 +6,10 @@ import { useDispatch } from 'react-redux'
 import UserAvatar from '../avatar/UserAvatar.js'
 import AddTransactionModal from '../modals/AddTransactionModal';
 import AddIncomeModal from '../modals/AddIncomeModal';
-import LogoutBtn from '../../assets/icons/logout-btn.png'
 import * as BiIcons from 'react-icons/bi'
 import * as FiIcons from 'react-icons/fi'
 import * as CgIcons from 'react-icons/cg'
-import { updateTabVariant } from '../../redux/actions'
+// import { updateTabVariant } from '../../redux/actions'
 
 const Sidebar = () => {
   const [value, setValue] = useState(1);

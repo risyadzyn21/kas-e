@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import "./Print.scss";
 import SafeIcon from "../../assets/icons/brangkas.svg";
 import MinusLine from '../../assets/indicators/short-line.svg'
@@ -6,106 +7,65 @@ import { getReportMonthly, getSafe, getTransaction } from '../../services';
 import NumberFormat from "react-number-format";
 import * as AiIcons from 'react-icons/ai'
 import Loading from '../loading/Loading'
+import {
+  getReportDailyExpenseAsync,
+  getReportDailyIncomeAsync,
+  getReportMonthlyExpenseAsync,
+  getReportMonthlyIncomeAsync,
+  getSafesAsc2
+} from "../../redux/actions";
+import { format, isThisMonth, subDays } from "date-fns";
 
 const ReportDetailMonth = forwardRef((props, ref) => {
-  const [transactions, setTransactions] = useState([])
-  const [incomes, setIncomes] = useState([])
-  const [expenseNet, setExpenseNet] = useState([])
-  const [incomeNet, setIncomeNet] = useState([])
-  const [totalIncome, setTotalIncome] = useState(0)
-  const [totalExpense, setTotalExpense] = useState(0)
-  const [safes, setSafes] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
   const token = localStorage.getItem('token')
+  const dispatch = useDispatch()
+
+  const { tabVariant, reportsExpense, reportsIncome, isLoading } = useSelector(
+    (state) => state.GetReportReducer
+  );
+
+  const totalInc = reportsIncome.reduce((prev, curr) => {
+    return prev + (curr.expense)
+  }, 0)
+
+  const totalExp = reportsExpense.reduce((prev, curr) => {
+    return prev + (curr.expense)
+  }, 0)
+
+  const totalIncomeEnd = reportsIncome.map((income) => {
+    return income.Safe.openingBalance + income.expense
+  })
+
+  const totalEndingBalance = parseInt(totalIncomeEnd) - totalExp
 
   useEffect(() => {
-    setIsLoading(true)
-    getReportMonthly()
-      .then((res) => {
-        setIncomes(res?.data?.addIncome)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    if (tabVariant === 'day') {
+      dispatch(getReportDailyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
+      dispatch(getReportDailyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyExpenseAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyIncomeAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+    } else {
+      dispatch(getReportMonthlyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
+      dispatch(getReportMonthlyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
+    }
+  }, [tabVariant])
 
-  useEffect(() => {
-    setIsLoading(true)
-    getReportMonthly()
-      .then((res) => {
-        setTransactions(res?.data?.expense)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+
+  // const safes = useSelector(
+  //   (state) => state.GetSafeReducer.safes.map(safe => ({ ...safe, createdAt: new Date(safe.createdAt) }))
+  //     .filter(safe => isThisMonth(safe.createdAt))
+  // );
 
 
   useEffect(() => {
-    setIsLoading(true)
-    getReportMonthly()
-      .then((res) => {
-        setIncomeNet(res?.data?.addIncome)
-        setIsLoading(false)
-        const total = res?.data?.addIncome?.reduce((prev, curr) => {
-          return prev + parseInt(curr.totalAddIncome)
-        }, 0)
-        setTotalIncome(total)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    dispatch(getSafesAsc2(token))
   }, [])
 
-  useEffect(() => {
-    setIsLoading(true)
-    getReportMonthly()
-      .then((res) => {
-        setExpenseNet(res?.data?.expense)
-        setIsLoading(false)
-        const total = res?.data?.expense?.reduce((prev, curr) => {
-          return prev + parseInt(curr.totalExpense)
-        }, 0)
-        setTotalExpense(total)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
-
-  useEffect(() => {
-    setIsLoading(true)
-    getSafe(token)
-      .then((res) => {
-        setSafes(res?.data)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
-
-  // useEffect(() => {
-  //   setIsLoading(true)
-  //   getTransaction()
-  //     .then((res) => {
-  //       setTransactions(res?.data?.data?.transactions)
-  //       setIsLoading(false)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //       setIsLoading(false)
-  //     })
-  // }, [])
-
-  const netIncome = totalIncome - totalExpense
-
-
+  const netIncome = totalInc - totalExp
 
   return (
     <>
       {isLoading ? (<Loading />) : ''}
-
       <div className='print-report-detail' ref={ref}>
         <div className='print-card-container'>
           <div className='print-card-content'>
@@ -114,8 +74,8 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                 Time Range
               </div>
               <div className='time-range-content'>
-                <div>Monthly</div>
-                <div>November 2021</div>
+                <div>Daily</div>
+                <div>{format(new Date(), 'dd LLLL yyyy')}</div>
               </div>
               <div><hr /></div>
             </div>
@@ -124,42 +84,39 @@ const ReportDetailMonth = forwardRef((props, ref) => {
             <div className='income-wrapper'>
               <div className='section-title'>
                 <div>Income</div>
-                {/* {incomes.map((income) => {
-                  return ( */}
-                <NumberFormat
-                  // value={income.totalAddIncome}
-                  value={2750000}
-                  displayType="text"
-                  thousandSeparator="."
-                  decimalSeparator=","
-                  prefix="Rp"
-                />
-                {/* )
-                })} */}
+                {reportsIncome.map((income) => {
+                  return (
+                    <NumberFormat
+                      value={income.expense}
+                      displayType="text"
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      prefix="Rp"
+                    />
+                  )
+                })}
               </div>
               <div><hr /></div>
               <div className='income-content'>
                 <div className='income-title-value'>
                   <img src={SafeIcon} alt='Safe Name' />
-                  {/* {safes?.map((safe) => { */}
-                  {/* return ( */}
-                  {/* // <div>To {safe.safeName}</div> */}
-                  <div>To hedon</div>
-                  {/* ) */}
-                  {/* })} */}
+                  {reportsIncome?.map((safe) => {
+                    return (
+                      <div>To {safe.Safe.safeName}</div>
+                    )
+                  })}
                 </div>
-                {/* {incomes.map((income) => {
-                  return ( */}
-                <NumberFormat
-                  // value={income.expense}
-                  value={2750000}
-                  displayType="text"
-                  thousandSeparator="."
-                  decimalSeparator=","
-                  prefix="Rp"
-                />
-                {/* )
-                })} */}
+                {reportsIncome.map((income) => {
+                  return (
+                    <NumberFormat
+                      value={income.expense}
+                      displayType="text"
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      prefix="Rp"
+                    />
+                  )
+                })}
               </div>
             </div>
 
@@ -168,10 +125,9 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               <div className='section-title'>
                 <div>Expense</div>
                 <NumberFormat
-                  // value={expenseNet.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalExpense)
-                  // }, 0)}
-                  value={2150000}
+                  value={reportsExpense.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -180,7 +136,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               </div>
               <div><hr /></div>
               <div className='expense-content'>
-                {transactions.map((transaction) => {
+                {reportsExpense.map((transaction) => {
                   return transaction.type === 'expense' ? (
                     <div className='expense-content-wrapper'>
                       <img src={transaction.Categories.image_url} alt='Safe Name' />
@@ -210,8 +166,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               <div className='section-title'>
                 <div>Net Income</div>
                 <NumberFormat
-                  // value={netIncome}
-                  value={600000}
+                  value={netIncome}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -224,10 +179,9 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   Income
                 </div>
                 <NumberFormat
-                  // value={incomeNet.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalAddIncome)
-                  // }, 0)}
-                  value={2750000}
+                  value={reportsIncome.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -239,10 +193,9 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   Expense
                 </div>
                 <NumberFormat
-                  // value={expenseNet.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalExpense)
-                  // }, 0)}
-                  value={2150000}
+                  value={reportsExpense.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -258,8 +211,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               <div className='minus-result'>
                 <div>Net Income</div>
                 <NumberFormat
-                  // value={netIncome}
-                  value={600000}
+                  value={netIncome}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -274,8 +226,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               <div className='section-title'>
                 <div>Ending Balance</div>
                 <NumberFormat
-                  // value={netIncome}
-                  value={10600000}
+                  value={totalEndingBalance}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -287,28 +238,26 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                 <div className='ending-balance-title-value'>
                   Opening Balance
                 </div>
-                {/* {safes?.map((safe) => {
-                  return ( */}
-                <NumberFormat
-                  // value={safe.openingBalance}
-                  value={10000000}
-                  displayType="text"
-                  thousandSeparator="."
-                  decimalSeparator=","
-                  prefix="Rp"
-                />
-                {/* )
-                })} */}
+                {reportsIncome?.map((safe) => {
+                  return (
+                    <NumberFormat
+                      value={safe.Safe.openingBalance}
+                      displayType="text"
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      prefix="Rp"
+                    />
+                  )
+                })}
               </div>
               <div className='ending-balance-content-income'>
                 <div className='ending-balance-title-value'>
                   Income
                 </div>
                 <NumberFormat
-                  // value={incomeNet.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalAddIncome)
-                  // }, 0)}
-                  value={2750000}
+                  value={reportsIncome.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -326,10 +275,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   Total Income
                 </div>
                 <NumberFormat
-                  // value={expenseNet.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalExpense)
-                  // }, 0)}
-                  value={12750000}
+                  value={parseInt(totalIncomeEnd)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -341,10 +287,9 @@ const ReportDetailMonth = forwardRef((props, ref) => {
                   Expense
                 </div>
                 <NumberFormat
-                  // value={expenseNet.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalExpense)
-                  // }, 0)}
-                  value={2150000}
+                  value={reportsExpense.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -360,8 +305,7 @@ const ReportDetailMonth = forwardRef((props, ref) => {
               <div className='minus-result'>
                 <div>Ending Balance</div>
                 <NumberFormat
-                  // value={netIncome}
-                  value={10600000}
+                  value={totalEndingBalance}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","

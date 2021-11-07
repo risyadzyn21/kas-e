@@ -1,5 +1,5 @@
 import userReducer from "./UserReducer";
-import transactionReducer from "./TransactionReducer";
+import transactionReducer from "./GetTransactionReducer";
 import incomeReducer from "./IncomeReducer";
 import editCategoryLimitReducer from "./EditCategoryLimitReducer";
 import { combineReducers } from "redux";
@@ -11,7 +11,9 @@ import profileReducer from "./profileReducer";
 import GetSafeReducer from './GetSafeReducer'
 import GetCategoryReducer from "./GetCategoryReducer";
 import GetReportDailyExpenseReducer from './getReportDailyExpenseReducer'
-import GetReportMonthlyExpenseReducer from './getReportMonthlyExpenseReducer'
+import GetReportMonthlyExpenseReducer from './GetReportReducer'
+import getReportDailyIncomeReducer from "./getReportDailyIncomeReducer";
+import GetReportReducer from './GetReportReducer'
 
 const rootReducer = combineReducers({
   userReducer,
@@ -26,7 +28,9 @@ const rootReducer = combineReducers({
   GetSafeReducer,
   GetCategoryReducer,
   GetReportDailyExpenseReducer,
-  GetReportMonthlyExpenseReducer
+  GetReportMonthlyExpenseReducer,
+  GetReportReducer,
+  getReportDailyIncomeReducer
 });
 
 export default rootReducer;

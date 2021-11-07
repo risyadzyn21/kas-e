@@ -11,10 +11,10 @@ import Loading from '../loading/Loading';
 import { isThisMonth } from 'date-fns'
 
 
-function AddIncomeForm() {
+function AddIncomeForm({ handleOk }) {
   const token = localStorage.getItem('token')
   const dispatch = useDispatch()
-  const income = useSelector(state => state.incomeReducer)
+  const { isLoading } = useSelector(state => state.GetTransactionReducer)
 
   const safes = useSelector(
     (state) => state.GetSafeReducer.safes.map(safe => ({ ...safe, createdAt: new Date(safe.createdAt) }))
@@ -28,6 +28,7 @@ function AddIncomeForm() {
   const onFinish = (values) => {
     console.log('Success:', values);
     dispatch(addIncomeAsync(values.safe_id, values.expense))
+      .then(res => handleOk())
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -36,7 +37,7 @@ function AddIncomeForm() {
 
   return (
     <div>
-      {income.loading ? <Loading /> : ''}
+      {isLoading ? <Loading /> : ''}
       <Form
         name='addIncome'
         layout='vertical'

@@ -26,7 +26,7 @@ const AddTransactionModal = () => {
         </Button>
       </div>
       <Modal title="Add Transactions" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
-        <AddTransactionForm />
+        <AddTransactionForm handleOk={handleOk} />
       </Modal>
     </div>
   )

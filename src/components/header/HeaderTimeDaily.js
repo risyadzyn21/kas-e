@@ -7,8 +7,9 @@ import EmptyPage from '../empty-page/EmptyPage';
 import * as IoIcons from 'react-icons/io'
 import TransactionCard from '../cards/transaction-card/TransactionCard';
 import SafeCard from '../cards/safe-card/SafeCard';
-import { filterTransactions, filterReportsDailyExpense } from '../../redux/actions';
+import { getTransactionsDailyAsync, getTransactionsMonthlyAsync } from '../../redux/actions';
 import GetTransactionReducer from '../../redux/reducers/GetTransactionReducer';
+import { subDays, format, addDays, subMonths, addMonths, endOfMonth } from 'date-fns';
 import TabByDay from './TabByDay';
 import TabByMonth from './TabByMonth';
 
@@ -20,8 +21,30 @@ function HeaderTimeDaily() {
 
 
   function callback(key) {
-    dispatch(filterTransactions(key))
-    dispatch(filterReportsDailyExpense(key))
+    switch (key) {
+      case 'today':
+        dispatch(getTransactionsDailyAsync(format(new Date(), 'yyyy-MM-dd')))
+        break;
+      case 'yesterday':
+        dispatch(getTransactionsDailyAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+        break;
+      case 'tomorrow':
+        dispatch(getTransactionsDailyAsync(format(addDays(new Date(), 1), 'yyyy-MM-dd')))
+        break;
+      case 'thisMonth':
+        dispatch(getTransactionsMonthlyAsync(format(new Date(), 'yyyy-MM-dd')))
+        break;
+      case 'lastMonth':
+        dispatch(getTransactionsMonthlyAsync(format(endOfMonth(subMonths(new Date(), 1)), 'yyyy-MM-dd')))
+        break;
+      case 'nextMonth':
+        dispatch(getTransactionsMonthlyAsync(format(endOfMonth(addMonths(new Date(), 1)), 'yyyy-MM-dd')))
+        break;
+      default:
+        break;
+    }
+    // dispatch(filterTransactions(key))
+    // dispatch(filterReportsDailyExpense(key))
     console.log(key);
   }
 

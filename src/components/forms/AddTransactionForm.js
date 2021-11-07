@@ -11,15 +11,15 @@ import './AddTransactionForm.scss'
 import { getCategory, getSafe } from '../../services';
 import { addTransactionAsync, getCategoriesAsync, getSafeAsync, getSafesAsc2 } from '../../redux/actions';
 import Loading from '../loading/Loading';
-import { isToday, isThisMonth } from 'date-fns';
+import { isThisMonth } from 'date-fns';
 
 
 
-function AddTransactionForm() {
+function AddTransactionForm({ handleOk }) {
   const [categories, setCategories] = useState([])
   // const [safes, setSafes] = useState([])
   const dispatch = useDispatch()
-  const transaction = useSelector(state => state.transactionReducer)
+  const { isLoading } = useSelector(state => state.GetTransactionReducer)
   const token = localStorage.getItem('token')
 
   const safes = useSelector(
@@ -50,20 +50,10 @@ function AddTransactionForm() {
 
 
 
-  // useEffect(() => {
-  //   getSafe(token)
-  //     .then((res) => {
-  //       setSafes(res?.data)
-
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }, [])
-
   const onFinish = (values) => {
     console.log('Success:', values);
     dispatch(addTransactionAsync(values.category_id, values.detailExpense, values.expense, values.safe_id))
+      .then(res => handleOk())
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -73,7 +63,7 @@ function AddTransactionForm() {
   return (
     <>
 
-      {transaction.loading ? <Loading /> : ''}
+      {isLoading ? <Loading /> : ''}
 
       <Form
         name='addTransaction'
@@ -166,7 +156,7 @@ function AddTransactionForm() {
         </Form.Item>
 
         <Form.Item >
-          <Button className='button-submit' htmlType="submit" block size='large'>
+          <Button className='button-submit' htmlType="submit" block size='large' >
             Create
           </Button>
         </Form.Item>

@@ -4,78 +4,64 @@ import { Link } from 'react-router-dom'
 import NumberFormat from "react-number-format";
 import './PieChart.scss'
 import { Pie } from 'react-chartjs-2';
-import { getReportMonthly, getSafe } from '../../services';
-import * as FaIcons from 'react-icons/fa'
 import Loading from '../loading/Loading'
-import { getReportMonthlyExpenseAsync } from '../../redux/actions';
-import { isThisMonth } from 'date-fns';
+import {
+  getReportDailyExpenseAsync,
+  getReportDailyIncomeAsync,
+  getReportMonthlyExpenseAsync,
+  getReportMonthlyIncomeAsync,
+  getSafesAsc2
+} from '../../redux/actions';
+import { format, isThisMonth, subDays } from 'date-fns';
 
 
 const MonthlyChart = () => {
   const dispatch = useDispatch()
-  const [reportsMonthlyExpense, setReportsMonthlyExpense] = useState([])
-  const [reportsMonthlyIncome, setReportsMonthlyIncome] = useState([])
-  const [totalIncome, setTotalIncome] = useState(0)
-  const [totalExpense, setTotalExpense] = useState(0)
-  const [balances, setBalances] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
   const token = localStorage.getItem('token')
 
+  const { tabVariant, reportsExpense, reportsIncome, isLoading } = useSelector(
+    (state) => state.GetReportReducer
+  );
+
+  const totalInc = reportsIncome.reduce((prev, curr) => {
+    return prev + (curr.expense)
+  }, 0)
+
+  const totalExp = reportsExpense.reduce((prev, curr) => {
+    return prev + (curr.expense)
+  }, 0)
 
   useEffect(() => {
-    setIsLoading(true)
-    getReportMonthly()
-      .then((res) => {
-        setReportsMonthlyExpense(res?.data?.expense)
-        setIsLoading(false)
-        const total = res?.data?.expense?.reduce((prev, curr) => {
-          return prev + parseInt(curr.totalExpense)
-        }, 0)
-        setTotalExpense(total)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    if (tabVariant === 'day') {
+      dispatch(getReportDailyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
+      dispatch(getReportDailyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyExpenseAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyIncomeAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+    } else {
+      dispatch(getReportMonthlyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
+      dispatch(getReportMonthlyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
+    }
+  }, [tabVariant])
+
+
+  const safes = useSelector(
+    (state) => state.GetSafeReducer.safes.map(safe => ({ ...safe, createdAt: new Date(safe.createdAt) }))
+      .filter(safe => isThisMonth(safe.createdAt))
+  );
+
 
   useEffect(() => {
-    setIsLoading(true)
-    getReportMonthly()
-      .then((res) => {
-        setReportsMonthlyIncome(res?.data?.addIncome)
-        setIsLoading(false)
-        const total = res?.data?.addIncome?.reduce((prev, curr) => {
-          return prev + parseInt(curr.totalAddIncome)
-        }, 0)
-        setTotalIncome(total)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    dispatch(getSafesAsc2(token))
   }, [])
 
-  useEffect(() => {
-    setIsLoading(true)
-    getSafe(token)
-      .then((res) => {
-        setBalances(res?.data)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
-
-  const netIncome = totalIncome - totalExpense
-
+  const netIncome = totalInc - totalExp
 
   const data = {
     labels: ['Income', 'Expense'],
     datasets: [
       {
         label: '# of Votes',
-        // data: [totalIncome, totalExpense],
-        data: [2750000, 2150000],
+        data: [totalInc, totalExp],
         backgroundColor: [
           '#003F88',
           '#1EAE98',
@@ -91,45 +77,42 @@ const MonthlyChart = () => {
 
       <div className='chart-container'>
         <div className='title-balance' >Balance</div>
-        {/* {balances.map((balance) => { */}
-        {/* return ( */}
-        <div className='title-value-wrapper'>
-          <div className='title-value opening'>
-            Opening Balance
-            <div className='chart-report-value'>
-              <NumberFormat
-                // value={balance.openingBalance}
-                value={10000000}
-                displayType="text"
-                thousandSeparator="."
-                decimalSeparator=","
-                prefix="Rp"
-              />
+        {safes.map((balance) => {
+          return (
+            <div className='title-value-wrapper'>
+              <div className='title-value opening'>
+                Opening Balance
+                <div className='chart-report-value'>
+                  <NumberFormat
+                    value={balance.openingBalance}
+                    displayType="text"
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    prefix="Rp"
+                  />
+                </div>
+              </div >
+              <div className='title-value ending'>
+                Ending Balance
+                <div className='chart-report-value'>
+                  <NumberFormat
+                    value={balance.amount}
+                    displayType="text"
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    prefix="Rp"
+                  />
+                </div>
+              </div>
             </div>
-          </div >
-          <div className='title-value ending'>
-            Ending Balance
-            <div className='chart-report-value'>
-              <NumberFormat
-                // value={balance.amount}
-                value={10600000}
-                displayType="text"
-                thousandSeparator="."
-                decimalSeparator=","
-                prefix="Rp"
-              />
-            </div>
-          </div>
-        </div>
-        {/* ) */}
-        {/* })} */}
+          )
+        })}
 
         <div className='title-value-wrapper'>
           <div className='title-netincome'>Net Income
             <div className='chart-report-value'>
               <NumberFormat
-                // value={netIncome}
-                value={600000}
+                value={netIncome}
                 displayType="text"
                 thousandSeparator="."
                 decimalSeparator=","
@@ -143,10 +126,9 @@ const MonthlyChart = () => {
               Income
               <div className='chart-indicator-value'>
                 <NumberFormat
-                  // value={reportsMonthlyIncome.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalAddIncome)
-                  // }, 0)}
-                  value={2750000}
+                  value={reportsIncome.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","
@@ -160,10 +142,9 @@ const MonthlyChart = () => {
               Expense
               <div className='chart-indicator-value'>
                 <NumberFormat
-                  // value={reportsMonthlyExpense.reduce((prev, curr) => {
-                  //   return prev + parseInt(curr.totalExpense)
-                  // }, 0)}
-                  value={2150000}
+                  value={reportsExpense.reduce((prev, curr) => {
+                    return prev + (curr.expense)
+                  }, 0)}
                   displayType="text"
                   thousandSeparator="."
                   decimalSeparator=","

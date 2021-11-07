@@ -18,6 +18,11 @@ p.desc-label {
     color: $text-white-color;
   }
 
+  &:focus {
+    background: $primary-color;
+    color: $text-white-color;
+  }
+
   &:active {
     color: $text-white-color;
     background: $dark-color;
