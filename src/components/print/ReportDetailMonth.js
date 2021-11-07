@@ -41,10 +41,10 @@ const ReportDetailMonth = forwardRef((props, ref) => {
 
   useEffect(() => {
     if (tabVariant === 'day') {
-      // dispatch(getReportDailyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
-      // dispatch(getReportDailyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
-      dispatch(getReportDailyExpenseAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
-      dispatch(getReportDailyIncomeAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+      dispatch(getReportDailyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
+      dispatch(getReportDailyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyExpenseAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
+      // dispatch(getReportDailyIncomeAsync(format(subDays(new Date(), 1), 'yyyy-MM-dd')))
     } else {
       dispatch(getReportMonthlyExpenseAsync(format(new Date(), 'yyyy-MM-dd')))
       dispatch(getReportMonthlyIncomeAsync(format(new Date(), 'yyyy-MM-dd')))
