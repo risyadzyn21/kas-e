@@ -34,19 +34,19 @@ const CreateAcc = ({ navigation }) => {
   };
 
   useEffect(() => {
-        getSafe(token)
-          .then((res) => {
-            setSafes(res?.data)
-            if (res.data && res.data.length) {
-              setIsModalVisible(false);
-            } else {
-              setIsModalVisible(true);
-            }
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }, [])
+    getSafe(token)
+      .then((res) => {
+        setSafes(res?.data)
+        if (res.data && res.data.length) {
+          setIsModalVisible(false);
+        } else {
+          setIsModalVisible(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
   return (
     <div>
@@ -84,7 +84,7 @@ const CreateAcc = ({ navigation }) => {
                   },
                 ]}
               >
-                <Input placeholder="Safe Name"  className="text-create" />
+                <Input placeholder="Safe Name" className="text-create" />
               </Form.Item>
 
               <Form.Item

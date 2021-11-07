@@ -84,12 +84,12 @@ export const getLoginAsync = (email, password, cb) => {
         })
           .then((response) => {
             console.log(response.data);
-            dispatch(getProfileSuccess(response.data));
+            dispatch(getLoginSuccess(response.data));
             message.success(response.data.message)
           })
           .catch((error) => {
             console.log(error);
-            dispatch(getProfileFailed(error));
+            dispatch(getLoginFailed(error));
           });
       }
       return response;
@@ -182,7 +182,6 @@ export const addTransactionAsync = (
         safe_id
       );
       if (response.data) {
-        // console.log(response.data.data.data, '3x data')
         dispatch(addTransactionSuccess(response.data.data.data));
         return response;
       }
@@ -209,6 +208,46 @@ export const addTransactionFailed = (error) => {
     },
   }
 };
+
+// Add Income
+export const addIncomeAsync2 = (
+  safe_id,
+  expense
+) => {
+  return async (dispatch) => {
+    dispatch({ type: "addincome/get-start" });
+    try {
+      const response = await addIncome(
+        safe_id,
+        expense
+      );
+      if (response.data) {
+        console.log(response, 'yeay')
+        dispatch(addIncomeSuccess(response.data.data.data));
+        return response;
+      }
+
+    } catch (error) {
+      console.log(error);
+      dispatch(addIncomeFailed(error.message));
+      return message.warning(error.response.data.message)
+    }
+  };
+};
+
+export const addIncomeSuccess = (transactions) => ({
+  type: "addincome/get-success",
+  payload: {
+    transactions,
+  },
+});
+
+export const addIncomeFailed = (error) => ({
+  type: "addincome/get-failed",
+  payload: {
+    error,
+  },
+});
 
 // get safe
 
@@ -331,7 +370,6 @@ export const deleteSafeIdAsync = (id) => {
     } catch (error) {
       console.log(error.message);
       dispatch(deleteSafeIdFailed(error.message));
-
       return message.warning(error.response.data.message);
     }
   };
@@ -350,35 +388,7 @@ export const deleteSafeIdFailed = (error) => ({
   },
 });
 
-// Add Income
-export const addIncomeAsync = (safe_id, expense) => {
-  return async (dispatch) => {
-    dispatch({ type: "addIncome/get-start" });
-    try {
-      const response = await addIncome(safe_id, expense);
-      console.log(response, "start");
-      if (response.data) {
-        dispatch(addIncomeSuccess(response.data));
-      }
-      return response;
-    } catch (error) {
-      console.log(error.message);
-      dispatch(addIncomeFailed(error.message));
-      return message.warning(error.response.data.message)
-    }
-  };
-};
-export const addIncomeSuccess = (transactions) => ({
-  type: "addincome/get-success",
-  payload: transactions
-});
 
-export const addIncomeFailed = (error) => ({
-  type: "addincome/get-failed",
-  payload: {
-    error,
-  },
-});
 
 // Limit First category
 
@@ -653,7 +663,6 @@ export const getReportDailyExpenseAsync = (date) => {
       dispatch(getReportsDailyExpenseSuccess(res.data.expense));
     } catch (error) {
       dispatch(getReportsDailyExpenseFailure(error));
-      return message.warning(error.response.data.message)
     }
   };
 };
@@ -687,7 +696,6 @@ export const getReportDailyIncomeAsync = (date) => {
       dispatch(getReportsDailyIncomeSuccess(res.data.addIncome));
     } catch (error) {
       dispatch(getReportsDailyIncomeFailure(error));
-      return message.warning(error.response.data.message)
     }
   };
 };

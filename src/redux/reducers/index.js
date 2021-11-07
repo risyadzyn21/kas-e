@@ -16,8 +16,8 @@ import GetReportReducer from './GetReportReducer'
 
 const rootReducer = combineReducers({
   userReducer,
-  transactionReducer,
-  incomeReducer,
+  // transactionReducer,
+  // incomeReducer,
   editCategoryLimitReducer,
   SafesReducer,
   GetTransactionReducer,

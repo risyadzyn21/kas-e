@@ -37,8 +37,7 @@ const Opening = ({ navigation }) => {
         console.log(error)
       })
   }, [])
-  
-// {isModalVisible}
+
   return (
     <div>
       <Modal

@@ -8,7 +8,7 @@ const initialState = {
 };
 
 
-function TransactionReducer(state = initialState, action) {
+function GetTransactionReducer(state = initialState, action) {
   switch (action.type) {
     case actions.GET_TRANSACTIONS_DAILY:
       return {
@@ -68,26 +68,20 @@ function TransactionReducer(state = initialState, action) {
     case 'addtransaction/get-start':
       return {
         ...state,
-        loading: true
+        isLoading: true
       }
     case 'addtransaction/get-success':
       return {
         ...state,
         transactions: [...state.transactions, action.payload.transaction],
-        loading: false,
+        isLoading: false,
         error: ''
       }
     case 'addtransaction/get-failed':
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         error: action.payload.error
-      }
-
-    case 'UPDATE_TAB_VARIANT':
-      return {
-        ...state,
-        tabVariant: action.payload
       }
     case 'addincome/get-start':
       return {
@@ -97,7 +91,7 @@ function TransactionReducer(state = initialState, action) {
     case 'addincome/get-success':
       return {
         ...state,
-        transactions: action.payload.transactions,
+        transactions: action.payload,
         isLoading: false,
         error: ''
       }
@@ -107,9 +101,15 @@ function TransactionReducer(state = initialState, action) {
         isLoading: false,
         error: action.payload.error
       }
+
+    case 'UPDATE_TAB_VARIANT':
+      return {
+        ...state,
+        tabVariant: action.payload
+      }
     default:
       return state;
   }
 }
 
-export default TransactionReducer
+export default GetTransactionReducer

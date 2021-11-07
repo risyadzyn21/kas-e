@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Form, Input, Button, Select } from 'antd'
+import { Form, Input, Button, Select, InputNumber } from 'antd'
 import { useDispatch, useSelector } from "react-redux";
 import Safe from '../../assets/icons/brangkas.png'
 import PiggyBank from '../../assets/icons/piggy-bank.png'
 import TakenFrom from '../../assets/icons/brangkas.svg'
 import SelectIcon from '../../assets/icons/select.svg'
-import { addIncomeAsync, getSafesAsc2 } from '../../redux/actions';
+import { addIncomeAsync2, getSafesAsc2 } from '../../redux/actions';
 import './AddTransactionForm.scss'
 import Loading from '../loading/Loading';
 import { isThisMonth } from 'date-fns'
@@ -27,7 +27,7 @@ function AddIncomeForm({ handleOk }) {
 
   const onFinish = (values) => {
     console.log('Success:', values);
-    dispatch(addIncomeAsync(values.safe_id, values.expense))
+    dispatch(addIncomeAsync2(values.safe_id, values.expense))
       .then(res => handleOk())
   };
 
@@ -55,7 +55,7 @@ function AddIncomeForm({ handleOk }) {
           ]}>
           <div className='input-wrapper' >
             <img src={PiggyBank} alt='Expense' />
-            <Input size='large' prefix='Rp' type='number' min='0' />
+            <InputNumber size='large' prefix='Rp' type='number' min='0' />
           </div>
         </Form.Item>
 
