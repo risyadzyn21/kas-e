@@ -15,7 +15,6 @@ function HeaderReportDetail() {
     <>
       <PageHeader
         className="header-single"
-        onBack={() => null}
         title="Report Detail">
         <div style={{ display: "none" }}>
           <PrintPage ref={componentRef} />

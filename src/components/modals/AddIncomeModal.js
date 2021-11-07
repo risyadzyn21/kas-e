@@ -26,7 +26,7 @@ const AddIncomeModal = () => {
         </Button>
       </div>
       <Modal title="Add Income" visible={isModalVisible} footer={null} onOk={handleOk} onCancel={handleCancel}>
-        <AddIncomeForm />
+        <AddIncomeForm handleOk={handleOk} />
       </Modal>
     </div>
   )

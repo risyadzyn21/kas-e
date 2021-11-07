@@ -6,7 +6,6 @@ function HeaderCategoryLimit() {
     <>
       <PageHeader
         className="header-single"
-        onBack={() => null}
         title="Edit Category Limit"
       />
     </>

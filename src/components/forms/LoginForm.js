@@ -18,6 +18,10 @@ const LoginForm = (props) => {
   const success = () => {
     message.success('Login Success');
   };
+
+  const error = () => {
+    message.error('Login Failed');
+  };
   console.log(user)
 
   const { setPage } = props;
@@ -37,6 +41,7 @@ const LoginForm = (props) => {
   return (
     <>
       {user.loading ? <Loading /> : ''}
+
       <Form
         // onSubmit={handleSubmit}
         name="login"
