@@ -38,7 +38,6 @@ const Opening = ({ navigation }) => {
       })
   }, [])
 
-
   return (
     <div>
       <Modal

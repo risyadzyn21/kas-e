@@ -325,12 +325,11 @@ export const updateSafeAsync = (safeName, amount) => {
   return (dispatch) => {
     dispatch({ type: "updateSafe/get-start" });
     updateSafe(safeName, amount)
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response.data.data);
-        if (response.data.data) {
+     .then((response) => {
+      return response.json()
+     })
+     .then((response) => {
+      if (response.data.data) {
           dispatch(updateSafeSuccess(response.data.data));
         }
       })
