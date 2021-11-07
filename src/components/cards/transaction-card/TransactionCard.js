@@ -33,7 +33,6 @@ function TransactionCard() {
     }
   }, [tabVariant])
 
-  console.log(transactions)
 
   return (
     <>

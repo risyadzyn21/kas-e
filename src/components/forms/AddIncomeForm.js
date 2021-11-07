@@ -26,7 +26,6 @@ function AddIncomeForm({ handleOk }) {
   }, [])
 
   const onFinish = (values) => {
-    console.log('Success:', values);
     dispatch(addIncomeAsync2(values.safe_id, values.expense))
       .then(res => handleOk())
   };

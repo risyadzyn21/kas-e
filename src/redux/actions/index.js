@@ -69,7 +69,6 @@ export const getLoginAsync = (email, password, cb) => {
     dispatch({ type: "login/get-start" });
     try {
       const response = await login(email, password, cb);
-      console.log(response, "start");
       if (response.data) {
         dispatch(getLoginSuccess(response.data));
         localStorage.setItem("token", response.data.token);
@@ -83,18 +82,15 @@ export const getLoginAsync = (email, password, cb) => {
           },
         })
           .then((response) => {
-            console.log(response.data);
             dispatch(getLoginSuccess(response.data));
             message.success(response.data.message)
           })
           .catch((error) => {
-            console.log(error);
             dispatch(getLoginFailed(error));
           });
       }
       return response;
     } catch (error) {
-      console.log(JSON.stringify(error.response.data));
       dispatch(getLoginFailed(error.message));
       return message.warning(error.response.data.message);
     }
@@ -143,7 +139,6 @@ export const getRegisterAsync = (
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(getRegisterFailed(error.message));
       return message.warning(error.response.data.message);
     }
@@ -187,7 +182,6 @@ export const addTransactionAsync = (
       }
 
     } catch (error) {
-      console.log(error);
       dispatch(addTransactionFailed(error.message));
     }
   };
@@ -200,7 +194,6 @@ export const addTransactionSuccess = (transaction) => ({
   },
 });
 export const addTransactionFailed = (error) => {
-  console.log(error)
   return {
     type: "addtransaction/get-failed",
     payload: {
@@ -222,13 +215,11 @@ export const addIncomeAsync2 = (
         expense
       );
       if (response.data) {
-        console.log(response.data.data.data, 'yeay')
         dispatch(addIncomeSuccess(response.data.data.data));
         return response;
       }
 
     } catch (error) {
-      console.log(JSON.stringify(error));
       dispatch(addIncomeFailed(error.message));
       // return message.warning(error.response.data.message)
     }
@@ -251,27 +242,25 @@ export const addIncomeFailed = (error) => ({
 
 // get safe
 
-export const getSafeAsync = (token) => {
+export const getSafeAsync = () => {
   return async (dispatch) => {
     dispatch({ type: "getSafe/get-start" });
     try {
-      const response = await getSafe(token);
-      console.log(response, "start");
+      const response = await getSafe();
       if (response.data) {
         dispatch(getSafeSuccess(response.data));
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(getSafeFailed(error.message));
     }
   };
 };
 
-export const getSafeSuccess = (getSafe) => ({
+export const getSafeSuccess = (safes) => ({
   type: "getSafe/get-success",
   payload: {
-    getSafe,
+    safes,
   },
 });
 
@@ -292,23 +281,21 @@ export const createSafeAsync = (safeName, amount) => {
         return response.json();
       })
       .then((response) => {
-        console.log(response);
         if (response.data) {
           dispatch(createSafeSuccess(response.data));
         }
       })
       .catch((error) => {
-        console.log(error.message);
         dispatch(createSafeFailed(error.message));
         return message.warning(error.response.data.message)
       })
   }
 };
 
-export const createSafeSuccess = (createSafe) => ({
+export const createSafeSuccess = (activeSafe) => ({
   type: "createSafe/get-success",
   payload: {
-    createSafe,
+    activeSafe,
   },
 });
 
@@ -329,22 +316,21 @@ export const updateSafeAsync = (safeName, amount) => {
         return response.json()
       })
       .then((response) => {
-        if (response.data.data) {
-          dispatch(updateSafeSuccess(response.data.data));
+        if (response.updatedSafe) {
+          dispatch(updateSafeSuccess(response.updatedSafe.data));
         }
       })
       .catch((error) => {
-        console.log(error.message);
         dispatch(updateSafeFailed(error.message));
         return error;
       });
   };
 };
 
-export const updateSafeSuccess = (updateSafe) => ({
+export const updateSafeSuccess = (safe) => ({
   type: "updateSafe/get-success",
   payload: {
-    updateSafe,
+    safe,
   },
 });
 
@@ -362,23 +348,18 @@ export const deleteSafeIdAsync = (id) => {
     dispatch({ type: "deleteSafeId/get-start" });
     try {
       const response = await deleteSafeId(id);
-      console.log(response, "start");
       if (response.data) {
-        dispatch(deleteSafeIdSuccess(response.data));
+        dispatch(deleteSafeIdSuccess());
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(deleteSafeIdFailed(error.message));
       return message.warning(error.response.data.message);
     }
   };
 };
-export const deleteSafeIdSuccess = (deleteSafeId) => ({
+export const deleteSafeIdSuccess = () => ({
   type: "deleteSafeId/get-success",
-  payload: {
-    deleteSafeId,
-  },
 });
 
 export const deleteSafeIdFailed = (error) => ({
@@ -397,13 +378,11 @@ export const limitFirstAsync = (params) => {
     dispatch({ type: "limitFirst/get-start" });
     try {
       const response = await limitFirst(params);
-      console.log(response, "start");
       if (response.data) {
         dispatch(limitFirstSuccess(response.data));
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(limitFirstFailed(error.message));
       return error;
     }
@@ -430,13 +409,11 @@ export const editCategoryLimitAsync = (category_id, limit) => {
     dispatch({ type: "editcategory/get-start" });
     try {
       const response = await editCategoryLimit(category_id, limit);
-      console.log(response, "start");
       if (response.data) {
         dispatch(editCategoryLimitSuccess(response.data));
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(editCategoryLimitFailed(error.message));
       return message.warning(error.response.data.message);
     }
@@ -491,7 +468,6 @@ export const getTransactionAsync = (cb) => {
 
       dispatch(getTransactionsSuccess(res.data.data.transactions));
       cb()
-      console.log(res.data)
     } catch (error) {
       dispatch(getTransasctionsFailure(error));
       return message.warning(error.response.data.message)
@@ -525,7 +501,6 @@ export const getSafesAsc2 = (token) => {
       const res = await getSafe(token);
 
       dispatch(getSafesSuccess2(res.data));
-      console.log(res.data)
     } catch (error) {
       dispatch(getSafesFailure2(error));
       return message.warning(error.response.data.message)
@@ -560,7 +535,6 @@ export const getCategoriesAsync = () => {
       const res = await getCategory();
 
       dispatch(getCategoriesSuccess(res.data.data));
-      console.log(res.data)
     } catch (error) {
       dispatch(getCategoriesFailure(error));
       return message.warning(error.response.data.message)
@@ -595,7 +569,6 @@ export const getReportMonthlyExpenseAsync = (date) => {
       const res = await getReportMonthly(date);
 
       dispatch(getReportsMonthlyExpenseSuccess(res.data.expense || []));
-      console.log(res.data)
     } catch (error) {
       dispatch(getReportsMonthlyExpenseFailure(error));
     }
@@ -692,7 +665,6 @@ export const getReportDailyIncomeAsync = (date) => {
     dispatch(getReportsDailyIncome());
     try {
       const res = await getReportDaily(date);
-      console.log(res.data, 'yahooooo')
       dispatch(getReportsDailyIncomeSuccess(res.data.addIncome || []));
     } catch (error) {
       dispatch(getReportsDailyIncomeFailure(error));
@@ -728,7 +700,6 @@ export const getTransactionsDailyAsync = (date) => {
 
       dispatch(getTransactionsDailySuccess(res.data.data.transactions))
     } catch (error) {
-      console.log(error)
       dispatch(getTransactionsDailyFailure(error))
     }
 

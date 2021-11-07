@@ -1,0 +1,44 @@
+@import "../../assets/abstracts/variables";
+
+.footer-container {
+  background-color: $primary-color;
+  height: 200px;
+  color: $text-white-color;
+
+  .footer-content-wrapper {
+    padding: 40px 40px 10px;
+  }
+
+  .footer-top-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .footer-left-title {
+      display: flex;
+      justify-content: space-between;
+      width: 200px;
+      border-bottom: 1px solid $text-white-color;
+    }
+
+    .footer-left {
+      display: flex;
+      justify-content: space-between;
+      width: 200px;
+      margin-top: 10px;
+    }
+  }
+
+  .footer-bottom-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid $text-white-color;
+
+    .footer-bottom-caption {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Input, Button, Checkbox } from "antd";
-import {  getCategory, getSafe } from "../../../services/index";
+import { getCategory, getSafe } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
 import Fun from "../../../assets/icons/FunAndRelax.png";
@@ -53,28 +53,27 @@ const Category = () => {
         console.log(error)
       })
   }, [])
-  
 
-const item = [{
-  "category_id": 1,
-  "limit": 500000
-},
-{
-  "category_id": 2,
-  "limit": 400000
-},
-{
-  "category_id": 3,
-  "limit": 300000
-},
-{
-  "category_id": 4,
-  "limit": 100000
-}]
+
+  const item = [{
+    "category_id": 1,
+    "limit": 500000
+  },
+  {
+    "category_id": 2,
+    "limit": 400000
+  },
+  {
+    "category_id": 3,
+    "limit": 300000
+  },
+  {
+    "category_id": 4,
+    "limit": 100000
+  }]
 
   const onFinish = (values) => {
-    console.log("Success:", values);
-   const params = Object.keys(values).map(item => ({ category_id: item, limit: values[item]}))
+    const params = Object.keys(values).map(item => ({ category_id: item, limit: values[item] }))
     dispatch(limitFirstAsync(params))
   };
 

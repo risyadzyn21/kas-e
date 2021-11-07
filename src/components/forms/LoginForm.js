@@ -22,12 +22,10 @@ const LoginForm = (props) => {
   const error = () => {
     message.error('Login Failed');
   };
-  console.log(user)
 
   const { setPage } = props;
 
   const onFinish = (values) => {
-    console.log(JSON.stringify(values, null, 2));
     const cb = (token) => {
       history.push('/transactions')
       window.location.reload(false)

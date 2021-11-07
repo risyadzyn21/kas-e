@@ -4,31 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import './EditSafeForm.scss'
 import Safe from '../../assets/icons/brangkas.svg'
 import { deleteSafeIdAsync, updateSafeAsync } from '../../redux/actions';
-import { getSafe} from '../../services';
 import Loading from '../loading/Loading';
 
 
 function EditSafeForm() {
-  const [currentSafe, setCurrentSafe] = useState({})
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-  const safesReducer = useSelector((state) => state.SafesReducer);
+  const { activeSafe } = useSelector((state) => state.SafesReducer);
 
-  useEffect(() => {
-    getSafe(token)
-      .then((response) => {
-        setCurrentSafe(response?.data[0])
-         
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [safesReducer.updateSafe])
-
-  console.log(currentSafe)
 
   const onFinish = (values) => {
-    console.log('Success:', values);
     dispatch(updateSafeAsync(values.safeName, values.amount))
   };
 
@@ -37,15 +22,14 @@ function EditSafeForm() {
   };
 
   const handlerDelete = (e) => {
-    dispatch(deleteSafeIdAsync(currentSafe.id))
-    console.log(currentSafe.id)
+    dispatch(deleteSafeIdAsync(activeSafe?.id))
   }
 
   return (
     <>
-      {safesReducer.loading ? <Loading /> : ''}
+      {/* {safesReducer.loading ? <Loading /> : ''} */}
       {/* {safesReducer.loading ? <Loading /> : ''}  */}
-      
+
       <Form
         onFinish={onFinish}
         className='edit-safe-container'
@@ -59,12 +43,12 @@ function EditSafeForm() {
         requiredMark={false}
         fields={[
           {
-          name:["safeName"],
-          value: currentSafe.safeName
+            name: ["safeName"],
+            value: activeSafe?.safeName
           },
           {
-          name:["amount"],
-          value: currentSafe.amount
+            name: ["amount"],
+            value: activeSafe?.amount
           }
         ]}
       >
@@ -73,7 +57,7 @@ function EditSafeForm() {
             Edit Safe
             <img src={Safe} alt='Safe' />
           </div>
-{/*           
+          {/*           
           <h1>{currentSafe.safeName}</h1> */}
           <div className='edit-safe-content'>
             <Form.Item

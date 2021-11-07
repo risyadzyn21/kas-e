@@ -76,7 +76,6 @@ function GetReportReducer(state = initialState, action) {
         isLoading: true
       };
     case actions.GET_REPORT_DAILY_INCOME_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         filtered: action.payload,

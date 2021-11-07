@@ -29,7 +29,6 @@ function EditCategoryLimit() {
   }, [])
 
   const onFinish = (values) => {
-    console.log('Success:', values);
     dispatch(editCategoryLimitAsync(values.category_id, values.limit))
   };
 

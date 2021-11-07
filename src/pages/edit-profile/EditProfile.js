@@ -41,7 +41,9 @@ function EditProfile() {
     formData.append("email", email);
     formData.append("gender", gender);
     formData.append("age", age);
-    formData.append("password", password);
+    if (password !== undefined && password !== "") {
+      formData.append("password", password);
+    }
     if (profilePicture !== null) {
       formData.append("profilePicture", profilePicture.originFileObj);
     }
@@ -65,7 +67,9 @@ function EditProfile() {
         setIsModalVisible(true);
       })
       .catch((error) => {
-        setMessage(error.message);
+        if (error) {
+          setMessage("Edit profile failed, Please try again.");
+        }
         setLoading(false);
         setIsModalVisible(true);
       });

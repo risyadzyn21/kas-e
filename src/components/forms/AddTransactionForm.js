@@ -51,7 +51,6 @@ function AddTransactionForm({ handleOk }) {
 
 
   const onFinish = (values) => {
-    console.log('Success:', values);
     dispatch(addTransactionAsync(values.category_id, values.detailExpense, values.expense, values.safe_id))
       .then(res => handleOk())
   };

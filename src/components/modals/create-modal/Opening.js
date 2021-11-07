@@ -21,7 +21,6 @@ const Opening = ({ navigation }) => {
     setIsModalVisible(false);
   };
 
-  console.log(isModalVisible);
   useEffect(() => {
     getSafe(token)
       .then((res) => {

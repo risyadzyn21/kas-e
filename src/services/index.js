@@ -57,7 +57,7 @@ export const profile = () => {
   });
 };
 
-export const getSafe = async (token) => {
+export const getSafe = async () => {
   const url = `https://kas-e.herokuapp.com/api/v1/safe`;
 
   try {
@@ -70,7 +70,6 @@ export const getSafe = async (token) => {
     });
     return response.json();
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -272,10 +271,6 @@ export const editCategoryLimit = (category_id, limit) => {
 };
 
 export const limitFirst = (params) => {
-  // const data = {
-  //   category_id,
-  //   limit,
-  // };
 
   return axios({
     method: "POST",

@@ -37,9 +37,7 @@ function RegisterForm(props) {
       "gender",
       "age",
     ]);
-    console.log(JSON.stringify(formData, null, 2));
     const showModalVerif = () => {
-      console.log('summon');
       // setPage("login")
       setIsModalVisible(true)
 

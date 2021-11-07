@@ -123,7 +123,7 @@ function EditProfile({ form, onFinish, onFinishFailed, userData }) {
               <img src={Hide} alt="Hide" />
             )
           }
-          placeholder="Please enter your new password"
+          placeholder="Please enter your new password if you'd like to change it"
         />
       </Form.Item>
     </Form>

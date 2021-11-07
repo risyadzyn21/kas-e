@@ -21,11 +21,6 @@ const Sidebar = () => {
     window.location.reload(false);
   }
 
-  // const onChange = (e) => {
-  //   console.log("radio checked", e.target.value);
-  //   setValue(e.target.value);
-  // };
-
   const menu = (
     <Menu className='corner-dropdown-content'>
       <Menu.Item key="0">
