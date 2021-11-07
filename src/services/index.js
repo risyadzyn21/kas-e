@@ -134,7 +134,7 @@ export const deleteSafeId = (id) => {
     data: JSON.stringify(data),
   });
 };
-    
+
 export const getTransaction = () => {
   return axios({
     method: "GET",
