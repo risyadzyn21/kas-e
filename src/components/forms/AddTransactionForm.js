@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Select, Input, Button, message } from 'antd'
+import { Form, Select, Input, Button, message, InputNumber } from 'antd'
 import NumberFormat from "react-number-format";
 import FunAndRelax from '../../assets/icons/FunAndRelax.png'
 import DetailExpense from '../../assets/icons/detail-expense.png'
