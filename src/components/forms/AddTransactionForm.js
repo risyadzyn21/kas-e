@@ -60,6 +60,7 @@ function AddTransactionForm({ handleOk }) {
     console.log('Failed:', errorInfo);
   };
 
+  console.log(categories, "INI CAT")        
   return (
     <>
 

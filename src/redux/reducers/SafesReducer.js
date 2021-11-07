@@ -1,13 +1,33 @@
 const initialState = {
-  createSafe: false,
-  updateSafe: false,
-  deleteIdSafe: false,
+  safes: [],
+  activeSafe: null,
   safeLoading: false,
   safeError: false,
 };
 
 function SafesReducer(state = initialState, action) {
   switch (action.type) {
+    
+    // Get safe
+    case "getSafe/get-start":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "getSafe/get-success":
+      return {
+        ...state,
+        safes: action.payload.safes,
+        activeSafe: action.payload.safes[0],
+        loading: false,
+        error: "",
+      };
+    case "getSafe/get-failed":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
     //Create Safe
     case "createSafe/get-start":
       return {
@@ -15,9 +35,10 @@ function SafesReducer(state = initialState, action) {
         loading: true,
       };
     case "createSafe/get-success":
+      console.log(action.payload, "ACTION YA")
       return {
         ...state,
-        createSafe: action.payload.createSafe,
+        activeSafe: action.payload.activeSafe,
         loading: false,
         error: "",
       };
@@ -29,19 +50,20 @@ function SafesReducer(state = initialState, action) {
       };
 
     // Update Safe
-    case " updateSafe/get-start":
+    case "updateSafe/get-start":
       return {
         ...state,
         loading: true,
       };
-    case " updateSafe/get-success":
+    case "updateSafe/get-success":
+      console.log(action.payload, "TEST")
       return {
         ...state,
-        updateSafe: action.payload.updateSafe,
+       activeSafe: action.payload.safe,
         loading: false,
         error: "",
       };
-    case " updateSafe/get-failed":
+    case "updateSafe/get-failed":
       return {
         ...state,
         loading: false,
@@ -57,7 +79,7 @@ function SafesReducer(state = initialState, action) {
     case "deleteSafeId/get-success":
       return {
         ...state,
-        deleteSafeId: action.payload.deleteSafeId,
+        activeSafe: null,
         loading: false,
         error: "",
       };

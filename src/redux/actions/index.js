@@ -251,12 +251,12 @@ export const addIncomeFailed = (error) => ({
 
 // get safe
 
-export const getSafeAsync = (token) => {
+export const getSafeAsync = () => {
   return async (dispatch) => {
     dispatch({ type: "getSafe/get-start" });
     try {
-      const response = await getSafe(token);
-      console.log(response, "start");
+      const response = await getSafe();
+      console.log(response, "GET SAFE");
       if (response.data) {
         dispatch(getSafeSuccess(response.data));
       }
@@ -268,10 +268,10 @@ export const getSafeAsync = (token) => {
   };
 };
 
-export const getSafeSuccess = (getSafe) => ({
+export const getSafeSuccess = (safes) => ({
   type: "getSafe/get-success",
   payload: {
-    getSafe,
+    safes,
   },
 });
 
@@ -292,7 +292,7 @@ export const createSafeAsync = (safeName, amount) => {
         return response.json();
       })
       .then((response) => {
-        console.log(response);
+        console.log(response, "CREATESAFE");
         if (response.data) {
           dispatch(createSafeSuccess(response.data));
         }
@@ -305,10 +305,10 @@ export const createSafeAsync = (safeName, amount) => {
   }
 };
 
-export const createSafeSuccess = (createSafe) => ({
+export const createSafeSuccess = (activeSafe) => ({
   type: "createSafe/get-success",
   payload: {
-    createSafe,
+    activeSafe,
   },
 });
 
@@ -329,22 +329,23 @@ export const updateSafeAsync = (safeName, amount) => {
       return response.json()
      })
      .then((response) => {
-      if (response.data.data) {
-          dispatch(updateSafeSuccess(response.data.data));
+       console.log(response.updatedSafe.data)
+      if (response.updatedSafe) {
+          dispatch(updateSafeSuccess(response.updatedSafe.data));
         }
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         dispatch(updateSafeFailed(error.message));
         return error;
       });
   };
 };
 
-export const updateSafeSuccess = (updateSafe) => ({
+export const updateSafeSuccess = (safe) => ({
   type: "updateSafe/get-success",
   payload: {
-    updateSafe,
+   safe,
   },
 });
 
@@ -364,7 +365,7 @@ export const deleteSafeIdAsync = (id) => {
       const response = await deleteSafeId(id);
       console.log(response, "start");
       if (response.data) {
-        dispatch(deleteSafeIdSuccess(response.data));
+        dispatch(deleteSafeIdSuccess());
       }
       return response;
     } catch (error) {
@@ -374,11 +375,8 @@ export const deleteSafeIdAsync = (id) => {
     }
   };
 };
-export const deleteSafeIdSuccess = (deleteSafeId) => ({
+export const deleteSafeIdSuccess = () => ({
   type: "deleteSafeId/get-success",
-  payload: {
-    deleteSafeId,
-  },
 });
 
 export const deleteSafeIdFailed = (error) => ({
