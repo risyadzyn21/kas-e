@@ -6,21 +6,26 @@ import { getProfileAsync } from "../../redux/actions/profileAction";
 
 function UserAvatar() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchProfile = () => {
-      dispatch(getProfileAsync());
-    };
-    fetchProfile();
-  }, []);
+  const token = localStorage.getItem("token");
 
   const userData = useSelector(
     (state) => state.profileReducer.profileData.data
   );
 
+  useEffect(() => {
+    const fetchProfile = () => {
+      dispatch(getProfileAsync(token));
+    };
+    fetchProfile();
+  }, []);
+
   return (
     <div className="user-avatar">
-      <Avatar name={userData ? userData.fullName : null} round={true} />
+      {userData?.profilePicture ? (
+        <img src={userData.profilePicture} alt="Avatar" className="avatar" />
+      ) : (
+        <Avatar name={userData ? userData.fullName : null} round={true} />
+      )}
       <div className="user-info">
         <h3>{userData ? userData.fullName : null}</h3>
         <h4>{userData ? userData.User.email : null}</h4>

@@ -10,10 +10,8 @@ import {
   addIncome,
   editCategoryLimit,
   limitFirst,
-  getTransaction
+  getTransaction,
 } from "../../services";
-
-import { getProfileSuccess, getProfileFailed } from "../actions/profileAction";
 
 export const GET_TRANSACTIONS = "GET_TRANSACTIONS";
 export const GET_TRANSACTIONS_SUCCESS = "GET_TRANSACTIONS_SUCCESS";
@@ -31,22 +29,6 @@ export const getLoginAsync = (email, password, cb) => {
         dispatch(getLoginSuccess(response.data));
         localStorage.setItem("token", response.data.token);
         cb(response.data.token);
-        axios({
-          method: "GET",
-          url: "http://kas-e.herokuapp.com/api/v1/profile",
-          headers: {
-            Authorization: `Bearer ${response.data.token}`,
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => {
-            console.log(response.data);
-            dispatch(getProfileSuccess(response.data));
-          })
-          .catch((error) => {
-            console.log(error);
-            dispatch(getProfileFailed(error));
-          });
       }
       return response;
     } catch (error) {
@@ -204,22 +186,22 @@ export const getSafeFailed = (error) => ({
 export const createSafeAsync = (safeName, amount) => {
   return (dispatch) => {
     dispatch({ type: "createSafe/get-start" });
-     createSafe(safeName, amount)
-     .then((response) => {
-      return response.json()
-     })
-     .then((response) => {
-       console.log(response)
-      if (response.data) {
+    createSafe(safeName, amount)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data) {
           dispatch(createSafeSuccess(response.data));
         }
-     })
-     .catch((error) => {
-      console.log(error.message);
-          dispatch(createSafeFailed(error.message));
-          return error
-     })
-  }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        dispatch(createSafeFailed(error.message));
+        return error;
+      });
+  };
 };
 
 export const createSafeSuccess = (createSafe) => ({
@@ -242,21 +224,21 @@ export const updateSafeAsync = (safeName, amount) => {
   return (dispatch) => {
     dispatch({ type: "updateSafe/get-start" });
     updateSafe(safeName, amount)
-     .then((response) => {
-      return response.json()
-     })
-     .then((response) => {
-       console.log(response.data.data)
-      if (response.data.data) {
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response.data.data);
+        if (response.data.data) {
           dispatch(updateSafeSuccess(response.data.data));
         }
-     })
-     .catch((error) => {
-      console.log(error.message);
-          dispatch(updateSafeFailed(error.message));
-          return error
-     })
-  }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        dispatch(updateSafeFailed(error.message));
+        return error;
+      });
+  };
 };
 
 export const updateSafeSuccess = (updateSafe) => ({
@@ -322,7 +304,7 @@ export const addIncomeAsync = (safe_id, expense) => {
       console.log(error.message);
       dispatch(addIncomeFailed(error.message));
 
-      return error
+      return error;
     }
   };
 };
@@ -339,25 +321,25 @@ export const addIncomeFailed = (error) => ({
     error,
   },
 });
- 
+
 // Limit First category
 
 export const limitFirstAsync = (params) => {
   return async (dispatch) => {
     dispatch({ type: "limitFirst/get-start" });
     try {
-      const response = await limitFirst(params)
-      console.log(response, "start")
+      const response = await limitFirst(params);
+      console.log(response, "start");
       if (response.data) {
         dispatch(limitFirstSuccess(response.data));
       }
-      return response
+      return response;
     } catch (error) {
       console.log(error.message);
       dispatch(limitFirstFailed(error.message));
-      return error
+      return error;
     }
-  }
+  };
 };
 
 export const limitFirstSuccess = (limitFirst) => ({
@@ -409,27 +391,27 @@ export const editCategoryLimitFailed = (error) => ({
 
 // Get Transaction
 export const getTransactions = () => ({
-  type: GET_TRANSACTIONS
+  type: GET_TRANSACTIONS,
 });
 
 export const getTransactionsSuccess = (transactions) => {
   return {
     type: GET_TRANSACTIONS_SUCCESS,
-    payload: transactions
+    payload: transactions,
   };
 };
 
 export const getTransasctionsFailure = (error) => {
   return {
     type: GET_TRANSACTIONS_FAILURE,
-    payload: error
+    payload: error,
   };
 };
 
 export const filterTransactions = (filter) => {
   return {
     type: TRANSACTIONS_FILTER_BY,
-    payload: filter
+    payload: filter,
   };
 };
 
@@ -441,7 +423,7 @@ export const getTransactionAsync = () => {
       const res = await getTransaction();
 
       dispatch(getTransactionsSuccess(res.data.data.transactions));
-      console.log(res.data)
+      console.log(res.data);
     } catch (error) {
       dispatch(getTransasctionsFailure(error));
     }

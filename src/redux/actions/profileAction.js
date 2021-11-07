@@ -1,17 +1,15 @@
 import { getProfile } from "../../services";
 
-export const getProfileAsync = () => {
+export const getProfileAsync = (token) => {
   return async (dispatch) => {
     dispatch({ type: "profile/get-start" });
     try {
-      const response = await getProfile();
-      console.log(response, "start");
+      const response = await getProfile(token);
       if (response.data) {
         dispatch(getProfileSuccess(response.data));
       }
       return response;
     } catch (error) {
-      console.log(error.message);
       dispatch(getProfileFailed(error.message));
       return error;
     }
