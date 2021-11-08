@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Input } from "antd";
-import { createSafe, getSafe } from "../../../services/index";
+import { getSafe } from "../../../services/index";
 import "./CreateAcc.scss";
 import SafeIcon from "../../../assets/icons/brangkas.png";
 import { useDispatch, useSelector } from "react-redux";
 import { createSafeAsync } from "../../../redux/actions";
-import Loading from '../../loading/Loading';
 
 const CreateAcc = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);

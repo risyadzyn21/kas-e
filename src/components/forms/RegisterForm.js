@@ -1,11 +1,12 @@
 import { Form, Input, Button, Select, InputNumber, Modal } from "antd";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRegisterAsync } from "../../redux/actions";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
 import EmailVerif from '../../assets/ilustrastion/email-ver.png';
 import '../modals/Modal.scss'
+import Loading from '../loading/Loading';
 
 function RegisterForm(props) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -15,10 +16,7 @@ function RegisterForm(props) {
   const [stepForm] = Form.useForm();
   const [step, setStep] = useState(1);
   const dispatch = useDispatch()
-
-  // const showModal = () => {
-  //   setIsModalVisible(true);
-  // };
+  const user = useSelector(state => state.userReducer)
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -38,7 +36,6 @@ function RegisterForm(props) {
       "age",
     ]);
     const showModalVerif = () => {
-      // setPage("login")
       setIsModalVisible(true)
 
     }
@@ -61,7 +58,8 @@ function RegisterForm(props) {
 
   return (
     <>
-      {/* <VerificationModal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} /> */}
+      {user.loading ? <Loading /> : ''}
+
       <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={null} closable={false}>
         <div className='modal-verif'>
           <img src={EmailVerif} />

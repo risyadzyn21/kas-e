@@ -1,5 +1,4 @@
 import { Form, Input, Button } from "antd";
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import './EditSafeForm.scss'
 import Safe from '../../assets/icons/brangkas.svg'
@@ -9,8 +8,7 @@ import Loading from '../loading/Loading';
 
 function EditSafeForm() {
   const dispatch = useDispatch()
-  const token = localStorage.getItem('token')
-  const { activeSafe } = useSelector((state) => state.SafesReducer);
+  const { activeSafe, loading } = useSelector((state) => state.SafesReducer);
 
 
   const onFinish = (values) => {
@@ -27,7 +25,7 @@ function EditSafeForm() {
 
   return (
     <>
-
+      {loading ? <Loading /> : ''}
       <Form
         onFinish={onFinish}
         className='edit-safe-container'

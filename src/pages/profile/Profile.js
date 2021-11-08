@@ -1,8 +1,6 @@
 import { Layout } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
-import EmptyPage from '../../components/empty-page/EmptyPage';
-import DailyChart from '../../components/charts/DailyChart'
 import Card from '../../components/cards/Card';
 
 const Profile = () => {

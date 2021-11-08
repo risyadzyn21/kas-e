@@ -9,8 +9,6 @@ import { useDispatch } from "react-redux";
 const Opening = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const token = localStorage.getItem("token");
-  const [status, setStatus] = useState("");
-  const dispatch = useDispatch();
   const [safes, setSafes] = useState([])
 
   const handleOk = () => {
@@ -31,9 +29,6 @@ const Opening = ({ navigation }) => {
         } else {
           setIsModalVisible(true);
         }
-      })
-      .catch((error) => {
-        console.log(error)
       })
   }, [])
 

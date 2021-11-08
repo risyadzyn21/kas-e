@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
-import { Spin } from "antd";
+import { useEffect } from "react";
 import "./SafeCard.scss";
 import NumberFormat from "react-number-format";
 import SafeIcon from "../../../assets/icons/brangkas.svg";
-import ArrowRight from "../../../assets/icons/arrow-right.png";
 import { getSafeAsync } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import SafesReducer from "../../../redux/reducers/SafesReducer";
 
 function SafeCard() {
   const dispatch = useDispatch();

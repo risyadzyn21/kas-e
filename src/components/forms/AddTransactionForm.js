@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Select, Input, Button, message, InputNumber } from 'antd'
+import { Form, Select, Input, Button } from 'antd'
 import NumberFormat from "react-number-format";
-import FunAndRelax from '../../assets/icons/FunAndRelax.png'
 import DetailExpense from '../../assets/icons/detail-expense.png'
 import YourExpense from '../../assets/icons/your-expense.png'
 import TakenFrom from '../../assets/icons/brangkas.svg'
 import SelectIcon from '../../assets/icons/select.svg'
 import './AddTransactionForm.scss'
-import { getCategory, getSafe } from '../../services';
-import { addTransactionAsync, getCategoriesAsync, getSafeAsync, getSafesAsc2 } from '../../redux/actions';
+import { getCategory } from '../../services';
+import { addTransactionAsync, getCategoriesAsync, getSafesAsc2 } from '../../redux/actions';
 import Loading from '../loading/Loading';
 import { isThisMonth } from 'date-fns';
 

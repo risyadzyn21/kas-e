@@ -1,6 +1,4 @@
 import userReducer from "./UserReducer";
-import transactionReducer from "./GetTransactionReducer";
-import incomeReducer from "./IncomeReducer";
 import editCategoryLimitReducer from "./EditCategoryLimitReducer";
 import { combineReducers } from "redux";
 import SafesReducer from "./SafesReducer";

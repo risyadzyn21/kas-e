@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import NumberFormat from "react-number-format";
@@ -12,7 +12,7 @@ import {
   getReportMonthlyIncomeAsync,
   getSafesAsc2
 } from '../../redux/actions';
-import { format, isThisMonth, subDays } from 'date-fns';
+import { format, isThisMonth } from 'date-fns';
 
 
 const MonthlyChart = () => {

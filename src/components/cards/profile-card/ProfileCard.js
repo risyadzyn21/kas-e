@@ -1,8 +1,7 @@
 import "./ProfileCard.scss";
-import { Button, Card } from "antd";
+import { Card } from "antd";
 import { Link } from "react-router-dom";
 import AvatarIcon from "../../avatar/AvatarIcon";
-import Right from "../../../assets/icons/arrow-right.png";
 
 function ProfileCard({ userData }) {
   return (

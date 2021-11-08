@@ -1,7 +1,6 @@
 import React from "react";
 import ReportDetailMonth from "../../components/print/ReportDetailMonth";
 import { Layout } from "antd";
-import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import './ReportDetail.scss';
 import HeaderReportDetail from "../../components/header/HeaderReportDetail";

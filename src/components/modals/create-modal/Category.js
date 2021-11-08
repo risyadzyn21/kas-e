@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Input, Button, Checkbox } from "antd";
+import { Modal, Form, Input, Button } from "antd";
 import { getCategory, getSafe } from "../../../services/index";
 import "./Category.scss";
 import "antd/dist/antd.css";
@@ -38,9 +38,6 @@ const Category = () => {
           setIsModalVisible(true);
         }
       })
-      .catch((error) => {
-        console.log(error)
-      })
   }, [])
 
   useEffect(() => {
@@ -49,9 +46,7 @@ const Category = () => {
         setCategories(res?.data?.data)
 
       })
-      .catch((error) => {
-        console.log(error)
-      })
+
   }, [])
 
 

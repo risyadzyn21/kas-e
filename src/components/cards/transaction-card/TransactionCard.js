@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { isToday, format } from 'date-fns';
+import React, { useEffect } from 'react';
+import { format } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux'
 import { getTransactionsDailyAsync, getTransactionsMonthlyAsync, addTransactionAsync, deleteTransactionAsync } from '../../../redux/actions';
 import { Tooltip } from 'antd';
-import { getTransaction } from '../../../services';
 import NumberFormat from "react-number-format";
 import './TransactionCard.scss'
 import Limit from '../../../assets/icons/limit.png'
@@ -13,7 +12,6 @@ import DetailExpense from '../../../assets/icons/detail-expense.png'
 import Trash from '../../../assets/icons/trash.png'
 import PiggyBank from '../../../assets/icons/piggy-bank.svg'
 import Loading from '../../loading/Loading'
-import { getTransactionsDailySuccess } from '../../../redux/actions'
 import EmptyPage from '../../empty-page/EmptyPage'
 
 function TransactionCard() {

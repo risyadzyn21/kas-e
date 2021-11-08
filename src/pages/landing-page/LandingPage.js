@@ -4,7 +4,6 @@ import logo from "../../assets/landing-page-images/logo-kas-e.png";
 import illustration1 from "../../assets/landing-page-images/illustration1.png";
 import illustration2 from "../../assets/landing-page-images/illustration2.png";
 import illustration3 from "../../assets/landing-page-images/illustration3.png";
-import Footer from "../../components/footer/Footer.js";
 import "./LandingPage.scss";
 import FooterReplace from "../../components/footer/FooterReplace";
 

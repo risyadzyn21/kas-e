@@ -1,8 +1,7 @@
-import { Button, Card, Layout, PageHeader, Form } from 'antd';
+import { Layout } from 'antd';
 import Sidebar from '../../components/sidebar/Sidebar'
 import HeaderSafePage from '../../components/header/HeaderSafePage';
 import EditSafeForm from '../../components/forms/EditSafeForm'
-import SafeLogo from '../../assets/icons/brangkas.svg'
 import './EditSafe.scss'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 

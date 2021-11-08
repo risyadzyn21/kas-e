@@ -1,27 +1,16 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getLoginAsync } from "../../redux/actions";
 
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button } from "antd";
 import Show from "../../assets/icons/show.png";
 import Hide from "../../assets/icons/hide.png";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Loading from '../loading/Loading';
 
 const LoginForm = (props) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const history = useHistory()
   const user = useSelector(state => state.userReducer)
-
-  const success = () => {
-    message.success('Login Success');
-  };
-
-  const error = () => {
-    message.error('Login Failed');
-  };
 
   const { setPage } = props;
 
@@ -33,9 +22,9 @@ const LoginForm = (props) => {
     dispatch(getLoginAsync(values.email, values.password, cb))
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  // const onFinishFailed = (errorInfo) => {
+  //   console.log("Failed:", errorInfo);
+  // };
 
 
   return (
@@ -49,7 +38,7 @@ const LoginForm = (props) => {
           span: 24,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item>

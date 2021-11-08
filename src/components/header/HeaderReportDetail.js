@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { PageHeader, Button } from 'antd';
 import './HeaderSingle.scss'
 import { useReactToPrint } from 'react-to-print';
-import ReportDetailMonth from '../print/ReportDetailMonth'
 import PrintPage from '../print/PrintPage'
 
 function HeaderReportDetail() {

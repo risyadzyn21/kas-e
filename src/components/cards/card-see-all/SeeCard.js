@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Row, Col } from 'antd';
 import { Modal, Button } from "antd";
 import "./SeeCard.scss";
-import { BsSafeFill, BsTrash } from "react-icons/bs";
 import { Card } from 'antd';
 import SafeIcon from "../../../assets/icons/brangkas.png";
 import Trash from '../../../assets/icons/trash.png';
@@ -50,7 +49,7 @@ const SeeCard = () => {
             Enter the amount of income into your safe so that your expenses are
             under control
           </p>
-           <img src={SafeIcon} alt="safe" />
+          <img src={SafeIcon} alt="safe" />
           <form>
             <div className="form">
               <input
@@ -82,35 +81,35 @@ const SeeCard = () => {
       </Modal>
       <div className="cards">
         <Card>
-        <div className="card-list">
-          <div
-            style={{ display: "flex", justifyContent: "space-between" }}
-            className="card-icons"
-          >
-            <div style={{ color: "#003F88", marginLeft: 110 }} className="card">
-            <img src={SafeIcon} alt="safe" />
+          <div className="card-list">
+            <div
+              style={{ display: "flex", justifyContent: "space-between" }}
+              className="card-icons"
+            >
+              <div style={{ color: "#003F88", marginLeft: 110 }} className="card">
+                <img src={SafeIcon} alt="safe" />
+              </div>
+              <div style={{ color: "#003F88" }} className="card">
+                <img src={Trash} alt="sampah" />
+              </div>
             </div>
-            <div style={{ color: "#003F88"}} className="card">
-            <img src={Trash} alt="sampah" />
+            <div style={{ marginTop: 20 }} className="card-text">
+              <Row className="card-content1">
+                <Col xs="auto">
+                  <h4>Safe Name</h4>
+                  <p>Jalan-jalan</p>
+                </Col>
+                <Col style={{ marginLeft: 70 }} xs="auto">
+                  <h4>Income</h4>
+                  <p>Rp 3.000.000</p>
+                </Col>
+              </Row>
+              <div className="card-content3">
+                <h4>Currency</h4>
+                <p>Rupiah</p>
+              </div>
             </div>
           </div>
-          <div style={{ marginTop: 20 }} className="card-text">
-            <Row className="card-content1">
-              <Col xs="auto">
-                <h4>Safe Name</h4>
-                <p>Jalan-jalan</p>
-              </Col>
-              <Col style={{ marginLeft: 70}} xs="auto">
-                <h4>Income</h4>
-                <p>Rp 3.000.000</p>
-              </Col>
-            </Row>
-            <div className="card-content3">
-              <h4>Currency</h4>
-              <p>Rupiah</p>
-            </div>
-          </div>
-        </div>
         </Card>
       </div>
     </div>

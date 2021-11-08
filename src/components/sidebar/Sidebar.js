@@ -12,7 +12,6 @@ import * as CgIcons from 'react-icons/cg'
 // import { updateTabVariant } from '../../redux/actions'
 
 const Sidebar = () => {
-  const [value, setValue] = useState(1);
   const { SubMenu } = Menu;
   const dispatch = useDispatch()
 

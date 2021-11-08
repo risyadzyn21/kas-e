@@ -1,9 +1,7 @@
-import { useState, useEffect, forwardRef } from "react";
+import { useEffect, forwardRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import "./Print.scss";
 import SafeIcon from "../../assets/icons/brangkas.svg";
-import MinusLine from '../../assets/indicators/short-line.svg'
-import { getReportMonthly, getSafe, getTransaction } from '../../services';
 import NumberFormat from "react-number-format";
 import * as AiIcons from 'react-icons/ai'
 import Loading from '../loading/Loading'
@@ -14,7 +12,7 @@ import {
   getReportMonthlyIncomeAsync,
   getSafesAsc2
 } from "../../redux/actions";
-import { format, isThisMonth, subDays } from "date-fns";
+import { format } from "date-fns";
 
 const ReportDetailMonth = forwardRef((props, ref) => {
   const token = localStorage.getItem('token')

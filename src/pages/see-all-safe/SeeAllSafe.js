@@ -9,7 +9,7 @@ import './SeeAllSafe.scss'
 import ArrowLeft from "../../assets/icons/arrow-left.png";
 
 const SeeAllSafe = () => {
-  const { Header, Sider, Content } = Layout;
+  const { Sider, Content } = Layout;
   return (
     <div>
       <Layout>
@@ -19,12 +19,12 @@ const SeeAllSafe = () => {
         <Layout>
           <PageHeader>
             <div className="header-detail">
-                <Link to="/my-profile">
-              <img src={ArrowLeft} alt="back" />
+              <Link to="/my-profile">
+                <img src={ArrowLeft} alt="back" />
               </Link>
               <h2 style={{ fontWeight: "bold" }}>See All Safe</h2>
-              </div>
-            </PageHeader>
+            </div>
+          </PageHeader>
           <Content>
             <SeeCard />
           </Content>

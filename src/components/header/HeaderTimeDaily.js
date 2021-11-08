@@ -1,21 +1,15 @@
-import { PageHeader, Tabs, Dropdown, Menu } from 'antd';
+import { PageHeader, Tabs } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import './HeaderTime.scss'
 import KasESmall from '../../assets/logo/Rectangle-9-1.png'
 import KasELetterSmall from '../../assets/logo/Kas-E-1.png'
-import EmptyPage from '../empty-page/EmptyPage';
-import * as IoIcons from 'react-icons/io'
-import TransactionCard from '../cards/transaction-card/TransactionCard';
-import SafeCard from '../cards/safe-card/SafeCard';
 import { getTransactionsDailyAsync, getTransactionsMonthlyAsync } from '../../redux/actions';
-import GetTransactionReducer from '../../redux/reducers/GetTransactionReducer';
 import { subDays, format, addDays, subMonths, addMonths, endOfMonth } from 'date-fns';
 import TabByDay from './TabByDay';
 import TabByMonth from './TabByMonth';
 
 function HeaderTimeDaily() {
   const dispatch = useDispatch()
-  const { TabPane } = Tabs;
 
   const variant = useSelector(state => state.GetTransactionReducer)
 

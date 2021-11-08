@@ -12,7 +12,6 @@ import TabByMonth from './TabByMonth';
 
 function HeaderTimeMonthly() {
   const dispatch = useDispatch()
-  const { TabPane } = Tabs;
 
   const variant = useSelector(state => state.GetTransactionReducer)
 

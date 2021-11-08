@@ -1,9 +1,6 @@
 import { Layout } from 'antd';
 import './ReportPage.scss'
 import Sidebar from '../../components/sidebar/Sidebar'
-import HeaderTimeDaily from '../../components/header/HeaderTimeDaily'
-import EmptyPage from '../../components/empty-page/EmptyPage';
-import DailyChart from '../../components/charts/DailyChart'
 import SafeCard from '../../components/cards/safe-card/SafeCard';
 import MonthlyChart from '../../components/charts/MonthlyChart';
 import HeaderTimeMonthly from '../../components/header/HeaderTimeMonthly';
