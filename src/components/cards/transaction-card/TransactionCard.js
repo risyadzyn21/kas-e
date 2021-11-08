@@ -47,18 +47,18 @@ function TransactionCard() {
                 <div className='card-content-container'>
                   <h3>{transaction?.Categories?.categoryName}</h3>
                   <img src={transaction?.Categories?.image_url} alt={transaction?.Categories?.categoryName} />
-                  {transaction.Categories.Limit.map((limit) => {
-                    return limit.amount < 0 ? (<div style={{ "fontWeight": "bold" }}>
-                      Over Limit: <NumberFormat
-                        value={limit.amount}
-                        displayType="text"
-                        thousandSeparator="."
-                        decimalSeparator=","
-                        prefix="Rp"
-                        style={{ "color": "red", "fontWeight": "bold" }}
-                      />
-                    </div>) : ''
-                  })}
+
+                  {transaction.amount < 0 ? (<div style={{ "fontWeight": "bold" }}>
+                    Over Limit: <NumberFormat
+                      value={transaction.amount}
+                      displayType="text"
+                      thousandSeparator="."
+                      decimalSeparator=","
+                      prefix="Rp"
+                      style={{ "color": "red", "fontWeight": "bold" }}
+                    />
+                  </div>) : ''}
+
 
                   <div className='card-content'>
 
