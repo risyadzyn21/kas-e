@@ -35,9 +35,6 @@ function SafeCard() {
             />
           </h4>
         </div>
-        <div className="safe-button">
-          <img src={ArrowRight} alt="arrow" />
-        </div>
       </div>
     )
   }

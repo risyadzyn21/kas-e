@@ -27,8 +27,6 @@ function EditSafeForm() {
 
   return (
     <>
-      {/* {safesReducer.loading ? <Loading /> : ''} */}
-      {/* {safesReducer.loading ? <Loading /> : ''}  */}
 
       <Form
         onFinish={onFinish}
@@ -94,16 +92,15 @@ function EditSafeForm() {
           </div>
         </div>
 
-        <div className='safe-btn-wrapper'>
-          <Form.Item >
-            <Button className='save-safe-btn' htmlType="submit" block size='large'>
-              Save
-            </Button>
-            <Button onClick={handlerDelete} className='delete-safe-btn' block size='large'>
-              Delete
-            </Button>
-          </Form.Item>
-        </div>
+        <Form.Item className='safe-btn-wrapper'>
+          <Button className='save-safe-btn' htmlType="submit" block size='large'>
+            Save
+          </Button>
+          <Button onClick={handlerDelete} className='delete-safe-btn' block size='large'>
+            Delete
+          </Button>
+        </Form.Item>
+
       </Form>
     </>
   );

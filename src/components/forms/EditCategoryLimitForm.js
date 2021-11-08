@@ -86,16 +86,22 @@ function EditCategoryLimit() {
                       <div className='edit-category-select'>
                         <img src={category.Limit.image_url} alt={category.Limit.categoryName} />
                         <div style={{ flex: 1 }}>
-                          <div className='edit-category-title'>{category.Limit.categoryName}</div>
+                          <div className='edit-category-title'>{category.Limit.categoryName} - <NumberFormat
+                            value={category.limit}
+                            displayType="text"
+                            thousandSeparator="."
+                            decimalSeparator=","
+                            prefix="Rp"
+                          /></div>
                           <div className='edit-category-caption'>{category.Limit.caption}</div>
-                          <div className='edit-category-limit'>Current Limit: <NumberFormat
+                          <span className='edit-category-limit'>Current Limit: <NumberFormat
                             value={category.limit}
                             displayType="text"
                             thousandSeparator="."
                             decimalSeparator=","
                             prefix="Rp"
                           />
-                          </div>
+                          </span>
                         </div>
                       </div>
 
