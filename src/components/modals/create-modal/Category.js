@@ -40,13 +40,14 @@ const Category = () => {
       })
   }, [])
 
+
+
+
   useEffect(() => {
     getCategory()
       .then((res) => {
         setCategories(res?.data?.data)
-
       })
-
   }, [])
 
 
